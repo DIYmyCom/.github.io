@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICマイコンを作ろう ～ 使い方 ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン" />
+<meta name="description" content="電子工作,BASIC,マイコン" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+	<include id='menu.html'></include>
+
+		<div id="wrapBg">
+			<div class="wrapBox clearfix">
+				<div id="mainContents">
+					<a id="assembly" name="assembly"></a>
+					<p class="chapter8">使い方</p>
+					<p class="chapter6">ご購入</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p><a href="https://auctions.yahoo.co.jp/jp/auction/s1218845758" target="_blank">ヤフオク</a>に出品しました。</p></span>
+						<span><p><a href="https://auctions.yahoo.co.jp/jp/auction/x1222338569" target="_blank">ヤフオク</a>に出品しました。</p></span>
+						<span><p><a href="https://auctions.yahoo.co.jp/jp/auction/v1222342937" target="_blank">ヤフオク</a>に出品しました。</p></span>
+					</div>
+					<p class="chapter6">組立</p>
+
+					<div class="txtTempSet txtTemp1">
+						<span><p>①左の形で梱包されているので、四隅のナットを外して、天板を裏返して取り付けて、右のように組み立ててください。</p></span>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><a href="user_manual/001.JPG" target="_blank"><img src="user_manual/001.JPG" width="390"></a></p>
+					</div>
+						<p><a href="user_manual/002.JPG" target="_blank"><img src="user_manual/002.JPG" width="390"></a></p>
+					</div>
+
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span>
+						<p>
+							②右の写真のように、マイコンにケーブルを指して、もう片方をPCに接続すれば、組立完了です。
+						</p>
+						</span>
+					</div>
+						<p><a href="user_manual/003.JPG" target="_blank"><img src="user_manual/003.JPG" width="390"></a></p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<br /><br />
+
+					<a id="TERATERM" name="TERATERM"></a>
+					<p class="chapter6">PC側の設定</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><a href="https://teratermproject.github.io/" target="_blank">TeraTerm</a>をインストールして、マイコンのケーブルをPCのUSBポートに接続して増えたCOMポートを指定して接続してください。</br>
+						その後、端末の設定とシリアルポート設定を下のように設定してください。</p></span>
+					</div>
+						<p><a href="user_manual/006.JPG" target="_blank"><img src="user_manual/005.png" width="390"></a></p>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><a href="user_manual/005.JPG" target="_blank"><img src="user_manual/006.png" width="390"></a></p>
+					</div>
+						<p><a href="user_manual/006.JPG" target="_blank"><img src="user_manual/007.png" width="390"></a></p>
+					</div>
+					<br /><br />
+
+					<a id="PowerOn" name="PowerOn"></a>
+					<p class="chapter6">電源を入れる</p>
+
+					<div class="txtTempSet txtTemp1">
+						<span><p>SW2をONにして、電源を投入する。（SW1は常にAPPLI側にしておいてください。）</br>
+						左下に示す起動メッセージが出ます。
+						</p></span>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><a href="user_manual/003.JPG" target="_blank"><img src="user_manual/004.JPG" width="390"></a></p>
+					</div>
+						<p><a href="user_manual/008.png" target="_blank"><img src="user_manual/008.png" width="390"></a></p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="run" name="run"></a>
+					<p class="chapter6">BASICプログラムを動かす</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>①BASICプログラムを<a href="https://diymycom.pythonanywhere.com/games" target="_blank">投稿サイト</a>からダウンロードします。</br>
+						②TeraTermの「ファイル送信」でダウンロードしたBASICプログラムを選択します。</br>
+						③右下のようにBASICプログラムがマイコンに転送されます。</br>
+						④終わったらTeraTermにrunと入力して改行してください。</br>
+						プログラムが実行されます。
+						</p></span>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><a href="user_manual/020.png" target="_blank"><img src="user_manual/020.png" width="390"></a></p>
+					</div>
+						<p><a href="user_manual/021.png" target="_blank"><img src="user_manual/021.png" width="390"></a></p>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><a href="user_manual/020.png" target="_blank"><img src="user_manual/020.png" width="390"></a></p>
+					</div>
+						<p><a href="user_manual/021.png" target="_blank"><img src="user_manual/021.png" width="390"></a></p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="trick" name="trick"></a>
+					<p class="chapter6">裏技</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>
+						このマイコンは、BASICのコマンドやプログラムをTeraTermから入力して動くようになっており、さらに、BASICのprint文はTeraTermに出力されます。<br />
+						つまり、外部からプログラムをロードして実行できて、そのプログラムから外部にメッセージを返すことができるので、外部から完全にコントロール可能ということです。<br />
+						現在は、PCからUSB経由の接続がないと機能しませんが、外部から電源供給とプログラムを入力するガジェットを外付けすれば、単体で使えるようになります。<br />
+						シリアルケーブルのピン配列はArduinoProMiniと同じにしているので、いつか、挑戦してみようと思います。<br />
+						ストレージを持ったプログラムローダからいろいろなプログラムをロード・実行して、ブラックオニキスやファイアークリスタルのようなRPGなんかを作ってみたい。<br />
+						</p></span>
+					</div>
+
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="ref" name="ref"></a>
+					<p class="chapter6">参考リンク</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>
+						<ul id="subNavigation" class="bgList1">
+							<li><a href="http://www.diymycom.shop/pocket_basic.html" title="Pocket BASIC">Pocket BASIC　仕様</a></li>
+							<li><a href="https://diymycom.pythonanywhere.com/games" title="">BASICプログラム投稿サイト</a></li>
+							<li><a href="https://diymycom.pythonanywhere.com/chat" title="">コミュニティ</a></li>
+							<li><a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_scroll" title="">ゲームの作り方</a></li>
+							<br />
+						</ul>
+						</p></span>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+				</div><!-- div#mainContents END -->
+				<div id="leftContents">
+					<a id="Menu" name="Menu"></a>
+					<ul id="subNavigation" class="bgList1">
+						<li><a href="#assembly" title="">組立</a></li>
+						<li><a href="#TERATERM" title="">TERATERMの設定</a></li>
+						<li><a href="#PowerOn" title="">電源を入れる</a></li>
+						<li><a href="#run" title="">BASICプログラムを動かす</a></li>
+						<li><a href="#trick" title="">裏技</a></li>
+						<li><a href="#ref" title="">参考リンク</a></li>
+						<br />
+					</ul>
+					<br />
+				</div><!-- div#leftContents END -->
+			</div><!-- div#wrapBox END -->
+		</div><!-- div#wrapBg END -->
+<include id='copy.html'></include>
+	</div>
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>
