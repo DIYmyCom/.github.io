@@ -1,0 +1,148 @@
+﻿@charset "utf-8";
+
+/*--------------------------------------*/
+/* メインイメージに関する指定 p#mainImg */
+/*--------------------------------------*/
+
+div#mainImgBox{
+	width: 100%;
+	margin:30px auto 45px;
+	text-align: left;
+	width: 960px;
+}
+
+div#mainImgBox strong{
+	font-weight: bold;
+	font-size: 17px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.mainImgBoxContainer {
+	position: relative;
+	width: 960px; /* 画像の幅に合わせて設定 */
+	overflow: hidden; /* コンテナの外にはみ出た部分を隠す */
+}
+
+.mainImgBoxContainer img.background {
+	width: 100%;
+}
+
+
+/* クリッピングを適用する要素 */
+/*.clipped-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	clip-path: inset(0 0 0 0);
+}*/
+/*--------------------------------------*/
+/*-------------------------------------*/
+/* リストフォーマット */
+/*-------------------------------------*/
+
+ul{
+	display: block;
+}
+
+ul.Number{ list-style: decimal inside;}
+
+ul.imgList1{ list-style: circle inside;}
+ul.imgList2{ list-style: disc inside;}
+
+ul.bgList1 li{ background: url(../img/bg_list1.gif) no-repeat left center; padding-left: 1.5em;}
+ul.bgList2 li{ background: url(../img/bg_list2.gif) no-repeat left center; padding-left: 1.5em;}
+ul.bgList3 li{ background: url(../img/bg_list3.gif) no-repeat left center; padding-left: 1.5em;}
+ul.bgList4 li{ background: url(../img/bg_list4.gif) no-repeat left center; padding-left: 1.5em;}
+ul.bgList5 li{ background: url(../img/bg_list5.gif) no-repeat left center; padding-left: 1.5em;}
+
+ul.borderList1 li{ border-bottom: 1px solid #ccc; padding-bottom:0.3em; margin-bottom: 0.9em; display: block; }
+ul.borderList2 li{ border-bottom: 1px dotted #ccc; padding-bottom:0.3em; margin-bottom: 0.9em; display: block; }
+/*--------------------------------------*/
+div#wBg{
+	background: #fff;
+}
+
+div#mainContents{
+	width: 960px;
+	margin: 0 auto;
+	text-align: left;
+
+}
+
+/* 3つのトピックス */
+div#mainContents div.topicsBox{
+	width: 295px;
+	float: left;
+	margin-left: 33px;
+	margin-bottom: 60px;
+}
+div#mainContents div.firstItem{
+	margin-left: 0;
+}
+div#mainContents div.topicsBox strong{
+	margin-bottom: 15px;
+	font-weight: bold;
+	display: block;
+	font-size: 14px;
+}
+div#mainContents div.topicsBox span{
+	line-height: 1.8;
+	display: block;
+	text-align: justify;
+	margin-bottom: 8px;
+}
+
+/* 新着情報 */
+
+div#newTopics{
+	float: left;
+}
+div#newTopics strong{
+	font-weight: bold;
+	font-size: 13px;
+	margin-bottom: 8px;
+	display: block;
+	font-size: 14px;
+}
+div#newTopics dl{
+	width: 640px;
+	border-bottom: 1px solid #ddd;
+}
+div#newTopics dl dt,
+div#newTopics dl dd{
+	padding: 8px 0;
+	border-top: 1px solid #ddd;
+}
+div#newTopics dl dt{
+	float:left;
+	width:80px;
+	padding-left: 10px;
+	clear:both;
+	background: #F6F5F0;
+	color: #7D663A;
+}
+div#newTopics dl dd{
+	width:525px;
+	margin-left:90px;
+	padding-left: 20px;
+	border-left:1px solid #ddd;
+}
+div#newTopics dl dd a{
+	color: #666;
+	text-decoration: none;
+}
+div#newTopics dl dd a:hover{
+	text-decoration: underline;
+}
+
+/* バナーエリア */
+div#bannerBox{
+	float: right;
+	width: 250px;
+}
+div#bannerBox ul li{
+	margin-bottom: 15px;
+}

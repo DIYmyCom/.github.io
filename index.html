@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICでゲームを作ろう</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta name="description" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="index/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+<link href="favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+<script type="text/javascript" src="share/js/jquery.js"></script>
+<script type="text/javascript" src="share/js/default.js"></script>
+  <style>
+    #Snow_01 {
+      position: absolute;
+      top: -180px;
+      right: -380px;
+      width: 1200px;
+      transition: all 1s linear;
+    }
+  </style>
+</head>
+
+<body>
+	<div id="wrapper">
+	<include id='menu.html'></include>
+		<div id="mainImgBox">
+			<div class="mainImgBoxContainer">
+				<p id="mainImg"><img src="index/img/mainimg.jpg" class="background" style="position: relative;"></p> 
+			<!--<img id="Snow_01" src="index/img/Snow_05.gif" alt="重ねるGIF" class="overlay" style="position: absolute; top: -120px; right: -230px; width: 1000px;"> 
+				<img id="Snow_02" src="index/img/Snow_05.gif" alt="重ねるGIF" class="overlay" style="position: absolute; top: -30px; right: -150px; width: 500px;"> -->	
+			<!--	<img id="Snow_01" src="index/img/Snow_100ms.gif" alt="重ねるGIF" class="overlay" style="position: absolute; top: -60px; right: -120px; width: 600px;">-->	
+  				<img id="Snow_01" src="index/img/Snow_80ms.gif" alt="重ねるGIF" class="overlay">
+			</div>
+		</div>
+
+		<div id="mainContents">
+			<span>
+			<div style="position: relative;">
+			なぜ、今さらBASICかというと、下記のような利点があるためだ。<img src="index/img/SnowDIYElectronics/00013-2455744710.png" alt="Snow電子工作" style="position: absolute; right: 0px; top: 0px; width: 110px;" />
+			</div>
+				<ul class="bgList5">
+					<li>ゲームのすべて（音楽、キャラクタ、プログラム等）を１つのテキストファイルに表現できる</li>
+					<li>OSやファイルシステムなど、BASICの他に必要とする知識が少ない</li>
+					<li>古い初心者向けの言語なので、理解を前提としている概念（オブジェクト指向など）が少ない</li>
+				</ul>
+			基本的な考え方は他の言語（python、Unityなど）でも同じなので、考え方さえ理解すれば、同様のゲームを他の言語でも容易に作れると思う。<br />
+			話は変わるが、右上の少女は<a href="Snow.html">Snow</a>、このサイトのナレータだ。動画などでいろいろと説明をしてくれる。<br />
+			最初は、縦スクロールシューティングゲームを作ろうと思う。<br /><br />
+			</span>
+
+			<span>
+				<!-- <video src="index/img/shooter01.mp4" loop autoplay muted controls></video> -->
+				<video 
+					src="index/img/shooter01.mp4" 
+					controls 
+					preload="metadata" 
+					style="max-width: 100%; cursor: pointer;"
+					onclick="this.setAttribute('controls', true); this.play();"
+				></video>
+			</span>
+			<br /><br />
+
+			<div class="clearfix">
+				<div class="topicsBox firstItem">
+					<span>
+					<strong>マイコンの作り方</strong>
+					<a href="http://basic001.cloudfree.jp/machine.html#pageLink_Assemble" id="video-link1">
+						<!--
+						<video id="thumbnail-video" width="300" muted loop playsinline>
+							<source src="index/img/AssembleMicrocontroller_960.mp4" type="video/mp4">
+						</video>
+						-->
+						<video id="thumbnail-video1" width="300" muted playsinline preload="metadata">
+						<source src="index/img/AssembleMicrocontroller_960.mp4#t=0,10" type="video/mp4">
+						</video>
+					</a>
+					</span>
+					<span>
+					<strong>マイコンの使い方</strong>
+					<a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_intro" id="video-link2">
+						<video id="thumbnail-video2" width="300" muted playsinline preload="metadata">
+						<source src="index/img/Intro_960.mp4#t=0,10" type="video/mp4">
+						</video>
+					</a>
+					</span>
+				</div>
+
+				<div class="topicsBox">
+					<span>
+					<strong>自機を動かそう</strong>
+					<a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_my_gear" id="video-link3">
+						<video id="thumbnail-video3" width="300" muted playsinline preload="metadata">
+						<source src="index\img\BASIC\shooting/shoot02_960.mp4#t=0,10" type="video/mp4">
+						</video>
+					</a>
+					</span>
+					<span>
+					<strong>敵機を追加しよう</strong>
+					<a href="http://basic001.cloudfree.jp/shooting02.html#pageLink_En" id="video-link5">
+						<video id="thumbnail-video4" width="300" muted playsinline preload="metadata">
+						<source src="index\img\BASIC\shooting/shoot05_960.mp4#t=0,10" type="video/mp4">
+						</video>
+					</a>
+					</span>
+				</div>
+
+				<div class="topicsBox">
+					<span>
+					<strong>あたり判定を追加しよう</strong>
+					<a href="http://basic001.cloudfree.jp/shooting02.html#pageLink_EnExplosion" id="video-link4">
+						<video id="thumbnail-video5" width="300" muted playsinline preload="metadata">
+						<source src="index\img\BASIC\shooting/shoot06_960.mp4#t=0,10" type="video/mp4">
+						</video>
+					</a>
+					</span>
+					<span>
+					<strong>高速化しよう</strong>
+					<a href="http://basic001.cloudfree.jp/shooting03.html#pageLink_Acceleration" id="video-link4">
+						<video id="thumbnail-video6" width="300" muted playsinline preload="metadata">
+						<source src="index\img\BASIC\shooting/shoot09_960.mp4#t=0,10" type="video/mp4">
+						</video>
+					</a>
+					</span>
+				</div>
+			</div>
+
+			<div class="clearfix">
+				<div id="newTopics">
+					<strong>新着情報／2025.05.06 更新</strong>
+					<dl>
+						<dt>2025.05.06</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting03.html#pageLink_completion" title="">シューティングゲーム完成</a></dd>
+						<dt>2025.05.01</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting03.html#pageLink_Acceleration" title="">高速化しよう</a></dd>
+						<dt>2025.04.27</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting02.html#pageLink_EnBullet" title="">敵ミサイルを追加しよう</a></dd>
+						<dt>2025.04.20</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting02.html#pageLink_EnExplosion" title="">あたり判定を追加しよう</a></dd>
+						<dt>2025.04.13</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting02.html#pageLink_En" title="">敵機を追加しよう</a></dd>
+						<dt>2025.04.05</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting02.html#pageLink_MyBullet" title="">自機ミサイルを追加しよう</a></dd>
+						<dt>2025.03.22</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_sound" title="">音を出してみよう</a></dd>
+						<dt>2025.03.16</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_my_gear" title="">自機を動かそう</a></dd>
+						<dt>2025.03.01</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_scroll" title="">縦スクロールを作ろう</a></dd>
+						<dt>2025.02.22</dt>
+						<dd><a href="http://basic001.cloudfree.jp/shooting01.html#pageLink_intro" title="">マイコンの使い方</a></dd>
+						<dt>2025.02.08</dt>
+						<dd><a href="http://basic001.cloudfree.jp/machine.html#pageLink_Assemble" title="">マイコンの作り方</a></dd>
+						<dt>2024.10.12</dt>
+						<dd><a href="index.html" title="">新規作成</a></dd>
+					</dl>
+				</div>
+				<div id="bannerBox">
+					<ul>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+			<include id='copy.html'></include>
+		<script type='text/javascript' src='incl.js'></script>
+		<script>
+			const snowElement = document.getElementById('Snow_01');
+			let cycleCount = 0;
+
+			function animateSnow() {
+			const topStart = -30;
+			const rightStart = -100;
+			const widthStart = 500;
+
+			const topEnd = -180;
+			const rightEnd = -380;
+			const widthEnd = 1200;
+
+			const progress = (cycleCount % 2) === 0 ? 0 : 1; // 0 -> Start, 1 -> End
+			
+			// 変化量に基づいて計算
+			const newTop = topStart + (topEnd - topStart) * progress;
+			const newRight = rightStart + (rightEnd - rightStart) * progress;
+			const newWidth = widthStart + (widthEnd - widthStart) * progress;
+
+			snowElement.style.top = `${newTop}px`;
+			snowElement.style.right = `${newRight}px`;
+			snowElement.style.width = `${newWidth}px`;
+
+			cycleCount++;
+			}
+
+			setInterval(animateSnow, 15000); // 1秒ごとに実行
+		</script>
+
+
+		<script>
+/*			const video1 = document.getElementById("thumbnail-video1");
+				video1.addEventListener("mouseenter", () => {
+				video1.play();
+			});
+				video1.addEventListener("mouseleave", () => {
+				video1.pause();
+				video1.currentTime = 0;
+			});
+			const video2 = document.getElementById("thumbnail-video2");
+				video2.addEventListener("mouseenter", () => {
+				video2.play();
+			});
+				video2.addEventListener("mouseleave", () => {
+				video2.pause();
+				video2.currentTime = 0;
+			});
+			const video3 = document.getElementById("thumbnail-video3");
+				video3.addEventListener("mouseenter", () => {
+				video3.play();
+			});
+				video3.addEventListener("mouseleave", () => {
+				video3.pause();
+				video3.currentTime = 0;
+			});
+			const video4 = document.getElementById("thumbnail-video4");
+				video4.addEventListener("mouseenter", () => {
+				video4.play();
+			});
+				video4.addEventListener("mouseleave", () => {
+				video4.pause();
+				video4.currentTime = 0;
+			});
+			const video5 = document.getElementById("thumbnail-video5");
+				video5.addEventListener("mouseenter", () => {
+				video5.play();
+			});
+				video5.addEventListener("mouseleave", () => {
+				video5.pause();
+				video5.currentTime = 0;
+			});
+*/
+			const video1 = document.getElementById("thumbnail-video1");
+			const video2 = document.getElementById("thumbnail-video2");
+			const video3 = document.getElementById("thumbnail-video3");
+			const video4 = document.getElementById("thumbnail-video4");
+			const video5 = document.getElementById("thumbnail-video5");
+			const video6 = document.getElementById("thumbnail-video6");
+
+			// 動画が読み込まれたら再生
+			video1.addEventListener("loadeddata", () => {
+				video1.currentTime = 0; // 冒頭から再生
+				video1.play();
+			});
+			// 10秒経過後に最初に戻る（ループ）
+			video1.addEventListener("timeupdate", () => {
+				if (video1.currentTime >= 10) {
+    				video1.pause();
+    				video1.removeAttribute("src"); // 以降の読み込みを止める（重要）
+    				video1.load(); // 停止状態にリセット
+					video1.currentTime = 0; // ループ
+					video1.play();
+				}
+			});
+
+			// 動画が読み込まれたら再生
+			video2.addEventListener("loadeddata", () => {
+				video2.currentTime = 0; // 冒頭から再生
+				video2.play();
+			});
+			// 10秒経過後に最初に戻る（ループ）
+			video2.addEventListener("timeupdate", () => {
+				if (video2.currentTime >= 10) {
+    				video2.pause();
+    				video2.removeAttribute("src"); // 以降の読み込みを止める（重要）
+    				video2.load(); // 停止状態にリセット
+					video2.currentTime = 0; // ループ
+					video2.play();
+				}
+			});
+
+			// 動画が読み込まれたら再生
+			video3.addEventListener("loadeddata", () => {
+				video3.currentTime = 0; // 冒頭から再生
+				video3.play();
+			});
+			// 10秒経過後に最初に戻る（ループ）
+			video3.addEventListener("timeupdate", () => {
+				if (video3.currentTime >= 10) {
+    				video3.pause();
+    				video3.removeAttribute("src"); // 以降の読み込みを止める（重要）
+    				video3.load(); // 停止状態にリセット
+					video3.currentTime = 0; // ループ
+					video3.play();
+				}
+			});
+
+			// 動画が読み込まれたら再生
+			video4.addEventListener("loadeddata", () => {
+				video4.currentTime = 0; // 冒頭から再生
+				video4.play();
+			});
+			// 10秒経過後に最初に戻る（ループ）
+			video4.addEventListener("timeupdate", () => {
+				if (video4.currentTime >= 10) {
+    				video4.pause();
+    				video4.removeAttribute("src"); // 以降の読み込みを止める（重要）
+    				video4.load(); // 停止状態にリセット
+					video4.currentTime = 0; // ループ
+					video4.play();
+				}
+			});
+
+			// 動画が読み込まれたら再生
+			video5.addEventListener("loadeddata", () => {
+				video5.currentTime = 0; // 冒頭から再生
+				video5.play();
+			});
+			// 10秒経過後に最初に戻る（ループ）
+			video5.addEventListener("timeupdate", () => {
+				if (video5.currentTime >= 10) {
+    				video5.pause();
+    				video5.removeAttribute("src"); // 以降の読み込みを止める（重要）
+    				video5.load(); // 停止状態にリセット
+					video5.currentTime = 0; // ループ
+					video5.play();
+				}
+			});
+
+			// 動画が読み込まれたら再生
+			video6.addEventListener("loadeddata", () => {
+				video6.currentTime = 0; // 冒頭から再生
+				video6.play();
+			});
+			// 10秒経過後に最初に戻る（ループ）
+			video6.addEventListener("timeupdate", () => {
+				if (video6.currentTime >= 10) {
+    				video6.pause();
+    				video6.removeAttribute("src"); // 以降の読み込みを止める（重要）
+    				video6.load(); // 停止状態にリセット
+					video6.currentTime = 0; // ループ
+					video6.play();
+				}
+			});
+		</script>
+</body>
+</html>
