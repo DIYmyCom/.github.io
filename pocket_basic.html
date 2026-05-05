@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICマイコンを作ろう ～ pocket BASIC ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン" />
+<meta name="description" content="電子工作,BASIC,マイコン" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+	<include id='menu.html'></include>
+
+		<div id="wrapBg">
+			<div class="wrapBox clearfix">
+				<div id="mainContents">
+					<p class="chapter8">Pocket BASIC 仕様</p>
+
+					<p class="chapter6">基本仕様</p>
+					<a id="Basic_spec" name="Basic_spec"></a>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+								<table>
+									<tr><td>大項目</td><td>中項目</td><td style="width: 250px;">小項目</td><td>説明</td></tr>
+									<tr><td rowspan="2">型</td><td colspan="2">数値型</td><td>32bit整数（-2,147,483,648 ～ 2,147,483,647）</td> </tr>
+									<tr><td colspan="2">文字列型</td><td>ANCの表示可能文字（0x20～0x7E)で構成する。コメントのみEUC-JPを含めることができる。<br />※ EUC-JP：1Byte目が、0xA1～0xFE,0x8Eは2Byte、0x8Fは3byteとして扱う</td> </tr>
+									<tr><td rowspan="4">演算子</td><td>四則演算</td><td>+,-,*,/	</td> <td>四則演算をする。文字列の場合は、＋のみ可能。真、偽指定した場合、１と０として数値と演算する。	</td></tr>
+									<tr><td>関係演算子</td><td>=,<>,<,>,<=,>=</td> <td>左右の辺を比較し、真、偽を返す。　０：偽　１：真	</td></tr>
+									<tr><td>論理演算</td><td>&&,||</td> <td>左右の辺の真偽に対してAND（&&）または、OR（||）の論理演算をし、真偽を返す。　０：偽　１：真	</td></tr>
+									<tr><td>ビット演算</td><td>&,|</td> <td>未サポート</td></tr>
+									<tr><td colspan="3" rowspan="3">プログラムの構造</td><td>行(Line)が複数集まったものをプログラムと呼ぶ</td> </tr>
+									<tr><td>行は、行番号(LineNo),ステートメント列（statement sequence)で構成する。</td> </tr>
+									<tr><td>ステートメント列は、コロン（：）で複数のステートメントとつなげたものである。</td> </tr>
+									<tr><td colspan="3">行番号</td><td>行の実行順を示す数字（範囲：1～65535)。行の先頭に必ず存在する。</td> </tr>
+									<tr><td colspan="3">コメント</td><td>ステートメントの先頭がシングルクォーテーション(')の場合、続く文字列はコメントとして扱う。<br />コロンをエスケープできないので、コメントの後ろにステートメントを書くことはできない。</td> </tr>
+									<tr><td >配列</td><td colspan="2">dim 変数名[要素数]{,変数名[要素数]}	</td><td>配列を宣言する。（添字は、０から要素数-１まで）　１次元のみサポート</td> </tr>
+									<tr><td colspan="3">変数</td><td>数名は、アルファベット（大文字または、小文字）から始まり、アルファベット（大文字または、小文字）と数字とアンダーバー（_)から構成する文字列。<br />宣言は不要だが、初期化しないまま参照するとエラーとなる。<br />代入時に型が決まり、その語は型に従って演算される。（異なる型を代入すると、代入の時点でそれまでの型から代入した値の型に変わる）</td> </tr>
+									<tr><td colspan="3">命令、関数名</td><td>ほとんどはすべて小文字（一部大文字交じり ex.isColM等）。</td> </tr>
+									<tr><td rowspan="9">制約</td><td colspan="2">行番号の最大値</td> <td>65535</td> </tr>
+									<tr><td colspan="2">プログラム行数</td> <td>最大2000行</td> </tr>
+									<tr><td colspan="2">１行のステートメント数</td> <td>最大32</td> </tr>
+									<tr><td colspan="2">変数の数</td> <td>最大512個</td> </tr>
+									<tr><td colspan="2">配列の要素数</td> <td>最大4096</td> </tr>
+									<tr><td colspan="2">１行の文字数</td> <td>最大256文字</td> </tr>
+									<tr><td colspan="2">１行のステートメント数</td> <td>最大32</td> </tr>
+									<tr><td colspan="2">GOSUBのネスト</td> <td>最大100</td> </tr>
+									<tr><td colspan="2">フレームメモリの数</td> <td>最大128</td> </tr>
+								</table>
+							</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter6">ステートメント</p>
+					<a id="statement" name="statement"></a>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+								<table>
+									<tr><td>大項目</td><td>中項目</td><td style="width: 250px;">小項目</td><td>説明</td></tr>
+									<tr><td colspan="3">代入</td><td>左辺=右辺の形で、左辺に右辺の値を代入する</td> </tr>
+									<tr><td colspan="2">宣言</td><td>dim 変数名[要素数]{,変数名[要素数]}</td><td>配列を宣言する。（添字は、０から要素数-１まで）</td> </tr>
+									<tr><td rowspan="10">分岐命令</td><td>if(行型)</td><td>if 論理式 then 命令1 {else 命令2}</td> <td>1行で構成する場合のif文である。論理式が真(値：1)のときthenに続く命令を、論理式が偽（値：0）の場合elseに続く命令を実行する。命令１、命令２はコロン（：）で区切って複数のステートメントを含むことができる。<br />
+																															if A then if B then 処理1 else 処理2 の場合、if B が真の時、処理１、if Bが偽の時、処理２が実行され、if A が偽の時は何も実行されない。<br />
+																															if A then if B then 処理1 else 処理2 else 処理3 の場合は、if Aが偽の時は、処理３が実行される。</td></tr>
+									<tr><td>if(ブロック型)</td><td>if 論理式1 then<br />
+																&nbsp;&nbsp;&nbsp;&nbsp;命令1 <br />
+																{else if 論理式2 then<br />
+				    											&nbsp;&nbsp;&nbsp;&nbsp;命令2} <br />
+																{else if 論理式3 then<br />
+				    											&nbsp;&nbsp;&nbsp;&nbsp;命令3} <br />
+																{else<br />     
+																&nbsp;&nbsp;&nbsp;&nbsp;命令4} <br />
+																end if<br /></td>
+																<td>複数の行で構成する場合のif文である。<br />論理式が真の場合thenに続く命令を、論理式が偽の場合elseに対応する命令を実行する。<br />命令は複数行記述可能で、その中にif文を含んでも良い。</td></tr>
+									<tr><td>while</td><td>while 条件<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;命令1<br />
+			     										{ exit while| continue while}<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;{命令2}<br />
+														end while<br /></td>
+														<td>条件が真の間、whileからend whileの間を繰り返す。条件に0でない値を指定すると無限ループとなる。<br />exit whileを実行した場合は、繰り返しを止めてend whileの次から実行する。<br />continue whileを実行した場合は、continue while以降の命令（continue while?end whileまでの命令）を実行せずに、whileに戻る。</td></tr>
+									<tr><td>for</td><td>for 変数 = 初期値 to 評価値 {step 増分}<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;命令1<br />
+			     										{ exit for| continue for}<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;{命令2}<br />
+														next<br /></td>
+														<td>変数が範囲の間、命令を繰り返し実行する。<br />&nbsp;&nbsp;①変数に初期値を代入する<br />&nbsp;&nbsp;②評価値と変数を比べ、初期値から評価値の範囲に入っていなければ、繰り返しを止めてnextの次から実行する。<br />&nbsp;&nbsp;③命令を実行する<br />&nbsp;&nbsp;④変数に増分を加える。<br />&nbsp;&nbsp;②から④を繰り返す。<br />exit forを実行した場合は、繰り返しを止めてnextの次から実行する。<br />continue forを実行した場合は、continue for以降の命令（continue for?nextまでの命令）を実行せずに、forに戻る。<br />
+														※　変数に配列は指定不可。初期値と評価値は式を指定可能。増分は、-32,768から+32,767の十進数のみ指定可能（式不可）。</td></tr>
+									<tr><td>goto</td><td>goto 行番号</td><td>行番号に分岐する。</td></tr>
+									<tr><td>gosub</td><td>gosub 行番号</td><td>行番号のサブルーチンに分岐する。</td></tr>
+									<tr><td>return</td><td>return</td><td>直前に実行したgosubに戻る。（gosubの次のステートメントから実行する）</td></tr>
+									<tr><td>gosubM</td><td>gosubM 配列,要素番号変数,式１,分岐先１｛・・・,式ｎ,分岐先ｎ｝</td>
+													<td>配列に含まれる数値に応じたサブルーチンを実行する。<br />
+													配列を最初から最後の要素まで、配列の値と式の値が一致する場合、分岐先の行番号のサブルーチンに分岐する動作を繰り返す。<br />
+													分岐する際に、処理中の配列のインデックスを要素番号変数に格納する。<br />
+													サブルーチンからはreturn命令で復帰する。<br />
+													例）<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;gosubM  sts,idx,4,4000,5,5000,6,6000<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stsの値：0,0,4,0,5,0,5,6,1の時<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最初に idx=2に設定し、行番号4000から始まるサブルーチンを実行する。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次に　idx=4に設定し、行番号5000から始まるサブルーチンを実行する。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次に　idx=6に設定し、行番号5000から始まるサブルーチンを実行する。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次に　idx=7に設定し、行番号6000から始まるサブルーチンを実行する。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;その後、命令を終了し、次のインストラクションを実行する。</td></tr>
+									<tr><td>gosubS</td><td>gosubS 配列,要素番号変数,式１,分岐先１｛・・・,式ｎ,分岐先ｎ｝</td>
+													<td>gosubMと分岐する条件は同じだが、gosubSは最初に条件と合致した１回だけサブルーチンを実行する。</td></tr>
+									<tr><td>gosubC</td><td>gosubC 式,分岐先0｛・・・,分岐先ｎ｝</td>
+													<td>式の値に従って分岐する。<br />
+														式の値は０以上の連続した整数でなければならず、変数が取りうる値の数だけ、分岐先を指定しなければならない。<br />
+														例えば、値が0から2の時、分岐先は３つ指定しなければならず、0の時最初の分岐先、1の時２番めの分岐先、2の時3番めの分岐先に分岐する。<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;例）<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gosubC sts,1000,2000,3000<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sts=0の時　1000から始まるサブルーチンを実行<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sts=1の時　2000から始まるサブルーチンを実行<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sts=2の時　1000から始まるサブルーチンを実行<br />
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stsが上記以外の時　VALUE_OUT_OF_RANGEのエラーになる。</td></tr>
+								<tr><td rowspan="11">表示</td><td>print</td><td>print 式</td> <td>式の値を、SCI経由でPC上のターミナルに出力する。</td></tr>
+								<tr><td>cls</td><td>cls {bUpdate,FMID}</td> <td>画面を消去する bUpdate  T:表示を更新する　F:フレームメモリのみに描画　省略時はT FMID　描画対象のフレームメモリー　省略時は画面（０）</td></tr>
+								<tr><td>pset</td><td>pset x,y,c{,dm,bUpdate,FMID} </td> <td>(x,y)に点を表示する c：1or0　1が黒0が白 dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ 指定できる座標は描画対象のフレームメモリー内に限る</td></tr>
+								<tr><td>line</td><td>line x1,y1,x2,y2,c{,dm,bUpdate,FMID}</td> <td>(x1,y1)-(x2,y2)に線を引く c：1or0　1が黒0が白 dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ 指定できる座標は描画対象のフレームメモリー内に限る</td></tr>
+								<tr><td>box</td><td>box x1,y1,x2,y2,c{,dm,bUpdate,FMID}</td> <td>(x1,y1)-(x2,y2)の四角形（塗潰し無し）を描く c：1or0　1が黒0が白 dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ 指定できる座標は描画対象のフレームメモリー内に限る</td></tr>
+								<tr><td>fill</td><td>fill x1,y1,x2,y2,c{,dm,bUpdate,FMID}</td> <td>(x1,y1)-(x2,y2)の四角形（塗潰し）を描く c：1or0　1が黒0が白 dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ 指定できる座標は描画対象のフレームメモリー内に限る</td></tr>
+								<tr><td>putStr</td><td>putStr x,y,文字列,c{,dm,bUpdate,FMID} </td> <td>x,yを文字の左上の座標として、文字を描く c：1or0　1が黒0が白 dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ フォントの幅は６ドット、高さは８ドットを前提に描画するエリアを想定し、描画するエリアが描画対象のフレームメモリー内に収まるようにパラメータを指定すること</td></tr>
+								<tr><td>get</td><td>get x,y,参照FMID,x1,y1,幅,高さ{,dm,bUpdate,操作FMID}</td> <td>参照FMIDで指定したフレームメモリーのx1,y1を左上とする幅、高さで指定した広さのイメージを操作FMIDのx,yで指定した場所にフレームメモリーに取得する。<br />dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ 描画するエリアが描画対象のフレームメモリー内に収まるようにパラメータを指定すること</td></tr>
+								<tr><td>put</td><td>put x,y,参照FMID {,dm,bUpdate,操作FMID}</td> <td>指定した座標に参照FMID で指定したイメージを描く。<br />dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+																							※ 描画対象のフレームメモリーからはみ出した描画エリアは描画しない</td></tr>
+								<tr><td>update</td><td>update {x,y,width,hight}</td> <td>FMID０の(x,y)を左上とするwidth,hightの大きさのエリアをLCDに転送する。省略時は全画面を転送する。</td></tr>
+								<tr><td>setBM</td><td>setBM FMID,y,ビットマップデータ</td> <td>FMIDで指定したフレームメモリーにビットマップデータを設定する。<br />
+														y：ビットマップデータを設定するy座標（0からフレームメモリーの高さ-1）<br />
+														ビットマップデータ　左のビットから順に１文字を対応させて、０と１で構成した文字列でビットマップの値を指定する。<br />
+														※　ビットマップデータを定数で指定すると、圧縮されるのでメモリーを節約できる</td></tr>
+								<tr><td rowspan="2">音</td><td>sound</td><td>sound チャネルNo,文字列</td> 
+													<td>指定したチャネルに出力したい音を設定する。音を設定するだけなのでこの時点では音はでない。<br />
+													サウンドチャネルに音を設定するチャネルNo：0 or 1<br />
+													文字列： 音をMMLで表現した文字列<br /><br />
+													&nbsp;&nbsp;MML(Music Macro Langauge)<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;・音程&nbsp;&nbsp;&nbsp;&nbsp;ドレミファソラシ → CDEFGAB<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;半音上げるときは#をつける<br />	
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;オクターブ 音程の後に0?9をつけて表現する<br />	
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数字が大きいほど高い音を表す。<br />	
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基準音のラ（440Hz)をA4に設定している。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;・音の長さ&nbsp;&nbsp;&nbsp;&nbsp;Lの後に音符の種類を指定する。L4であれば4部音符。全音符はL1。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付点はL4H のように後ろにHをつける。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;・休符&nbsp;&nbsp;&nbsp;&nbsp;ピリオード(.)で表す。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;・テンポ&nbsp;&nbsp;&nbsp;&nbsp;Tの後に4分音符が１分間に入る数を指定する。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;・音量&nbsp;&nbsp;&nbsp;&nbsp;Vの後に0?255の数字をつけて音の大きさを表す。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数字が大きいほど音が大きい。0は消音。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;音量と音の長さは、一旦指定するとその後に引き継がれる。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;区切り文字 記号と記号の間の_は無視。<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;記号とパラメータの間の_はNG（L_8などはNG）<br /><br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例）4分音符が１分間に160入るテンポで、<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;音量200で4分音符のド#レミファソラシドを表現する文字列 最後のドだけ付点８分音符<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T160V200L4_C#4D4E4F4G4A5B5L8HC5.</td></tr>
+								<tr><td>play</td><td>play チャネルNo</td> <td>サウンドチャネルに設定した音を出力する。<br />この命令は、他の命令と違って、非同期なので音の出力の終了を待たずにBASICに制御が戻る。</td></tr>
+								<tr><td rowspan="3">その他</td><td>sleep</td><td>sleep 時間</td><td>指定した時間待機する。時間　待機する時間をmsで指定する。（0から60000ms)　ただし、待機時間は余り正確ではない。</td></tr>
+								<tr><td>write</td><td>write アドレス,文字列</td> <td>不揮発性メモリーに指定した文字列を書き込む。文字列の１文字を格納するのにアドレス１つを消費する。<br />
+													アドレス：書き込む先頭アドレス（0から16384(V1.008以前は8191))<br />
+													文字列：書き込む文字列</td></tr>
+								<tr><td>strToA</td><td>strToA 文字列,開始インデックス,式,幅1,配列1,{,幅2,配列2,・・・,幅n,配列n}</td> 
+												<td>文字列の開始インデックスから幅で指定した文字数分を10進数と仮定して指定した配列の式で指定したインデックスに代入する。<br />
+													配列を複数並べて書くと、続けて指定した幅の文字数分を10進数と仮定して代入する。<br />
+													幅は0～65535の10進数表現のみが可能である。（変数や式の利用不可）<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;例）<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strToA str,4,idx,3,x,3,y,1,sts<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strの値が “01230100205”,idxが5の時、x[5]=10,y[5]=20,sts[5]=5が実行される。</td></tr>
+								</table>
+							</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter6">関数</p>
+					<a id="function" name="function"></a>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+								<table>
+									<tr><td style="width: 300px;">書式</td><td>説明</td></tr>
+									<tr><td>keyX()<br />※ Xは、A,B,U,D,L,Rの６つがある。</td><td>スイッチの状態を返す。スイッチ押下中：１　スイッチを押していない時：０</td> </tr>
+									<tr><td>format(書式文字列,式)</td>
+										<td>数値型の変数の式の値を書式文字列に従って文字列に変換する。<br />
+											&nbsp;&nbsp;例：format(“%05D”,10)  は、00010に変換される。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;format(“%-5D”,60)は、左に３つのスペースを付けた60に変換される。<br /><br />
+											&nbsp;&nbsp;書式文字列　%[フラグ][フィールド幅][変換文字] <br />
+											&nbsp;&nbsp;&nbsp;&nbsp;・フラグ&nbsp;&nbsp;&nbsp;&nbsp;マイナスを指定すると右詰になる<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;・フィールド幅&nbsp;&nbsp;&nbsp;&nbsp;変換文字にDを指定した場合、1～10が有効範囲<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;変換文字にXを指定した場合、1～8が有効範囲<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フィールド幅の先頭の数字が0の場合、フラグの指定に関係なく右詰めとする。(足りない桁は0で埋める)<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フィールド幅の先頭の数字が0でない、かつ、右詰めの場合、右詰とする。（足りない桁はスペースで埋める）<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;フィールド幅の先頭の数字が0でない、かつ、左詰めの場合、 左詰めとする。（足りない桁はスペースで埋める）<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数値の桁数または文字列の文字数がフィールド幅を超える場合、左からフィールド幅で切断する<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;・変換文字<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D：10進数に変換する<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X：16進数に変換する</td> </tr>
+									<tr><td>rand()</td><td>0から255の乱数を取得する</td> </tr>
+									<tr><td>strlen(文字列)</td><td>文字列の文字数を取得する</td> </tr>
+									<tr><td>asc(文字列)</td><td>文字列の先頭１文字の文字コード（アスキーコード）を取得する。</td> </tr>
+									<tr><td>chr(文字コード)</td><td>指定した文字コードを１文字の文字列に変換する。</td> </tr>
+									<tr><td>val(文字列)</td><td>指定した文字列を10進数と仮定して数値に変換する。</td> </tr>
+									<tr><td>mid(文字列,先頭文字No,終了文字No)</td>
+										<td>指定した文字列の一部を取得する。<br />
+											先頭文字No：取得する先頭の文字の番号を指定する。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;番号は0から始まり、左から１文字目を0番で表す。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;先頭文字Noで指定した文字は取得する文字列に含む。<br />
+											終了文字No：取得する終端の文字の番号を指定する。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;番号は0から始まり、左から１文字目を0番で表す。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;終了文字Noで指定した文字は取得する文字列に含まない。<br />
+											※先頭文字Noと終了文字Noに同じ値を指定すると、空の文字列を取得する。<br />
+											※文字列全体を取得するときには、先頭文字Noに０、終了文字Noに文字列の文字数を指定す</td> </tr>
+									<tr><td>inStr(対象文字列,検索文字列,開始位置）</td><td>対象文字列の中の左端から検索文字列を検索し、最初に見つかったインデックス（検索文字列と一致した部分の検索文字列の先頭のインデックス）を返す。見つからなかった時、-1を返す。<br />
+											開始位置は検索を開始する位置をインデックスで指定する。（0を指定すると対象文字列全体を検索する）</td> </tr>
+									<tr><td>inStrRev(対象文字列,検索文字列,開始位置）</td><td>説明：対象文字列の中の右端から検索文字列を検索し、最初に見つかったインデックス（検索文字列と一致した部分の検索文字列の先頭のインデックス）を返す。見つからなかった時、-1を返す。<br />
+											開始位置は検索を開始する位置をインデックスで指定する。（対象文字列の長さを指定すると対象文字列全体を検索する）</td> </tr>
+									<tr><td>mod(a,b)</td><td>aをbで割った余りを返す</td> </tr>
+									<tr><td>abs(a)</td><td>aの絶対値を返す</td> </tr>
+									<tr><td>sin(a)</td><td>sinの値を10000倍した値を返す。aには角度（0から360)を10倍した値を指定する。</td> </tr>
+									<tr><td>cos(a)</td><td>cosの値を10000倍した値を返す。aには角度（0から360)を10倍した値を指定する。</td> </tr>
+									<tr><td>createFM（幅,高さ）</td><td>フレームメモリーを生成し、そのIDを取得する。幅、高さは式で記述可能。幅：横方向のドット数高さ：縦方向のドット数</td> </tr>
+									<tr><td>point(FMID,x,y)</td><td>指定したフレームメモリーのx,yの位置の色を返す。　0:黒　1:白<br />
+																	FMIDで指定したフレームメモリーの範囲外の座標を指定した場合、無条件に０を返す。</td> </tr>
+									<tr><td>soundXstatus()</td><td>指定したサウンドチャネルが音の出力が終わったかどうかを調べる。 X:0 or 1  出力中の時１、出力していない時0を返す。</td> </tr>
+									<tr><td>read(アドレス, 最大文字数）</td>
+										<td>不揮発性メモリーの指定したアドレスから文字列を読み出す。<br />
+											アドレス：読み出す先頭アドレス（0から16384(V1.008以前は8191)) <br />
+											最大文字：読み出す最大文字数を指定する。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;writeで文字列を書き込むときに、文字列の最後に０を付けて書き込んでおり、<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;readでは文字列の終端を0を目印に読み出す。<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;writeで書き込んだ時に、終端を示す0を上書きしてしまった場合などは、暴走する<br />
+											&nbsp;&nbsp;&nbsp;&nbsp;可能性もあるので、最大読み出す文字数を指定する。</td> </tr>
+									<tr><td>isOut(sx,sy,sw,sh,dx,dy,dw,dh)</td>
+										<td>sx,syを左上に持つswの幅,shの高さを持つ単形領域の中からdx,dyを左上に持つdwの幅,dhの高さを持つ単形領域がはみ出しているかを調べる。<br />
+											はみ出しあり：１　はみ出しなし：０<br />
+									<tr><td>isCol(sx,sy,sw,sh,dx,dy,dw,dh)</td>
+										<td>sx,syを左上に持つswの幅,shの高さを持つ単形領域とdx,dyを左上に持つdwの幅,dhの高さを持つ単形領域が重なっているかどうかを調べる。<br />
+											衝突あり：１　衝突なし：０<br />
+									<tr><td>isColM(sx,sy,sw,sh,dx,dy,dw,dh,sts,val1{,・・・valn})</td>
+										<td>sx,syを左上に持つswの幅,shの高さを持つ単形領域が重なっているかどうかを調べる。<br />
+											重なりを調べる対象は、sts[]の値がval１～valnのいずれかと一致したインデックスと同じ値のインデックスのdx[],dy[],dw[],dh[]で表現される単形領域である。<br />
+											衝突あり：衝突していた単形領域の配列のインデックス（最初にたまたま見つけたもの）<br />
+											衝突なし：配列の要素数（最大のインデックス値＋１）<br />
+								</table>
+							</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter6">コマンドプロンプトで直接実行する命令</p>
+					<a id="command" name="command"></a>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+								<table>
+									<tr><td style="width: 300px;">書式</td><td>説明</td></tr>
+									<tr><td>list {ラインNo}</td><td>BASICプログラムを表示する。ラインNoを指定した時は、指定した行だけを表示する。</td> </tr>
+									<tr><td>run</td><td>プログラムを実行する。</td> </tr>
+									<tr><td>vlist</td><td>変数の一覧を表示する。</td> </tr>
+									<tr><td>free</td><td>フリーメモリーを表示する。</td> </tr>
+									<tr><td>clear</td><td>プログラムをrunする前の状態に戻す。変数などが未初期化の状態に戻る。</td> </tr>
+									<tr><td>new</td><td>プログラムを消去する。</td> </tr>
+								</table>
+							</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter6">PocketBASICとSimpleBASICの主な違い</p>
+					<a id="SimpleBASIC" name="SimpleBASIC"></a>
+					<div class="txtTempSet txtTemp1">
+						<p>
+						<span>
+						<a href="http://basic001.cloudfree.jp/machine.html#pageLink04">SimpleBASIC</a>は、ほとんどの部品が<a href="https://akizukidenshi.com/catalog/default.aspx">秋月電子</a>で
+						入手可能なAKI-H8/3052ベースのマイコン用に開発したBASICだ。<br />
+						プロトタイプではあるがハードウエア的には、メモリーやビープ音のチャネル数が多く、キーボードも接続できるなど、今回のマイコンよりスペックは上だった。（今回のマイコンがジム、前回のはガンダムみないなもの ^^;)<br />
+						今回のPocketBASICでは、SimpleBASICの仕様を以下のように変更した。<br />
+							<ul id="subNavigation" class="bgList1">
+								<li>createBMを無くし、createFMで代用した。（SimpleBASICでは、ビットマップとフレームメモリーを区別していた）</li>
+								<li>soundのチャネルが0,1になった。（SimpleBASICでは１～３の３チャネルだった）</li>
+								<li>MMLのTEMPOが4分音符の数になった。 (SimpleBASICでは16分音符の数だった。TEMPを４分の１にすると同じになる）</li>
+								<li>playの引数には１チャネルのみ指定可にした。（SimpleBASICではカンマで複数指定可能だった）</li>
+								<li>read(アドレス, 最大文字数）の最大文字数が省略不可にした。（SimpleBASICでは省略可能）</li>
+								<li>forは、変数に配列は指定不可。初期値と評価値は式を指定可能。増分は、-32,768から+32,767の十進数のみ指定可能（式不可）にした。（SimpleBASICでは、変数配列や増分の制限がない）</li>
+								<li>命令を追加した。（pset）
+								<li>関数を追加した。（point(),asc(),inStr(),inStrRev()）</li>
+								<li>変数名にアンダースコア(_)を使えるようにした。</li>
+								<li>コメントに日本語を使えるようにした。</li>
+								<li>全体的に省メモリー設計にした。（setBMのビットマップデータを定数で指定した時とコメントに同じ文字を連続で使用した時に、圧縮して記憶する等）</li>
+							</ul>
+						</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+				</div><!-- div#mainContents END -->
+				<div id="leftContents">
+					<a id="Menu" name="Menu"></a>
+					<ul id="subNavigation" class="bgList1">
+						<li><a href="#Basic_spec" title="">基本仕様</a></li>
+						<li><a href="#statement" title="">ステートメント</a></li>
+						<li><a href="#function" title="">関数</a></li>
+						<li><a href="#command" title="">コマンド</a></li>
+						<li><a href="#SimpleBASIC" title="">SimpleBASICとの違い</a></li>
+						<br />
+					</ul>
+					<br />
+				</div><!-- div#leftContents END -->
+			</div><!-- div#wrapBox END -->
+		</div><!-- div#wrapBg END -->
+<include id='copy.html'></include>
+	</div>
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>
