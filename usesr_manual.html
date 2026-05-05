@@ -110,23 +110,20 @@
 					</div>
 						<p><a href="user_manual/021.png" target="_blank"><img src="user_manual/021.png" width="390"></a></p>
 					</div>
-					<div class="txtTempSet txtTemp6 clearfix">
-					<div class="fL">
-						<p><a href="user_manual/020.png" target="_blank"><img src="user_manual/020.png" width="390"></a></p>
-					</div>
-						<p><a href="user_manual/021.png" target="_blank"><img src="user_manual/021.png" width="390"></a></p>
-					</div>
 					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
 
 					<a id="trick" name="trick"></a>
 					<p class="chapter6">裏技</p>
 					<div class="txtTempSet txtTemp1">
 						<span><p>
-						このマイコンは、BASICのコマンドやプログラムをTeraTermから入力して動くようになっており、さらに、BASICのprint文はTeraTermに出力されます。<br />
-						つまり、外部からプログラムをロードして実行できて、そのプログラムから外部にメッセージを返すことができるので、外部から完全にコントロール可能ということです。<br />
-						現在は、PCからUSB経由の接続がないと機能しませんが、外部から電源供給とプログラムを入力するガジェットを外付けすれば、単体で使えるようになります。<br />
-						シリアルケーブルのピン配列はArduinoProMiniと同じにしているので、いつか、挑戦してみようと思います。<br />
-						ストレージを持ったプログラムローダからいろいろなプログラムをロード・実行して、ブラックオニキスやファイアークリスタルのようなRPGなんかを作ってみたい。<br />
+						このマイコンは、TeraTermから入力される文字列のうち、先頭が数字の行はプログラムとして取り扱います。<br />
+						下記のようにラインエディタのように振る舞います。<br />
+						・行番号が重複していれば、行を入れ替えます。<br />
+						・行番号のみの場合、同じ行番号があれば、その行は削除されます。<br />
+						・行番号がまだなければ、プログラムに１行追加（挿入）されます。<br />
+						なので、プログラムを実行して、エラーがあった場合は、間違っていた１行だけをTeraTermに入力すると、<br />
+						その部分だけを修正できます。<br />
+						これは、プログラムを開発するときに、意外に便利な小技なので、よかったら使ってみてください。<br />
 						</p></span>
 					</div>
 
