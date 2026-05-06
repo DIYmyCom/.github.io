@@ -29,9 +29,23 @@
 					<p class="chapter8">使い方</p>
 					<p class="chapter6">ご購入</p>
 					<div class="txtTempSet txtTemp1">
-						<span><p><a href="https://auctions.yahoo.co.jp/jp/auction/s1218845758" target="_blank">ヤフオク</a>に出品しました。</p></span>
-						<span><p><a href="https://auctions.yahoo.co.jp/jp/auction/x1222338569" target="_blank">ヤフオク</a>に出品しました。</p></span>
-						<span><p><a href="https://auctions.yahoo.co.jp/jp/auction/v1222342937" target="_blank">ヤフオク</a>に出品しました。</p></span>
+					<span>
+			<div style="position: relative;">
+			<p style="margin: 0;">下記のIconをクリックすると販売ページが開きます。よかったら、ご購入ください。</p>
+			<img 
+				src="user_manual/Snow_Begging_100ms_800pt_wait5s.gif"
+				width="400"
+				style="
+				position: absolute;
+				right: 20px;
+				top: 0;
+				">
+			</div>
+					<br /><br />
+						<a href="https://auctions.yahoo.co.jp/jp/auction/s1218845758" target="_blank"><img src="index/img/Icon.jpg" width="100"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://auctions.yahoo.co.jp/jp/auction/x1222338569" target="_blank"><img src="index/img/Icon.jpg" width="100"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://auctions.yahoo.co.jp/jp/auction/v1222342937" target="_blank"><img src="index/img/Icon.jpg" width="100"></a>
+					</span>
 					</div>
 
 					<p class="chapter6">BASICマイコンのスペック</p>
@@ -88,8 +102,17 @@
 					</div>
 						<p><img src="user_manual/003.JPG" width="390"></p>
 					</div>
-					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
-
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual/Snow_CheerfulDance_80ms_800pt.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 450px;
+						bottom: 00;
+						">
+					</div>
 					<br /><br />
 
 					<a id="TERATERM" name="TERATERM"></a>
@@ -114,7 +137,7 @@
 
 					<div class="txtTempSet txtTemp1">
 						<span><p>SW2をONにして、電源を投入する。（SW1は常にAPPLI側にしておいてください。）</br>
-						左下に示す起動メッセージが出ます。
+						左に示す起動メッセージが出れば、OKです。
 						</p></span>
 					</div>
 
@@ -124,15 +147,26 @@
 					</div>
 						<p><img src="user_manual/008.png" width="390"></p>
 					</div>
-					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual/Snow_FistPump_100ms_1000pt_3s.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 450px;
+						bottom: 00;
+						">
+					</div>
 
 					<a id="run" name="run"></a>
 					<p class="chapter6">BASICプログラムを動かす</p>
 					<div class="txtTempSet txtTemp1">
 						<span><p>①BASICプログラムを<a href="https://diymycom.pythonanywhere.com/games" target="_blank">投稿サイト</a>からダウンロードします。</br>
-						②TeraTermの「ファイル送信」でダウンロードしたBASICプログラムを選択します。</br>
-						③右下のようにBASICプログラムがマイコンに転送されます。</br>
-						④終わったらTeraTermにrunと入力して改行してください。</br>
+						②TeraTermの「ファイル＞ファイル送信」をメニューから選んで表示されるダイアログで、ダウンロードしたBASICプログラムを選択します。（左下の写真）</br>
+						③右下の写真のようにBASICプログラムがマイコンに転送されます。</br>
+						④終わったらTeraTermでrunと入力して改行してください。</br>
 						プログラムが実行されます。
 						</p></span>
 					</div>
@@ -142,7 +176,18 @@
 					</div>
 						<p><a href="user_manual/021.png" target="_blank"><img src="user_manual/021.png" width="390"></a></p>
 					</div>
-					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual/Snow_SpinAround_70ms_800pt_wait4s.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 25px;
+						bottom: 00;
+						">
+					</div>
 
 					<a id="trick" name="trick"></a>
 					<p class="chapter6">裏技</p>
@@ -153,8 +198,9 @@
 						・行番号が重複していれば、行を入れ替えます。<br />
 						・行番号のみの場合、同じ行番号があれば、その行は削除されます。<br />
 						・行番号がまだなければ、プログラムに１行追加（挿入）されます。<br />
-						なので、プログラムを実行して、エラーがあった場合は、間違っていた１行だけをTeraTermに入力すると、<br />
+						なので、プログラムを実行して、エラーがあった場合は、修正した部分だけをTeraTermに入力すると、<br />
 						その部分だけを修正できます。<br />
+						（削除した行があると、行番号だけを入力しないと消えないので要注意です。）<br />
 						これは、プログラムを開発するときに、意外に便利な小技なので、よかったら使ってみてください。<br />
 						</p></span>
 					</div>
