@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICマイコンを作ろう ～ 組立方 ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン" />
+<meta name="description" content="電子工作,BASIC,マイコン" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+	<include id='menu.html'></include>
+
+		<div id="wrapBg">
+			<div class="wrapBox clearfix">
+				<div id="mainContents">
+					<a id="assembly" name="assembly"></a>
+					<p class="chapter8">組立方</p>
+					<p class="chapter6">ご購入</p>
+					<div class="txtTempSet txtTemp1">
+					<span>
+						<div style="position: relative;">
+						<p style="margin: 0;">下記のIconをクリックすると販売ページが開きます。こちらは組み立てキットになります。よかったら、ご購入ください。<br />
+						ご利用には半田付けや電子工作の知識が必要ですので、ご注意ください。</p>
+						<img 
+							src="user_manual1/Snow_Begging_80ms_500_wait5.gif"
+							width="450"
+							style="
+							position: absolute;
+							right: 0px;
+							top: 0;
+							">
+						</div>
+						<br /><br />
+						<a href="https://auctions.yahoo.co.jp/jp/auction/l1229232761" target="_blank"><img src="index/img/Icon.jpg" width="100"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://auctions.yahoo.co.jp/jp/auction/x1229210844" target="_blank"><img src="index/img/Icon.jpg" width="100"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://auctions.yahoo.co.jp/jp/auction/j1229224311" target="_blank"><img src="index/img/Icon.jpg" width="100"></a>
+					</span>
+					</div>
+
+					<a id="circuit" name="circuit"></a>
+					<p class="chapter6">回路図</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+						<a href="user_manual1/PocketCom_CircuitV1_2.jpg" target="_blank"><img src="user_manual1/PocketCom_CircuitV1_2.jpg" width="700"></a>
+                        </div>
+					</div>
+					<br />
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual1/Snow_Jump_100ms_1500pt_wait3s.gif"
+						width="1200"
+						style="
+						position: absolute;
+						left: 180px;
+						bottom: 00;
+						">
+					</div>
+					<br />
+
+					<a id="parts" name="parts"></a>
+					<p class="chapter6">部品配置</p>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+							<a href="user_manual1/partsV1_2.jpg" target="_blank"><img src="user_manual1/partsV1_2.jpg" width="450"></a>
+							<a href="user_manual1/partsV1_2_1.jpg" target="_blank"><img src="user_manual1/partsV1_2_1.jpg" width="450"></a>
+							</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+					<br /><br />
+
+					<a id="partsList" name="partsList"></a>
+					<p class="chapter6">部品表</p>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+								<table>
+									<tr><td>部品番号</td><td>名称</td></tr>
+									<tr><td>D1</td><td>チップLED サイズ1608　⇒【<a href="https://akizukidenshi.com/catalog/g/g115109/" target="_blank">115109</a>】青緑色チップLED 1608 OSG30603C1E　など</td></tr>	
+									<tr><td>C1,2</td><td>20pF50V サイズ1608</td></tr>
+									<tr><td>C3</td><td>10uF10V サイズ3216</td></tr>
+									<tr><td>C4～C7,C9～C11</td><td>0.1uF50V サイズ1608</td></tr>
+									<tr><td>C8</td><td>0.01uF50V サイズ1608</td></tr>
+									<tr><td>R1～R6,R8～R17</td><td>4.7kΩ サイズ1608</td></tr>
+									<tr><td>R7</td><td>330Ω サイズ1608</td></tr>
+									<tr><td>R18,R19</td><td>10Ω サイズ1608</td></tr>
+									<tr><td>U1</td><td><a href="https://www.digikey.jp/ja/products/detail/microchip-technology/24LC128T-E-SN/318678?gclsrc=aw.ds&gad_source=1&gad_campaignid=23106782821&gbraid=0AAAAADrbLlgaPZ4YjACJdlvb_34aknqDH&gclid=CjwKCAiAtLvMBhB_EiwA1u6_Pj_uhxzsRvPTzAsAsxHdaYjHPQqtV3Nzd75q07GTJ796TeTCDbpwNhoCUmIQAvD_BwE" target="_blank">24LC128T-1/SN</a></td></tr>
+									<tr><td>U2,U4</td><td><a href="https://jp.digchip.com/datasheets/parts/datasheet/487/TC55257.php" target="_blank">TC55257</a></td></tr>
+									<tr><td>U3</td><td><a href="https://www.monotaro.com/s/q-74hc04/?srsltid=AfmBOooGpfwTGKWwR_jorsnW92R3qUg4gXn8L9NYB85MAp4vTxVfkBSl" target="_blank">74HC04</a></td></tr>
+									<tr><td>U5</td><td>H8S/2128 オークション出品</a></td></tr>
+									<tr><td>U6</td><td><a href="https://www.digikey.jp/ja/products/detail/nisshinbo-micro-devices-inc/R3112N251A-TR-FE/10213698" target="_blank">R3112N251A</a></td></tr>
+									<tr><td>U7</td><td><a href="https://toshiba.semicon-storage.com/jp/semiconductor/product/general-purpose-logic-ics/detail.TC7WT241FU.html" target="_blank">TC7WT241FU</a></td></tr>
+									<tr><td>U8</td><td><a href="https://www.amazon.co.jp/50%E5%80%8B-74HC374-74HC374N-SN74HC374N-DIP-20/dp/B09H83SYH7" target="_blank">74HC374N</a></td></tr>
+									<tr><td>U9</td><td><a href="https://toshiba.semicon-storage.com/jp/semiconductor/product/general-purpose-logic-ics/detail.TC74HC4040AP.html" target="_blank">74HC4040</a></td></tr>
+									<tr><td>BD1</td><td><a href="https://ja.aliexpress.com/item/1005006800104375.html?spm=a2g0o.order_list.order_list_main.5.2878585aFSQpit&gatewayAdapt=glo2jpn" target="_blank">LCD12864-D1 グラフィックドットマトリックス LCD モジュール</a></td></tr>
+									<tr><td>VR1</td><td>【<a href="https://akizukidenshi.com/catalog/g/g106063/" target="_blank">106063</a>】半固定ボリューム 10kΩ [103]</td></tr>
+									<tr><td>SP1</td><td>EFBRQ38C01 圧電スピーカー　⇒代替品　【<a href="https://akizukidenshi.com/catalog/g/g101251/" target="_blank">101251</a>】圧電スピーカー(圧電サウンダー) PT08</td></tr>	
+									<tr><td>X1</td><td>20MHz水晶発振子</td></tr>
+									<tr><td>SW1～2</td><td><a href="https://www.furutaka-netsel.co.jp/maker/alps/ssss213000" target="_blank">SSSS213000 アルプススライドスイッチ</a></td></tr>
+									<tr><td>SW3～8</td><td>【<a href="https://akizukidenshi.com/catalog/goods/search.aspx?search=x&keyword=P-03649&search=search" target="_blank">P-03649</a>】タクトスイッチ（水色）</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g114372/" target="_blank">114372</a>】六角ナット M3×0.5</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g107320/" target="_blank">107320</a>】六角オネジ・メネジ MB3-15 ×８個</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g115889/" target="_blank">115889</a>】六角ナット M2×0.4</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g115887/" target="_blank">115887</a>】なべ小ねじ(+) M2×5</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g100167/" target="_blank">100167</a>】ピンヘッダー 1×40 (40P)</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g117017/" target="_blank">117017</a>】USBケーブル USB2.0 Type-Aオス⇔Type-Cオス 0.5m </td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g114745/" target="_blank">K-14745</a>】CH340E USBシリアル変換モジュール Type-C（CN1に接続）</td></tr>
+								</table>
+							</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="ref" name="ref"></a>
+					<p class="chapter6">組立後の使い方</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>
+						<ul id="subNavigation" class="bgList1">
+							<li><a href="usesr_manual.html#TERATERM" title="">TERATERMの設定</a></li>
+							<li><a href="usesr_manual.html#PowerOn" title="">電源を入れる</a></li>
+							<li><a href="usesr_manual.html#run" title="">BASICプログラムを動かす</a></li>
+							<li><a href="usesr_manual.html#trick" title="">裏技</a></li>
+							<br />
+						</ul>
+						</p></span>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+
+				</div><!-- div#mainContents END -->
+				<div id="leftContents">
+					<a id="Menu" name="Menu"></a>
+					<ul id="subNavigation" class="bgList1">
+						<li><a href="#circuit" title="">回路図</a></li>
+						<li><a href="#parts" title="">部品配置</a></li>
+						<li><a href="#partsList" title="">部品表</a></li>
+						<br />
+					</ul>
+					<br />
+				</div><!-- div#leftContents END -->
+			</div><!-- div#wrapBox END -->
+		</div><!-- div#wrapBg END -->
+<include id='copy.html'></include>
+	</div>
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>
