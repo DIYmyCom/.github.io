@@ -60,10 +60,10 @@
 					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
 					<img 
 						src="Intro/Snow_ThumbsUp_100ms_800pt_wait5s.gif"
-						width="800"
+						width="650"
 						style="
 						position: absolute;
-						left: 70px;
+						left: 150px;
 						bottom: 00;
 						">
 					</div>
@@ -78,7 +78,7 @@
 							次はグラフィックを使ってみよう。<br />
 							TeraTermでラインを描画するプログラムを入力します。<br />
 							実行すると下記のような結果が得られると思います。<br />
-							毎回手入力するのは、面倒なので、listコマンドでプログラムを表示して、テキストエディタにコピペして保存しておきましょう。<br />
+							毎回手入力するのは、面倒なので、listコマンドでプログラムを表示して、テキストエディタにコピペして保存しておこう。<br />
 							<img src="Intro/line.jpg" width="300">
 							</span>
 						</p>
@@ -98,19 +98,40 @@
 						</span>
 						</p>
 					</div>
-					<div style="position: relative;">
-					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
-					<img 
-						src="Intro/"
-						width="800"
-						style="
-						position: absolute;
-						left: 70px;
-						bottom: 00;
-						">
-					</div>
-					<br />
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br /><br />
 
+					<a id="load" name="load"></a>
+					<p class="chapter6">保存したプログラムの実行</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p>
+							<span>
+							先ほど保存したプログラムの先頭に画面を消去する行を追加して、実行してみる。（⇒）<br /><br />
+							動画では、以下の４つを実施している。<br />
+							①テキストエディタで先ほど保存したline.basを開く。<br />
+							②先頭にclsを追加して、ファイルを保存<br />
+							③TeraTermのファイルを送信で、line.basを送信<br />
+							④runで実行<br />
+							このマイコンでは、このようにテキストエディタで編集したBASICプログラムを編集・保存してプログラムを作っていく。<br />
+							</span>
+						</p>
+					</div>
+						<p>	
+						<span>
+							<video 
+								src="Intro/load.mp4"
+								width="400"
+								autoplay
+								loop
+								muted
+								controls
+								preload="auto"
+								style="cursor: pointer;"
+							></video>
+						</span>
+						</p>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
 
 				</div><!-- div#mainContents END -->
 				<div id="leftContents">
@@ -118,6 +139,7 @@
 					<ul id="subNavigation" class="bgList1">
 						<li><a href="#firstStep" title="">最初に</a></li>
 						<li><a href="#line" title="">グラフィックを使ってみよう</a></li>
+						<li><a href="#load" title="">保存したプログラムの実行</a></li>
 						<br />
 					</ul>
 					<br />
