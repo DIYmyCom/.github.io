@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BASICマイコンを作ろう ～ 使い方 ～</title>
-<meta name="keywords" content="電子工作,BASIC,マイコン" />
-<meta name="description" content="電子工作,BASIC,マイコン" />
+<title>BASICでゲームを作ろう ～ 使い方 ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta name="description" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
 <meta http-equiv="Content-Language" content="ja" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -58,16 +58,14 @@
 							<li>電源・・・・USB-TypeC</li>
 							<li>画面・・・・128×64dot</li>
 							<li>サウンド・・・・beep 2チャンネル</li>
-							<li>EEPROM・・・・16KB</li>
+							<li>RAM・・・・68KB(BASICフリーエリア訳45KB)</li>
+							<li>ROM・・・・128KB(BASIC書込み済)</li>
+							<li>EEPROM・・・・16KB(BASICから読書可。ハイスコア等保存用)</li>
 							</ul>
 							<br />
 							【説明】<br />
-							PCとUSBケーブルで接続して使うことを前提とした、BASICマイコン。<br />
-							PCでBASICプログラムを作って、このマイコンにダウンロードして実行する。<br />
-							実機にしたのは、下記の利点があるからだ。<br />
-							・環境のアップデートなどで作ったプログラムが動かなくならない。<br />
-							　（一度作ったプログラムがずっと動く）<br />
-							・持ち運べる。（この利点には、後述のオートローダが必要）<br />
+							PCとUSBケーブルで接続して使うことを前提としたBASICマイコン。<br />
+							PCからBASICプログラムをマイコンにダウンロードして実行する。<br />
 							<br />
 							</span>
 						</p>
