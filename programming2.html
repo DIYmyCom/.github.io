@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<title>BASICでゲームを作ろう ~ プログラミング２ ~</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta name="description" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+
+<style>
+.sampleBox{
+	float: right;
+	width: 390px;
+}
+
+.code-box{
+	position: relative;
+}
+
+.copy-button{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 1;
+}
+
+.code-box pre{
+	background: #222;
+	color: #00ff00;
+	padding: 20px;
+	overflow-x: auto;
+}
+</style>
+
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+	<include id='menu.html'></include>
+
+		<div id="wrapBg">
+			<div class="wrapBox clearfix">
+				<div id="mainContents">
+					<p class="chapter8">プログラミング&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~その２~</p>
+					<div class="txtTempSet txtTemp1">
+					<span>
+					プログラミング１では、プログラムの作成、ロード、実行など主に操作方法について説明した。<br />
+					今回は、簡単なゲームに挑戦する。<br />
+					</span>
+					</div>
+
+					<a id="gameRule" name="gameRule"></a>
+					<p class="chapter6">ドライブゲーム</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p>
+							<span>
+							シンプルなドライブゲームを作ってみよう。<br />
+							<br />
+							【ゲーム内容】<br />
+							プレイヤーは車（A）を左右ボタン（Lボタン、Rボタン）で操作し、コース上の木（@）を避けながら走行する。<br /><br />
+							画面は21文字×8行で表示される。左側16文字分をゲームコース、右側5文字分をスコア表示エリアとして使用する。<br /><br />
+							車は画面最下段である8行目に表示され、1~16文字の範囲内を左右に移動できる。<br /><br />
+							ゲーム開始時、コース内には木は配置されておらず、すべて空白である。時間が経過すると1行目には、最大4本まで木が表示される。木の位置は乱数によって決定する。<br />
+							時間の経過とともに画面が下方向へスクロールし、木の並んだ行が上から降りてくる。<br /><br />
+							車が木に衝突した場合、ゲームオーバーとなりプログラムを終了する。
+							</span>
+						</p>
+					</div>
+						<p>	<span><img src="programming2/game.png" width="400"></span></p>
+					</div>
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src=""
+						width="700"
+						style="
+						position: absolute;
+						left: 140px;
+						bottom: 00;
+						">
+					</div>
+					<br />
+
+					<a id="LCD" name="LCD"></a>
+					<p class="chapter6">画面の座標系について</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p>
+							<span>
+							画面の座標系は右図のようになっており、左上を原点とする。<br />
+							右へ進むほどX座標が大きくなり、下へ進むほどY座標が大きくなる。<br />
+							画面の解像度は、横128ドット × 縦64ドットである。<br />
+							文字は1文字を6×8ドットで表現するため、画面には横21文字、縦8文字まで表示できる。<br />
+							</span>
+						</p>
+					</div>
+						<p>	<span><img src="programming2/LCD.png" width="400"></span></p>
+					</div>
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="programming2/Snow_Eieio_70ms_800pt_wait5s.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 0px;
+						bottom: 00;
+						">
+					</div>
+					<br />
+
+					<a id="Design" name="Design"></a>
+					<p class="chapter6">プログラムの流れ</p>
+					<div class="txtTempSet txtTemp1">
+					<span>
+					プログラムの大まかな流れを下記のように想定してみた。<br />
+					<p>	<span><img src="programming2/Flow.png" width="900"></span></p>
+					</span>
+					</div>
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src=""
+						width="800"
+						style="
+						position: absolute;
+						left: 0px;
+						bottom: 00;
+						">
+					</div>
+					<br />
+
+					<a id="ViewCourse" name="ViewCourse"></a>
+					<p class="chapter6">コースの表示</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p>
+							<span>
+							まずは、２の「コース・スコアの表示」を作る。<br />
+							BASICでは、行番号の順にプログラムを実行するため、最初に処理ごとの行番号を決めておく。<br />
+							<br />
+							１．初期化　　　　1~499<br />
+							　　メインループ　500~999<br />
+							２．コース・スコア表示　1000番台<br />
+							３．車の移動と表示　　　2000番台<br />
+							４．コースのスクロール　3000番台<br />
+							５．衝突判定　　　　　　4000番台<br />
+							<br />
+							また、変数名のルールも最初に決めておく。<br />
+							定数（途中で変わらない値）は、すべて大文字にし、単語の区切りを「_」で表す。<br />
+							例：COURSE_WIDTH、MAX_SPEED<br />
+							<br />
+							変数は小文字で始め、単語の区切りを大文字で表す。<br />
+							例：carX、scoreCount<br />
+
+							</span>
+						</p>
+					</div>
+
+						<!-- 右側 -->
+						<div class="sampleBox">
+
+							<h2>サンプルプログラム</h2>
+
+							<div class="code-box">
+
+								<button class="copy-button"
+									onclick="copyCode()">
+									コピー
+								</button>
+
+<pre id="basicCode"　	style="max-height: 26em; overflow-y: auto; overflow-x: auto;"><code>
+100 '==================== ドライブゲーム =========================
+110 SCREEN_WIDTH=128:SCREEN_HIGHT=64:'画面の幅と高さ
+120 FONT_WIDTH=6:FONT_HIGHT=8:'フォントの幅と高さ
+130 CX_MAX=SCREEN_WIDTH/FONT_WIDTH:CY_MAX=SCREEN_HIGHT/FONT_HIGHT:'列と行の最大値
+140 SCORE_X=SCREEN_WIDTH-5*FONT_WIDTH:SCORE_Y=0:'スコア表示位置
+200 dim course[CY_MAX]:'コース
+210 for i=0 to CY_MAX-1:course[i]="                ":next:'コースをスペース(16文字)で埋める
+300 score=0
+400 cls
+410 putStr SCORE_X,SCORE_Y,"SCORE",1
+500 '==================== メインルーチン =========================
+510 while -1
+520     gosub 1000:'コース・スコア表示
+700 end while
+1000 '==================== コース・スコア表示 ====================
+1010 for i=0 to CY_MAX-1
+1020    putStr 0,i*FONT_HIGHT,course[i],1
+1030 next
+1040 putStr SCORE_X,SCORE_Y+FONT_HIGHT,format("%05D",score),1
+1050 return
+</code></pre>
+
+							</div>
+
+						</div>
+					</div>
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src=""
+						width="800"
+						style="
+						position: absolute;
+						left: 0px;
+						bottom: 00;
+						">
+					</div>
+					<br />
+
+				</div><!-- div#mainContents END -->
+				<div id="leftContents">
+					<a id="Menu" name="Menu"></a>
+					<ul id="subNavigation" class="bgList1">
+						<li><a href="#gameRule" title="">ドライブゲーム</a></li>
+						<li><a href="#LCD" title="">画面の座標系について</a></li>
+						<li><a href="#Design" title="">プログラムの流れ</a></li>
+						<br />
+					</ul>
+					<br />
+				</div><!-- div#leftContents END -->
+			</div><!-- div#wrapBox END -->
+		</div><!-- div#wrapBg END -->
+<include id='copy.html'></include>
+	</div>
+<script type='text/javascript' src='incl.js'></script>
+<script>
+function copyCode() {
+	const code =
+		document.getElementById("basicCode").innerText;
+	navigator.clipboard.writeText(code);
+	alert("コードをコピーした");
+}
+</script>
+</body>
+</html>
