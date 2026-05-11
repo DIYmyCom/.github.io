@@ -264,6 +264,18 @@
 							<span>
 							車の移動と表示のコードを追加した。<br />
 							先ほどと同じ要領で実行してみよう。<br />
+							<br />
+							【実行結果】
+							<video 
+								src="programming2/ViewCar.mp4"
+								width="400"
+								autoplay
+								loop
+								muted
+								controls
+								preload="auto"
+								style="cursor: pointer;"
+							></video>
 							</span>
 						</p>
 					</div>
@@ -340,6 +352,18 @@
 							<span>
 							コースのスクロールのコードを追加した。<br />
 							先ほどと同じ要領で実行してみよう。<br />
+							<br />
+							【実行結果】
+							<video 
+								src="programming2/Scroll.mp4"
+								width="400"
+								autoplay
+								loop
+								muted
+								controls
+								preload="auto"
+								style="cursor: pointer;"
+							></video>
 							</span>
 						</p>
 					</div>
@@ -395,7 +419,7 @@
 3030 '一番上の行を作る
 3040 temp="                "
 3050 for i=1 to TREE_MAX
-3060    r=(rand()*COURSE_WIDTH*2)/255:'２分の１の確率で16より小さい数字になる
+3060    r=(rand()*COURSE_WIDTH*4)/255:'４分の１の確率で16より小さい数字になる
 3070    if r&lt;COURSE_WIDTH then
 3080        temp=mid(temp,0,r)+"@"+mid(temp,r+1,COURSE_WIDTH)
 3090    end if
@@ -423,6 +447,121 @@
 					<br />
 
 
+					<a id="gameOver" name="gameOver"></a>
+					<p class="chapter6">衝突判定</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p>
+							<span>
+							衝突判定のコードを追加した。<br />
+							先ほどと同じ要領で実行してみよう。<br />
+							<br />
+							【実行結果】
+							<video 
+								src="programming2/gameOver.mp4"
+								width="400"
+								autoplay
+								loop
+								muted
+								controls
+								preload="auto"
+								style="cursor: pointer;"
+							></video>
+							</span>
+							</span>
+						</p>
+					</div>
+
+						<!-- 右側 -->
+						<div class="sampleBox">
+
+							<h2>サンプルプログラム</h2>
+
+							<div class="code-box">
+
+								<button class="copy-button"
+									onclick="copyCode4()">
+									コピー
+								</button>
+
+<pre id="basicCode4" style="max-height: 26em; overflow-y: auto; overflow-x: auto;"><code>
+100 '==================== ドライブゲーム =========================
+110 SCREEN_WIDTH=128:SCREEN_HIGHT=64:'画面の幅と高さ
+120 FONT_WIDTH=6:FONT_HIGHT=8:'フォントの幅と高さ
+130 CX_MAX=SCREEN_WIDTH/FONT_WIDTH:CY_MAX=SCREEN_HIGHT/FONT_HIGHT:'列と行の最大値
+140 SCORE_X=SCREEN_WIDTH-5*FONT_WIDTH:SCORE_Y=0:'スコア表示位置
+150 COURSE_WIDTH=CX_MAX-5:'コースの幅
+160 TREE_MAX=4:'1行に表示する木の本数の最大値
+200 dim course[CY_MAX]:'コース
+210 for i=0 to CY_MAX-1:course[i]="                ":next:'コースをスペース(16文字)で埋める
+220 carX=8:CAR_Y=7:'車の表示位置
+230 gameOver=0:'ゲームオーバーでない時:0　ゲームオーバーになったら1
+300 score=0
+400 cls
+410 putStr SCORE_X,SCORE_Y,"SCORE",1
+500 '==================== メインループ =========================
+510 while -1
+520     gosub 1000:'コース・スコア表示
+525     if gameOver=1 then exit while
+530     gosub 2000:'車の移動と表示
+540     gosub 3000:'コースのスクロール
+550     gosub 4000:'衝突判定
+680     sleep 100:'100ms待つ
+700 end while
+710 '----- ゲームオーバーを表示 ---------
+720 GAME_OVER_STR="Game Over"
+730 gaveOverX=(COURSE_WIDTH-strlen(GAME_OVER_STR))/2
+740 putStr gaveOverX*FONT_WIDTH,SCREEN_HIGHT/2-FONT_HIGHT/2,GAME_OVER_STR,1
+900 end
+1000 '==================== コース・スコア表示 ====================
+1010 for i=0 to CY_MAX-1:'コースの行数分ループする
+1020    putStr 0,i*FONT_HIGHT,course[i],1:'コース１行分を表示する
+1030 next
+1040 putStr SCORE_X,SCORE_Y+FONT_HIGHT,format("%05D",score),1:'スコアを表示する
+1050 return
+2000 '==================== 車の移動と表示 =======================
+2010 '車を移動する
+2020 if keyL()=1 then carX=carX-1:if carX&lt;0 then carX=0
+2030 if keyR()=1 then carX=carX+1:if carX&gt;=COURSE_WIDTH then carX=COURSE_WIDTH-1
+2040 putStr carX*FONT_WIDTH,CAR_Y*FONT_HIGHT,"A",1:'車を表示する
+2050 return
+3000 '==================== コースのスクロール ===================
+3010 '今のコースを１行下にずらす
+3020 for y=CY_MAX-1 to 1 step -1:course[y]=course[y-1]:next
+3030 '一番上の行を作る
+3040 temp="                "
+3050 for i=1 to TREE_MAX
+3060    r=(rand()*COURSE_WIDTH*4)/255:'４分の１の確率で16より小さい数字になる
+3070    if r&lt;COURSE_WIDTH then
+3080        temp=mid(temp,0,r)+"@"+mid(temp,r+1,COURSE_WIDTH)
+3090    end if
+3100 next
+3110 course[0]=temp
+3120 return
+4000 '==================== 衝突判定 ===========================
+4010 '車の位置に木があるかを調べる
+4020 if mid(course[CAR_Y],carX,carX+1)="@" then gameOver=1 else score=score+10
+4030 return
+</code></pre>
+
+							</div>
+
+						</div>
+					</div>
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src=""
+						width="800"
+						style="
+						position: absolute;
+						left: 0px;
+						bottom: 00;
+						">
+					</div>
+					<br />
+
 				</div><!-- div#mainContents END -->
 				<div id="leftContents">
 					<a id="Menu" name="Menu"></a>
@@ -433,6 +572,7 @@
 						<li><a href="#ViewCourse" title="">コース・スコアの表示</a></li>
 						<li><a href="#ViewCar" title="">車の移動と表示</a></li>
 						<li><a href="#Scroll" title="">コースのスクロール</a></li>
+						<li><a href="#gameOver" title="">衝突判定</a></li>
 						<br />
 					</ul>
 					<br />
@@ -456,13 +596,17 @@ function copyCode2() {
 	alert("コードをコピーした");
 }
 
-
 function copyCode3() {
 	const code =
 		document.getElementById("basicCode3").textContent;
-
 	navigator.clipboard.writeText(code);
+	alert("コードをコピーした");
+}
 
+function copyCode4() {
+	const code =
+		document.getElementById("basicCode4").textContent;
+	navigator.clipboard.writeText(code);
 	alert("コードをコピーした");
 }
 </script>
