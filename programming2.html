@@ -51,7 +51,7 @@
 		<div id="wrapBg">
 			<div class="wrapBox clearfix">
 				<div id="mainContents">
-					<p class="chapter8">プログラミング&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;���その２���</p>
+					<p class="chapter8">プログラミング&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;～その２～</p>
 					<div class="txtTempSet txtTemp1">
 					<span>
 					プログラミング１では、プログラムの作成、ロード、実行など主に操作方法について説明した。<br />
@@ -196,10 +196,10 @@
 520     gosub 1000:'コース・スコア表示
 700 end while
 1000 '==================== コース・スコア表示 ====================
-1010 for i=0 to CY_MAX-1
-1020    putStr 0,i*FONT_HIGHT,course[i],1
+1010 for i=0 to CY_MAX-1:'コースの行数分ループする
+1020    putStr 0,i*FONT_HIGHT,course[i],1:'コース１行分を表示する
 1030 next
-1040 putStr SCORE_X,SCORE_Y+FONT_HIGHT,format("%05D",score),1
+1040 putStr SCORE_X,SCORE_Y+FONT_HIGHT,format("%05D",score),1:'スコアを表示する
 1050 return
 </code></pre>
 
@@ -207,6 +207,39 @@
 
 						</div>
 					</div>
+
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p>
+							<span>
+							右の動画のように、サンプルプログラムのコピーボタンを押して、サンプルプログラムをコピーして、
+							BASICマイコンに接続したTeraTermに張り付けて実行しましょう。<br />
+							プログラムにつては、サンプルプログラムにステップバイステップでコメントを入れたので、
+							<a href="https://diymycom.github.io/.github.io/pocket_basic.html" target="_blank">BASICコマンドのリファレンス</a>
+							を参考に読んでみてください。
+							<br />
+							下の写真のようにLCDの表示が変わると思います。<br />
+							<img src="programming2/Sample2result.jpg" width="400">
+							</span>
+						</p>
+					</div>
+						<p>	
+						<span>
+							<video 
+								src="programming2/Sample2run.mp4"
+								width="400"
+								autoplay
+								loop
+								muted
+								controls
+								preload="auto"
+								style="cursor: pointer;"
+							></video>
+						</span>
+						</p>
+					</div>
+
 					<div style="position: relative;">
 					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
 					<img 
