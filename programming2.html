@@ -263,7 +263,8 @@
 						<p>
 							<span>
 							車の移動と表示のコードを追加した。<br />
-							先ほどと同じ要領で実行してみよう。<br />
+							先ほどと同じ要領で実行してみよう。<br /><br />
+							前回のループで表示した車（A）が残らないのは、コース・スコア表示の段階で消えているからだ。<br />
 							<br />
 							【実行結果】
 							<video 
@@ -350,8 +351,9 @@
 					<div class="fL">
 						<p>
 							<span>
-							コースのスクロールのコードを追加した。<br />
-							先ほどと同じ要領で実行してみよう。<br />
+							コースをスクロールするようにした。<br />
+							先ほどと同じ要領で実行してみよう。<br /><br />
+							木々の中を車が走っているように見える？かな？(笑)<br />
 							<br />
 							【実行結果】
 							<video 
@@ -453,21 +455,25 @@
 					<div class="fL">
 						<p>
 							<span>
-							衝突判定のコードを追加した。<br />
-							先ほどと同じ要領で実行してみよう。<br />
+							木にぶつかるとゲームオーバーにする判断とぶつからなかった時にスコアを加算する機能を追加した。<br />
+							先ほどと同じ要領で実行してみよう。<br /><br />
+							
+							これで、完成！<br />
+							最小限の構成だけど、ゲームらしくなったのではないだろうか？<br />
+							全体で50行程度なので、最初につくるゲームとしては、よい題材だと思う。<br />
 							<br />
-							【実行結果】
-							<video 
-								src="programming2/gameOver.mp4"
-								width="400"
-								autoplay
-								loop
-								muted
-								controls
-								preload="auto"
-								style="cursor: pointer;"
-							></video>
-							</span>
+								【実行結果】
+								<video 
+									src="programming2/gameOver.mp4"
+									width="400"
+									autoplay
+									loop
+									muted
+									controls
+									preload="auto"
+									style="cursor: pointer;"
+								></video>
+
 							</span>
 						</p>
 					</div>
@@ -484,7 +490,7 @@
 									コピー
 								</button>
 
-<pre id="basicCode4" style="max-height: 26em; overflow-y: auto; overflow-x: auto;"><code>
+<pre id="basicCode4" style="max-height: 16em; overflow-y: auto; overflow-x: auto;"><code>
 100 '==================== ドライブゲーム =========================
 110 SCREEN_WIDTH=128:SCREEN_HIGHT=64:'画面の幅と高さ
 120 FONT_WIDTH=6:FONT_HIGHT=8:'フォントの幅と高さ
@@ -548,15 +554,15 @@
 
 						</div>
 					</div>
-
+					<br /><br /><br /><br />
 					<div style="position: relative;">
 					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
 					<img 
-						src=""
+						src="programming2/Snow_ThumbsUp_100ms_800pt_wait3s.gif"
 						width="800"
 						style="
 						position: absolute;
-						left: 0px;
+						left: 300px;
 						bottom: 00;
 						">
 					</div>
