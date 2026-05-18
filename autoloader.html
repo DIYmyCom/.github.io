@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICマイコンを作ろう ～ オートローダー ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン" />
+<meta name="description" content="電子工作,BASIC,マイコン" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+	<include id='menu.html'></include>
+
+		<div id="wrapBg">
+			<div class="wrapBox clearfix">
+				<div id="mainContents">
+					<a id="autoloader" name="autoloader"></a>
+					<p class="chapter8">オートローダ</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<video 
+							src="AutoLoader/AUTOLOADER.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted 
+							playsinline
+							style="max-width: 400pt; cursor: pointer;"
+						></video>
+
+					</div>
+<span><p>
+PocketComを持ち運ぶための、電源・ストレージ機能を備えた拡張ユニットです。<br />
+<br />
+作品が完成すると、「誰かに遊んでもらいたい」「見てもらいたい」と思いますよね。<br />
+このユニットをPocketComに接続すれば、PCから取り外して単体で持ち運べるようになります。<br />
+作成したゲームやプログラムを、好きな場所で気軽に楽しめます。<br />
+<br />
+さらに、右の動画のようにメニューから起動できるようにすれば、複数の作品をまとめて持ち運ぶことも可能です。<br />
+</p></span>
+					</div>
+
+					<a id="HowToUse" name="HowToUse"></a>
+					<p class="chapter6">接続方法</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><img src="AutoLoader/001.JPG" width="400"></p></span>
+					</div>
+<span><p>
+キットには、左の写真にあるオートローダ基板、フラットケーブル、スペーサが同梱されています。<br />
+オートローダ基板にはサンプルプロジェクトが書き込み済みなので、PocketComと接続して起動するだけで動作確認できます。<br />
+</p></span>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<a href="AutoLoader/002.png" target="_blank"><span><p><img src="AutoLoader/002.png" width="400"></p></span></a>
+					</div>
+<span><p>
+まず、左図のようにフラットケーブルでPocketComとオートローダ基板を接続します。<br />
+接続時は、以下の点に注意してください。<br />
+<br />
+・PocketComとオートローダ基板の6本のピンヘッダを左から1〜6番としたとき、同じ番号同士を接続する。<br />
+・オートローダ基板側は2段のピンヘッダになっていますが、上段（基板から離れた側）の6本を使用する。<br />
+・オートローダ基板の「ON・OFF」と書かれた電源スイッチをOFFにした状態で、電池ボックスに電池を入れる。<br />
+</p></span>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><img src="AutoLoader/004.JPG" width="400"></p></span>
+					</div>
+<span><p>
+PocketCom（上側）とオートローダ基板（下側）を、スペーサで固定します。<br />
+</p></span>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><img src="AutoLoader/003.png" width="400"></p></span>
+					</div>
+<span><p>
+左図の状態を参考に、オートローダの電源スイッチ以外のスイッチを右側へ倒してください。<br />
+その後、オートローダの電源スイッチをONにします。<br />
+<br />
+PocketComのLCDにメニューが表示されれば正常です。<br />
+5秒以上待ってもメニューが表示されない場合は、接続やスイッチ設定が間違っている可能性があります。<br />
+一度電源をOFFにし、ケーブル接続や各スイッチの向きを確認してください。<br />
+</p></span>
+					</div>
+
+
+					<a id="project" name="project"></a>
+					<p class="chapter6">プロジェクトファイル</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+<span><p>
+プロジェクトファイルの構成は以下のようになっています。<br />
+<br />
+・ファイルは「*** Project Start ****」で始まり、「*** Project End ****」で終了します。<br />
+・「@ファイル名」の行の後に、そのファイルの内容（BASICプログラム）を記述します。<br />
+・起動時に最初に実行されるプログラムは、「AUTOEXEC.bas」という名前で作成します。<br />
+・プログラムから別のプログラムを起動したい場合は、次に実行したいファイル名をPRINT文で出力して終了します。<br />
+<br />
+例として、<a href="AutoLoader/Project.txt" target="_blank">冒頭の動画で使用したプロジェクトファイル</a>をご覧ください。<br />
+<br />
+【プロジェクトファイルの構成イメージ】<br />
+<br />
+*** Project Start ****<br />
+@AUTOEXEC.bas<br />
+（最初に実行するプログラム）<br />
+<br />
+@ファイル名<br />
+（BASICプログラムの内容）<br />
+<br />
+@ファイル名<br />
+（BASICプログラムの内容）<br />
+<br />
+*** Project End ****<br />
+<br />
+</p></span>
+                        </div>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+
+					<a id="HowToWrite" name="HowToWrite"></a>
+					<p class="chapter6">プロジェクトファイルの書き込み方</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><img src="AutoLoader/005.JPG" width="400"></p></span>
+					</div>
+<span><p>
+プロジェクトファイルの書き込みには、PocketComにプログラムを転送する時と同じ変換基板を使用します。<br />
+左の写真のように、ダウンローダ基板下側の6本のヘッダピンを使ってPCへ接続してください。<br />
+<br />
+TeraTermの設定は下図の通りです。<br />
+赤枠の項目だけPocketCom使用時と設定が異なるので注意してください。<br />
+<br />
+オートローダ接続時は、PocketComと異なりTeraTerm画面には何も表示されません。<br />
+また、キー入力のエコーバックもありません。そのため、画面表示がなくても入力されたものとして操作を進めます。<br />
+<br />
+正常に接続できているか不安な場合は、「h⏎」と入力してください。<br />
+ヘルプが表示されれば正常に動作しています。<br />
+<br />
+【プロジェクトファイル書き込み手順】<br />
+<br />
+1）「EEPErase⏎」を入力<br />
+<br />
+2）「EEPDump 0⏎」を入力<br />
+　表示内容がすべて「FF」であれば消去成功です。<br />
+<br />
+3）TeraTermのメニューから<br />
+　「ファイル」→「ファイル送信(S)」を選択し、書き込むプロジェクトファイルを送信する。<br />
+<br />
+4）「EEPDump fff00⏎」を入力<br />
+　プロジェクトファイル内で指定したファイル名が表示されれば書き込み成功です。<br />
+</p></span>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>【TeraTermの端末設定】</br><img src="AutoLoader/TeraTerm1.png" width="400"></p></span>
+					</div>
+						<span><p>【TeraTermのシリアルポート設定】</br><img src="AutoLoader/TeraTerm2.png" width="400"></p></span>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>【EEPDump 0 実行時の表示】</br><img src="AutoLoader/006.png" width="400"></p></span>
+					</div>
+						<span><p>【EEPDump fff00 実行時の表示】</br><img src="AutoLoader/007.png" width="400"></p></span>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><img src="AutoLoader/004.JPG" width="400"></p></span>
+					</div>
+						<span><p>後は、接続を戻して、オートローダの電源を入れれば、プロジェクトファイルのAUTOEXEC.basが起動するはずです。</p></span>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+					<br /><br />
+
+
+					<a id="circuit" name="circuit"></a>
+					<p class="chapter6">回路図</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+						<a href="AutoLoader/AutoLoader.png" target="_blank"><img src="AutoLoader/AutoLoader.png" width="700"></a>
+                        </div>
+					</div>
+
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="Parts" name="Parts"></a>
+					<p class="chapter6">部品配置</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+						<span><p><a href="AutoLoader/AutoLoader_Parts.pdf" target="_blank">部品配置</a></p></span>
+                        </div>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+
+				</div><!-- div#mainContents END -->
+				<div id="leftContents">
+					<a id="Menu" name="Menu"></a>
+					<ul id="subNavigation" class="bgList1">
+						<li><a href="#autoloader" title="">オートローダ</a></li>
+						<li><a href="#HowToUse" title="">接続方法</a></li>
+						<li><a href="#project" title="">プロジェクトファイル</a></li>
+						<li><a href="#HowToWrite" title="">プロジェクトファイルの書き込み方</a></li>
+						<li><a href="#circuit" title="">回路図</a></li>
+						<li><a href="#Parts" title="">部品配置</a></li>
+						<br />
+					</ul>
+					<br />
+				</div><!-- div#leftContents END -->
+			</div><!-- div#wrapBox END -->
+		</div><!-- div#wrapBg END -->
+<include id='copy.html'></include>
+	</div>
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>
