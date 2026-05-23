@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASIC Program Downloader</title>
+<title>BASIC コンソール</title>
 
 <style>
     body {
@@ -41,26 +41,30 @@
 
 <body>
 
-<h1>BASIC Program Downloader</h1>
+<h1>BASIC コンソール</h1>
 
 <div>
-    <button id="btn-connect">1. USBマイコンに接続</button>
+    <button id="btn-connect">マイコンに接続</button>
     <span id="status" class="status">未接続</span>
 </div>
 
 <hr>
 
 <div>
-    <h3>2. プログラムを選択してダウンロード</h3>
+    <h3>プログラムを選択してダウンロード</h3>
 
     <button id="btn-hello" disabled>HelloWorld</button>
     <button id="btn-invader" disabled>インベーダ</button>
     <button id="btn-pacman" disabled>パックマン</button>
     <button id="btn-shoot" disabled>SHOOT</button>
+</div>
 
-    <br><br>
-
-    <button id="btn-run" disabled>RUN⏎送信</button>
+<hr>
+<div>
+    <h3>コマンドを実行</h3>
+    <button id="btn-run" disabled>RUN</button>
+    <button id="btn-list" disabled>LIST</button>
+    <button id="btn-new" disabled>NEW</button>
 </div>
 
 
@@ -101,6 +105,9 @@ const btnPacman = document.getElementById('btn-pacman');
 const btnShoot = document.getElementById('btn-shoot');
 
 const btnRun = document.getElementById('btn-run');
+const btnList = document.getElementById('btn-list');
+const btnNew = document.getElementById('btn-new');
+
 const btnSendText = document.getElementById('btn-send-text');
 const textInput = document.getElementById('text-input');
 
@@ -108,10 +115,10 @@ const statusEl = document.getElementById('status');
 const terminal = document.getElementById('terminal');
 
 const programs = {
-    hello: 'loader/HelloWorld.bas',
-    invader: 'loader/Invaders10.bas',
-    pacman: 'loader/Pakman16.bas',
-    shoot: 'loader/shoot16.bas'
+    hello: 'basic_console/HelloWorld.bas',
+    invader: 'basic_console/Invaders10.bas',
+    pacman: 'basic_console/Pakman16.bas',
+    shoot: 'basic_console/shoot16.bas'
 };
 
 function logToTerminal(text) {
@@ -167,6 +174,8 @@ btnConnect.addEventListener('click', async () => {
         btnInvader.disabled = false;
         btnPacman.disabled = false;
         btnRun.disabled = false;
+        btnList.disabled = false;
+        btnNew.disabled = false;
         btnShoot.disabled = false;
 
         readLoop();
@@ -305,25 +314,26 @@ async function downloadAndSend(url) {
 
 
 // ========================================
-// RUN送信
+// コマンド送信
 // ========================================
 
-async function sendRunCommand() {
+async function sendCommand(command) {
 
     try {
 
         writer = port.writable.getWriter();
 
-        // 念のため、こちらもEUC-JPに統一（英数字なのでUTF-8でも結果は同じですが統一性を担保）
-        const encoded = await convertToEUCJP('run\r');
+        const sendText = command + '\r';
+
+        const encoded = convertToEUCJP(sendText);
 
         await writer.write(encoded);
 
-        logToTerminal('\n> run\n');
+        logToTerminal('\n> ' + command + '\n');
 
     } catch (error) {
 
-        alert('RUN送信失敗: ' + error.message);
+        alert(command + '送信失敗: ' + error.message);
 
     } finally {
 
@@ -333,7 +343,24 @@ async function sendRunCommand() {
     }
 }
 
+// ========================================
+// コマンド送信
+// ========================================
 
+async function sendRunCommand() {
+
+    await sendCommand('run');
+}
+
+async function sendListCommand() {
+
+    await sendCommand('list');
+}
+
+async function sendNewCommand() {
+
+    await sendCommand('new');
+}
 // ========================================
 // ボタン有効/無効
 // ========================================
@@ -344,6 +371,8 @@ function setButtonsDisabled(disabled) {
     btnInvader.disabled = disabled;
     btnPacman.disabled = disabled;
     btnRun.disabled = disabled;
+    btnList.disabled = disabled;
+    btnNew.disabled = disabled;
     btnShoot.disabled = disabled;
     btnSendText.disabled = disabled;
 }
@@ -413,6 +442,16 @@ btnRun.addEventListener(
     'click',
     sendRunCommand
 );
+btnList.addEventListener(
+    'click',
+    sendListCommand
+);
+
+btnNew.addEventListener(
+    'click',
+    sendNewCommand
+);
+
 btnShoot.addEventListener(
     'click',
     () => downloadAndSend(programs.shoot)
