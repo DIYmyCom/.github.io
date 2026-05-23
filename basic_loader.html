@@ -167,50 +167,6 @@ btnConnect.addEventListener('click', async () => {
 
 async function readLoop() {
 
-    async function readLoop() {
-
-        while (port && port.readable && keepReading) {
-
-            try {
-
-                reader = port.readable.getReader();
-
-                while (true) {
-
-                    const { value, done } = await reader.read();
-
-                    if (done) {
-                        break;
-                    }
-
-                    if (value) {
-
-                        // EUC-JP → Unicode
-                        const unicodeArray = Encoding.convert(value, {
-                            to: 'UNICODE',
-                            from: 'EUCJP'
-                        });
-
-                        const text = Encoding.codeToString(unicodeArray);
-
-                        logToTerminal(text);
-                    }
-                }
-
-            } catch (error) {
-
-                console.error(error);
-                break;
-
-            } finally {
-
-                if (reader) {
-                    reader.releaseLock();
-                }
-            }
-        }
-    }
-
     while (port && port.readable && keepReading) {
 
         try {
@@ -225,11 +181,25 @@ async function readLoop() {
                     break;
                 }
 
-                if (value) {
+                if (value && value.length > 0) {
 
-                    const text = decoder.decode(value);
+                    try {
 
-                    logToTerminal(text);
+                        const bytes = Array.from(value);
+
+                        const unicodeArray = Encoding.convert(bytes, {
+                            to: 'UNICODE',
+                            from: 'EUCJP'
+                        });
+
+                        const text = Encoding.codeToString(unicodeArray);
+
+                        logToTerminal(text);
+
+                    } catch (e) {
+
+                        console.error('decode error', e);
+                    }
                 }
             }
 
