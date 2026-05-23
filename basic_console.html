@@ -57,6 +57,29 @@
     <button id="btn-invader" disabled>インベーダ</button>
     <button id="btn-pacman" disabled>パックマン</button>
     <button id="btn-shoot" disabled>SHOOT</button>
+
+    <div
+        id="drop-area"
+        style="
+            margin-top:10px;
+            padding:20px;
+            border:2px dashed #888;
+            background:#fafafa;
+            color:#333;
+            width:320px;
+            text-align:center;
+            border-radius:10px;
+        "
+    >
+        .basファイルをここへドロップ<br>
+        または<br><br>
+
+        <input
+            type="file"
+            id="file-input"
+            accept=".bas,.txt"
+        >
+    </div>
 </div>
 
 <hr>
@@ -103,6 +126,9 @@ const btnHello = document.getElementById('btn-hello');
 const btnInvader = document.getElementById('btn-invader');
 const btnPacman = document.getElementById('btn-pacman');
 const btnShoot = document.getElementById('btn-shoot');
+
+const dropArea = document.getElementById('drop-area');
+const fileInput = document.getElementById('file-input');
 
 const btnRun = document.getElementById('btn-run');
 const btnList = document.getElementById('btn-list');
@@ -311,7 +337,120 @@ async function downloadAndSend(url) {
         setButtonsDisabled(false);
     }
 }
+// ========================================
+// 任意ファイル送信
+// ========================================
 
+async function sendFile(file) {
+
+    setButtonsDisabled(true);
+
+    logToTerminal(`\n--- ファイル送信開始: ${file.name} ---\n`);
+
+    try {
+
+        // ファイル読み込み
+        const buffer = await file.arrayBuffer();
+
+        // Shift_JIS バイト列
+        const sjisArray = new Uint8Array(buffer);
+
+        // Shift_JIS → Unicode
+        const unicodeArray = Encoding.convert(sjisArray, {
+            to: 'UNICODE',
+            from: 'SJIS'
+        });
+
+        const text = Encoding.codeToString(unicodeArray);
+
+        const lines = text.split(/\r?\n/);
+
+        writer = port.writable.getWriter();
+
+        for (let i = 0; i < lines.length; i++) {
+
+            const line = lines[i];
+
+            // 最終空行スキップ
+            if (i === lines.length - 1 && line.trim() === '') {
+                continue;
+            }
+
+            const sendText = line + '\r';
+
+            // Unicode → EUC-JP
+            const encoded = convertToEUCJP(sendText);
+
+            await writer.write(encoded);
+
+            await sleep(100);
+        }
+
+        logToTerminal('\n--- ファイル送信完了 ---\n');
+
+    } catch (error) {
+
+        alert('ファイル送信エラー: ' + error.message);
+
+        console.error(error);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+
+        setButtonsDisabled(false);
+    }
+}
+
+// ========================================
+// Drag & Drop
+// ========================================
+
+dropArea.addEventListener('dragover', (e) => {
+
+    e.preventDefault();
+
+    dropArea.style.background = '#d0f0ff';
+});
+
+dropArea.addEventListener('dragleave', () => {
+
+    dropArea.style.background = '#fafafa';
+});
+
+dropArea.addEventListener('drop', async (e) => {
+
+    e.preventDefault();
+
+    dropArea.style.background = '#fafafa';
+
+    const files = e.dataTransfer.files;
+
+    if (files.length === 0) {
+        return;
+    }
+
+    await sendFile(files[0]);
+});
+// ========================================
+// ファイル選択
+// ========================================
+
+fileInput.addEventListener('change', async (e) => {
+
+    const files = e.target.files;
+
+    if (!files || files.length === 0) {
+        return;
+    }
+
+    await sendFile(files[0]);
+
+    // 同じファイル再選択対応
+    fileInput.value = '';
+});
 
 // ========================================
 // コマンド送信
