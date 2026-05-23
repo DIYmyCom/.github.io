@@ -1,231 +1,337 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BASIC Program Downloader</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 20px;
-            background-color: #f0f0f0;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 5px;
-            cursor: pointer;
-        }
-        #terminal {
-            background-color: #000;
-            color: #0f0;
-            font-family: monospace;
-            padding: 10px;
-            height: 24em; /* 約20行分の高さ */
-            overflow-y: scroll;
-            border: 2px solid #333;
-            margin-top: 15px;
-            white-space: pre-wrap;
-        }
-        .status {
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
-    <!-- EUC-JPのデコード/エンコードのためにTextEncoderLite/TextDecoderLite等を代用、
-         または標準のTextDecoder(euc-jp)を利用するためのスクリプト -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BASIC Program Downloader</title>
+
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        background-color: #f0f0f0;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    #terminal {
+        background-color: #000;
+        color: #0f0;
+        font-family: monospace;
+        padding: 10px;
+        height: 24em;
+        overflow-y: scroll;
+        border: 2px solid #333;
+        margin-top: 15px;
+        white-space: pre-wrap;
+    }
+
+    .status {
+        font-weight: bold;
+        color: #333;
+    }
+</style>
 </head>
+
 <body>
 
-    <h1>BASIC Program Downloader</h1>
-    
-    <div>
-        <button id="btn-connect">1. USBマイコンに接続</button>
-        <span id="status" class="status">未接続</span>
-    </div>
+<h1>BASIC Program Downloader</h1>
 
-    <hr>
+<div>
+    <button id="btn-connect">1. USBマイコンに接続</button>
+    <span id="status" class="status">未接続</span>
+</div>
 
-    <div>
-        <h3>2. プログラムを選択してダウンロード</h3>
-        <button id="btn-hello" disabled>HelloWorld</button>
-        <button id="btn-invader" disabled>インベーダ</button>
-        <button id="btn-pacman" disabled>パックマン</button>
-    </div>
+<hr>
 
-    <hr>
+<div>
+    <h3>2. プログラムを選択してダウンロード</h3>
 
-    <h3>マイコンからのエコーバック</h3>
-    <div id="terminal"></div>
+    <button id="btn-hello" disabled>HelloWorld</button>
+    <button id="btn-invader" disabled>インベーダ</button>
+    <button id="btn-pacman" disabled>パックマン</button>
+    <button id="btn-shoot" disabled>SHOOT</button>
 
-    <script>
-        let port;
-        let writer;
-        let reader;
-        let keepReading = true;
+    <br><br>
 
-        const btnConnect = document.getElementById('btn-connect');
-        const btnHello = document.getElementById('btn-hello');
-        const btnInvader = document.getElementById('btn-invader');
-        const btnPacman = document.getElementById('btn-pacman');
-        const statusEl = document.getElementById('status');
-        const terminal = document.getElementById('terminal');
+    <button id="btn-run" disabled>RUN⏎送信</button>
+</div>
 
-        // 各ボタンの転送URL設定
-        const programs = {
-            hello: 'loader/HelloWorld.bas',
-            invader: 'loader/Invaders10.bas',
-            pacman: 'loader/Pakman16.bas'
-        };
+<hr>
 
-        // ターミナルへの出力関数
-        function logToTerminal(text) {
-            terminal.textContent += text;
-            terminal.scrollTop = terminal.scrollHeight; // 最下部へスクロール
-        }
+<h3>マイコンからのエコーバック</h3>
+<div id="terminal"></div>
 
-        // 100msウェイト用
-        const sleep = ms => new Promise(res => setTimeout(res, ms));
+<script>
 
-        // シリアル接続処理
-        btnConnect.addEventListener('click', async () => {
-            if (!('serial' in navigator)) {
-                alert('お使いのブラウザはWeb Serial APIをサポートしていません。Android Chromeでflagsの設定を確認してください。');
-                return;
-            }
+let port;
+let writer;
+let reader;
+let keepReading = true;
 
-            try {
-                // ユーザーにポートを選択させる
-                port = await navigator.serial.requestPort();
-                
-                // 仕様通りの通信設定でオープン
-                await port.open({
-                    baudRate: 57600,
-                    dataBits: 8,
-                    stopBits: 1,
-                    parity: 'none',
-                    flowControl: 'none'
-                });
+const btnConnect = document.getElementById('btn-connect');
 
-                statusEl.textContent = '接続済み';
-                statusEl.style.color = 'green';
-                
-                // ボタンの有効化
-                btnHello.disabled = false;
-                btnInvader.disabled = false;
-                btnPacman.disabled = false;
+const btnHello = document.getElementById('btn-hello');
+const btnInvader = document.getElementById('btn-invader');
+const btnPacman = document.getElementById('btn-pacman');
+const btnShoot = document.getElementById('btn-shoot');
 
-                // 受信ルーチンの開始
-                readLoop();
+const btnRun = document.getElementById('btn-run');
 
-            } catch (error) {
-                console.error(error);
-                statusEl.textContent = '接続失敗: ' + error.message;
-                statusEl.style.color = 'red';
-            }
+const statusEl = document.getElementById('status');
+const terminal = document.getElementById('terminal');
+
+const programs = {
+    hello: 'loader/HelloWorld.bas',
+    invader: 'loader/Invaders10.bas',
+    pacman: 'loader/Pakman16.bas',
+    shoot: 'loader/shoot16.bas'
+};
+
+function logToTerminal(text) {
+    terminal.textContent += text;
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+
+// ========================================
+// シリアル接続
+// ========================================
+
+btnConnect.addEventListener('click', async () => {
+
+    if (!('serial' in navigator)) {
+        alert('Web Serial API未対応ブラウザです');
+        return;
+    }
+
+    try {
+
+        port = await navigator.serial.requestPort();
+
+        await port.open({
+            baudRate: 57600,
+            dataBits: 8,
+            stopBits: 1,
+            parity: 'none',
+            flowControl: 'none'
         });
 
-        // 受信処理（マイコンからのエコーを監視）
-        async function readLoop() {
-            // EUC-JPでデコードする設定
-            const decoder = new TextDecoder('euc-jp');
-            
-            while (port && port.readable && keepReading) {
-                try {
-                    reader = port.readable.getReader();
-                    while (true) {
-                        const { value, done } = await reader.read();
-                        if (done) {
-                            break;
-                        }
-                        if (value) {
-                            // 受信データをEUC-JPでテキスト化してターミナルに表示
-                            // 受信改行コードは仕様がCR+LF、JS側はそのまま表示すれば改行されます
-                            const text = decoder.decode(value);
-                            logToTerminal(text);
-                        }
-                    }
-                } catch (error) {
-                    console.error(error);
+        statusEl.textContent = '接続済み';
+        statusEl.style.color = 'green';
+
+        btnHello.disabled = false;
+        btnInvader.disabled = false;
+        btnPacman.disabled = false;
+        btnRun.disabled = false;
+        btnShoot.disabled = false;
+
+        readLoop();
+
+    } catch (error) {
+
+        console.error(error);
+
+        statusEl.textContent = '接続失敗: ' + error.message;
+        statusEl.style.color = 'red';
+    }
+});
+
+
+// ========================================
+// 受信処理
+// ========================================
+
+async function readLoop() {
+
+    const decoder = new TextDecoder('euc-jp');
+
+    while (port && port.readable && keepReading) {
+
+        try {
+
+            reader = port.readable.getReader();
+
+            while (true) {
+
+                const { value, done } = await reader.read();
+
+                if (done) {
                     break;
-                } finally {
-                    if (reader) {
-                        reader.releaseLock();
-                    }
+                }
+
+                if (value) {
+
+                    const text = decoder.decode(value);
+
+                    logToTerminal(text);
                 }
             }
-        }
 
-        // プログラムをダウンロードしてシリアル送信するメイン処理
-        async function downloadAndSend(url) {
-            // 送信中はボタンを無効化
-            setButtonsDisabled(true);
-            logToTerminal(`\n--- ダウンロード開始: ${url} ---\n`);
+        } catch (error) {
 
-            try {
-                // WEBからファイルを取得
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('ファイルの取得に失敗しました。');
-                
-                // 一旦テキストとして読み込み（CORSエラーに注意）
-                const text = await response.text();
-                
-                // 行ごとに分割
-                const lines = text.split(/\r?\n/);
-                
-                // EUC-JP用のエンコーダーを用意
-                const encoder = new TextEncoder('euc-jp', { NONSTANDARD_allowLegacyEncoding: true });
-                writer = port.writable.getWriter();
+            console.error(error);
+            break;
 
-                for (let line of lines) {
-                    // 空行のスキップ処理（必要に応じて）
-                    if (line.trim() === '' && lines.indexOf(line) === lines.length - 1) continue;
+        } finally {
 
-                    // 仕様：送信改行コードはCRのみ
-                    const sendText = line + '\r'; 
-                    
-                    // EUC-JPに変換して送信
-                    // ※標準のTextEncoderはUTF-8固定なため、環境によってはエラーになる場合があります。
-                    // その場合はポリフィル(Polyfill)等のライブラリが必要です。
-                    let encoded;
-                    try {
-                        encoded = new TextEncoder('euc-jp').encode(sendText);
-                    } catch(e) {
-                        // ブラウザがTextEncoder('euc-jp')をサポートしていない場合のフォールバック
-                        // レガシーブラウザ対策。現在の主要ブラウザはTextDecoderはeuc-jp対応ですがEncoderは不完全な場合があります。
-                        encoded = new TextEncoder().encode(sendText); // 暫定UTF-8
-                    }
-
-                    await writer.write(encoded);
-                    
-                    // 仕様：1行送信ごとに100msウェイト
-                    await sleep(100);
-                }
-
-                logToTerminal('\n--- 送信完了 ---\n');
-
-            } catch (error) {
-                alert('エラーが発生しました: ' + error.message);
-                logToTerminal(`\nエラー: ${error.message}\n`);
-            } finally {
-                if (writer) {
-                    writer.releaseLock();
-                }
-                setButtonsDisabled(false);
+            if (reader) {
+                reader.releaseLock();
             }
         }
+    }
+}
 
-        function setButtonsDisabled(disabled) {
-            btnHello.disabled = disabled;
-            btnInvader.disabled = disabled;
-            btnPacman.disabled = disabled;
+
+// ========================================
+// BASIC転送
+// ========================================
+
+async function downloadAndSend(url) {
+
+    setButtonsDisabled(true);
+
+    logToTerminal(`\n--- ダウンロード開始: ${url} ---\n`);
+
+    try {
+
+        // 生データ取得
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('ファイル取得失敗');
         }
 
-        // 各ボタンのイベントリスナー
-        btnHello.addEventListener('click', () => downloadAndSend(programs.hello));
-        btnInvader.addEventListener('click', () => downloadAndSend(programs.invader));
-        btnPacman.addEventListener('click', () => downloadAndSend(programs.pacman));
+        // ArrayBufferで取得
+        const buffer = await response.arrayBuffer();
 
-    </script>
+        // EUC-JPでデコード
+        const decoder = new TextDecoder('euc-jp');
+        const text = decoder.decode(buffer);
+
+        // 改行分割
+        const lines = text.split(/\r?\n/);
+
+        writer = port.writable.getWriter();
+
+        for (let i = 0; i < lines.length; i++) {
+
+            const line = lines[i];
+
+            // 最後の空行だけ除外
+            if (i === lines.length - 1 && line.trim() === '') {
+                continue;
+            }
+
+            const sendText = line + '\r';
+
+            // 送信はASCII主体なのでUTF-8でOK
+            // （半角英数字はEUCとUTF-8で同一）
+            const encoded = new TextEncoder().encode(sendText);
+
+            await writer.write(encoded);
+
+            await sleep(100);
+        }
+
+        logToTerminal('\n--- 送信完了 ---\n');
+
+    } catch (error) {
+
+        alert('エラー: ' + error.message);
+
+        logToTerminal(`\nエラー: ${error.message}\n`);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+
+        setButtonsDisabled(false);
+    }
+}
+
+
+// ========================================
+// RUN送信
+// ========================================
+
+async function sendRunCommand() {
+
+    try {
+
+        writer = port.writable.getWriter();
+
+        const encoded =
+            new TextEncoder().encode('run\r');
+
+        await writer.write(encoded);
+
+        logToTerminal('\n> run\n');
+
+    } catch (error) {
+
+        alert('RUN送信失敗: ' + error.message);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+    }
+}
+
+
+// ========================================
+// ボタン有効/無効
+// ========================================
+
+function setButtonsDisabled(disabled) {
+
+    btnHello.disabled = disabled;
+    btnInvader.disabled = disabled;
+    btnPacman.disabled = disabled;
+    btnRun.disabled = disabled;
+    btnShoot.disabled = disabled;
+}
+
+
+// ========================================
+// イベント
+// ========================================
+
+btnHello.addEventListener(
+    'click',
+    () => downloadAndSend(programs.hello)
+);
+
+btnInvader.addEventListener(
+    'click',
+    () => downloadAndSend(programs.invader)
+);
+
+btnPacman.addEventListener(
+    'click',
+    () => downloadAndSend(programs.pacman)
+);
+
+btnRun.addEventListener(
+    'click',
+    sendRunCommand
+);
+btnShoot.addEventListener(
+    'click',
+    () => downloadAndSend(programs.shoot)
+);
+</script>
+
 </body>
 </html>
