@@ -146,12 +146,13 @@ btnConnect.addEventListener('click', async () => {
 
 
 // ========================================
-// 受信処理
+// 受信処理 (★文字化け対策で shift_jis に変更)
 // ========================================
 
 async function readLoop() {
 
-    const decoder = new TextDecoder('euc-jp');
+    // マイコン側の文字コードに合わせて変更（デフォルト: shift_jis）
+    const decoder = new TextDecoder('shift_jis');
 
     while (port && port.readable && keepReading) {
 
@@ -212,7 +213,8 @@ async function downloadAndSend(url) {
         // ArrayBufferで取得
         const buffer = await response.arrayBuffer();
 
-        // EUC-JPでデコード
+        // ★元コードのファイルの読み込みに合わせたデコーダー（基本は euc-jp のまま維持）
+        // ※もしサーバー上の.basファイル自体がShift_JISならここも 'shift_jis' にしてください
         const decoder = new TextDecoder('euc-jp');
         const text = decoder.decode(buffer);
 
