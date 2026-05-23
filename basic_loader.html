@@ -183,23 +183,17 @@ async function readLoop() {
 
                 if (value && value.length > 0) {
 
-                    try {
+                    const bytes = Array.from(value);
 
-                        const bytes = Array.from(value);
+                    const unicodeArray = Encoding.convert(bytes, {
+                        to: 'UNICODE',
+                        from: 'EUCJP'
+                    });
 
-                        const unicodeArray = Encoding.convert(bytes, {
-                            to: 'UNICODE',
-                            from: 'EUCJP'
-                        });
+                    const text = Encoding.codeToString(unicodeArray);
 
-                        const text = Encoding.codeToString(unicodeArray);
-
-                        logToTerminal(text);
-
-                    } catch (e) {
-
-                        console.error('decode error', e);
-                    }
+                    // CR → CRLF に変換
+                    logToTerminal(text.replace(/\r/g, '\r\n'));
                 }
             }
 
