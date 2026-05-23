@@ -63,6 +63,24 @@
     <button id="btn-run" disabled>RUN⏎送信</button>
 </div>
 
+
+<hr>
+
+<h3>マイコンへテキスト送信</h3>
+
+<div>
+    <input
+        type="text"
+        id="text-input"
+        placeholder="送信したい文字列を入力"
+        style="width:70%; font-size:16px; padding:8px;"
+    >
+
+    <button id="btn-send-text" disabled>
+        テキスト送信
+    </button>
+</div>
+
 <hr>
 
 <h3>マイコンからのエコーバック</h3>
@@ -83,6 +101,8 @@ const btnPacman = document.getElementById('btn-pacman');
 const btnShoot = document.getElementById('btn-shoot');
 
 const btnRun = document.getElementById('btn-run');
+const btnSendText = document.getElementById('btn-send-text');
+const textInput = document.getElementById('text-input');
 
 const statusEl = document.getElementById('status');
 const terminal = document.getElementById('terminal');
@@ -325,8 +345,50 @@ function setButtonsDisabled(disabled) {
     btnPacman.disabled = disabled;
     btnRun.disabled = disabled;
     btnShoot.disabled = disabled;
+    btnSendText.disabled = disabled;
 }
 
+// ========================================
+// テキスト送信
+// ========================================
+
+async function sendTextToMicrocontroller() {
+
+    const text = textInput.value;
+
+    if (!text) {
+        return;
+    }
+
+    try {
+
+        writer = port.writable.getWriter();
+
+        // 改行付き送信
+        const sendText = text + '\r';
+
+        // EUC-JPへ変換
+        const encoded = convertToEUCJP(sendText);
+
+        await writer.write(encoded);
+
+        // ローカル表示
+        logToTerminal('\n> ' + text + '\n');
+
+        // 入力欄クリア
+        textInput.value = '';
+
+    } catch (error) {
+
+        alert('送信失敗: ' + error.message);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+    }
+}
 
 // ========================================
 // イベント
@@ -355,6 +417,18 @@ btnShoot.addEventListener(
     'click',
     () => downloadAndSend(programs.shoot)
 );
+
+btnSendText.addEventListener(
+    'click',
+    sendTextToMicrocontroller
+);
+
+textInput.addEventListener('keydown', (e) => {
+
+    if (e.key === 'Enter') {
+        sendTextToMicrocontroller();
+    }
+});
 </script>
 
 </body>
