@@ -337,6 +337,7 @@ async function downloadAndSend(url) {
         setButtonsDisabled(false);
     }
 }
+
 // ========================================
 // 任意ファイル送信
 // ========================================
@@ -355,10 +356,28 @@ async function sendFile(file) {
         // Shift_JIS バイト列
         const sjisArray = new Uint8Array(buffer);
 
-        // Shift_JIS → Unicode
+        // ========================================
+        // 文字コード自動判定
+        // ========================================
+
+        let detectedEncoding = Encoding.detect(sjisArray);
+
+        // 判定失敗時
+        if (
+            detectedEncoding === 'BINARY' ||
+            detectedEncoding === false
+        ) {
+            detectedEncoding = 'SJIS';
+        }
+
+        logToTerminal(
+            `\n[文字コード検出: ${detectedEncoding}]\n`
+        );
+
+        // Unicodeへ変換
         const unicodeArray = Encoding.convert(sjisArray, {
             to: 'UNICODE',
-            from: 'SJIS'
+            from: detectedEncoding
         });
 
         const text = Encoding.codeToString(unicodeArray);
