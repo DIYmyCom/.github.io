@@ -1,19 +1,19 @@
 *** Project Start ***
 @AUTOEXEC.bas
 10 '==============================
-20 ' メニュ〖∈Pocket BASIC∷
+20 ' 儊僯儏乕乮Pocket BASIC乯
 30 '==============================
-50 FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'フォントの升と光さ
+50 FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'僼僅儞僩偺暆偲崅偝
 60 MENU_MAX=SCREEN_HIGHT/FONT_HIGHT
 70 dim MENU[MENU_MAX],FILE[MENU_MAX]
-100 '---------------- メニュ〖の年盗 ------------------
+100 '---------------- 儊僯儏乕偺掕媊 ------------------
 110 MENU[0]="PAKMAN":FILE[0]="Pakman.bas"
 120 MENU[1]="SHOOT":FILE[1]="shoot.bas"
 130 MENU[2]="INVADERS":FILE[2]="Invaders.bas"
 140 MENU[3]="TETRIS":FILE[3]="Tetris.bas"
 150 MENU[4]="BLOCK":FILE[4]="block.bas"
 190 MENU_NUM=5
-1000 '---------------- 茶烫山绩 -----------------------
+1000 '---------------- 夋柺昞帵 -----------------------
 1100 cls
 1110 MARGIN=SCREEN_HIGHT-MENU_NUM*FONT_HIGHT
 1120 SPACE=MARGIN/(MENU_NUM+1)
@@ -25,10 +25,10 @@
 1180    putStr ITEM_X[I],ITEM_Y[I],MENU[I],1,set,F
 1190 next
 1195 update
-1200 '----------------　联买 --------------------
+1200 '----------------丂慖戰 --------------------
 1210 SOUND01="T150L64V200C7C6E5G5C7."
 1220 SOUND02="T150L64V100C#6V200C#6A5V10A5V200A6A6V10A6."
-1230 ITEM=0:gosub 3000:update:'カ〖ソルを山绩
+1230 ITEM=0:gosub 3000:update:'僇乕僜儖傪昞帵
 1300 while -1
 1305    SEL_ITEM=ITEM
 1310    if keyU()=1 then SEL_ITEM=SEL_ITEM-1:if SEL_ITEM<0 then SEL_ITEM=MENU_NUM-1
@@ -41,7 +41,7 @@
 1380    if keyA()=1 then sound 0,SOUND02:play 0:print FILE[ITEM]:end
 1390 end while
 1400 end
-3000 '-------------- カ〖ソル山绩 ---------------
+3000 '-------------- 僇乕僜儖昞帵 ---------------
 3010 fill ITEM_X[ITEM]-1,ITEM_Y[ITEM]-1,ITEM_X[ITEM]+ITEM_WIDTH[ITEM],ITEM_Y[ITEM]+FONT_HIGHT,1,xor,F
 3090 return
 
@@ -212,7 +212,7 @@
 2690 end if
 2990 return
 3000 '-------  Shoot Sub ---------------
-3005 gosub 3400:'Aキ〖粕み哈み
+3005 gosub 3400:'A僉乕撉傒崬傒
 3010 if (MyBulletDone=0)&&((MySt=St1)||(MySt=St2)) then
 3020 if (PrevA=0)&&(A=1) then
 3026     PrevA=1:A=0
@@ -223,7 +223,7 @@
 3050     end if
 3060   end if 
 3070 end if
-3075 gosub 3400:'Aキ〖粕み哈み
+3075 gosub 3400:'A僉乕撉傒崬傒
 3080 return
 3100 '----------- shoot Sub -----------
 3105 BuSt[I]=Exist:BuX[I]=MyX+MyWidth/2-MyBu1W/2
@@ -253,7 +253,7 @@
 3290   BuSt[I]=None
 3300 end if
 3310 return
-3400 '----------- key 掐蜗 -------------
+3400 '----------- key 擖椡 -------------
 3410 if keyA()=0 then PrevA=0
 3420 if keyA()=1 then A=1
 3430 return
@@ -294,7 +294,7 @@
 5305   gosub 3000 : ' shoot My Bullet 
 5310   gosub 25700 : ' check My collision
 5315   gosub 3000 : ' shoot My Bullet 
-5350   sleep 30 : ' 30ms スリ〖プ
+5350   sleep 30 : ' 30ms 僗儕乕僾
 5450   update BarWidth,0,BarWidth+BgWidth-1,ScHight-1
 5460   if sound0status()=0 then play 0
 5490   Count=Count+1
@@ -361,7 +361,7 @@
 10495 keyBpushd=0
 10500 while -1
 10505   for I=0 to 20
-10506     if keyA()=1 && keyB()=1 then keyBpushd=1:B_END=1:exit for:'AとBを尉数病したらプログラム姜位
+10506     if keyA()=1 && keyB()=1 then keyBpushd=1:B_END=1:exit for:'A偲B傪椉曽墴偟偨傜僾儘僌儔儉廔椆
 10507     if keyB()=1 then keyBpushd=1:exit for
 10520     sleep 50
 10525   next
@@ -791,109 +791,109 @@
 
 
 @Pakman.bas
-100 '==============　茶烫やシステム簇息の年盗 =============
-110 GAME_TITLE="PAK-MAN":FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'フォントの升と光さ
-120 HIGH_SCORE_NUM=SCREEN_HIGHT/FONT_HIGHT-3:dim HIGH_SCORE[HIGH_SCORE_NUM]:gosub 62100:'ハイスコアテ〖ブルを介袋步する
-130 if (keyA()<>1)||(keyB()<>1) then gosub 61100 : 'ハイスコアを粕み叫す
-140 MAP_X_NUM=28:MAP_Y_NUM=29:dim MAP[MAP_Y_NUM]:'マップ簇息の恃眶の年盗
+100 '==============丂夋柺傗僔僗僥儉娭楢偺掕媊 =============
+110 GAME_TITLE="PAK-MAN":FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'僼僅儞僩偺暆偲崅偝
+120 HIGH_SCORE_NUM=SCREEN_HIGHT/FONT_HIGHT-3:dim HIGH_SCORE[HIGH_SCORE_NUM]:gosub 62100:'僴僀僗僐傾僥乕僽儖傪弶婜壔偡傞
+130 if (keyA()<>1)||(keyB()<>1) then gosub 61100 : '僴僀僗僐傾傪撉傒弌偡
+140 MAP_X_NUM=28:MAP_Y_NUM=29:dim MAP[MAP_Y_NUM]:'儅僢僾娭楢偺曄悢偺掕媊
 150 sleep 1000
-200 '============== ゲ〖ム簇息の年盗 ================
-210 CHAR_SIZE=10:'キャラクタのサイズは10ドットの赖数妨
-220 MAP_CELL_SIZE=7:'マップのセルのサイズは7ドットの赖数妨
-230 MAP_CELL_S_SIZE=2:'教井マップのセルのサイズ
-240 LEFT=0:UP=1:RIGHT=2:DOWN=3:DIR_NUM=4:STOP=4:'キャラの数羹
-245 GHOST_FRIGHTENED=4:GHOST_MASK=5:'ゴ〖ストのいじけとマスクのフレ〖ムメモリ〖のインデックス
-250 COOKIE_FM_IDX=24:'クッキ〖のフレ〖ムメモリ〖のインデックス
-260 SPACE_FM_IDX=26:'スペ〖スのフレ〖ムメモリ〖のインデックス
-270 POWERUP_FM_IDX=25:'パワ〖アップエサのフレ〖ムメモリ〖のインデックス
-500 gosub 50000:'ビットマップの年盗
-550 gosub 59000:'不の年盗
-570 CHAR_TO_MAP_CELL_IDX="+=Tt7i|l~89Ffj12Ggr-?ILJ.0 ":'MAPキャラⅹFM恃垂テ〖ブル
-600 GHOST_NUM=4:'ゴ〖ストの眶
-610 dim GHOST_X[GHOST_NUM],GHOST_Y[GHOST_NUM],GHOST_DIR[GHOST_NUM],GHOST_FRIGHTENED_MODE[GHOST_NUM]:'ゴ〖スト簇息の恃眶 GHOST_FRIGHTENED_MODE:イジケモ〖ドの箕1、そうでない箕は0
-620 dim GHOST_TX[GHOST_NUM],GHOST_TY[GHOST_NUM]:'ゴ〖ストのタ〖ゲットタイル
+200 '============== 僎乕儉娭楢偺掕媊 ================
+210 CHAR_SIZE=10:'僉儍儔僋僞偺僒僀僘偼10僪僢僩偺惓曽宍
+220 MAP_CELL_SIZE=7:'儅僢僾偺僙儖偺僒僀僘偼7僪僢僩偺惓曽宍
+230 MAP_CELL_S_SIZE=2:'弅彫儅僢僾偺僙儖偺僒僀僘
+240 LEFT=0:UP=1:RIGHT=2:DOWN=3:DIR_NUM=4:STOP=4:'僉儍儔偺曽岦
+245 GHOST_FRIGHTENED=4:GHOST_MASK=5:'僑乕僗僩偺偄偠偗偲儅僗僋偺僼儗乕儉儊儌儕乕偺僀儞僨僢僋僗
+250 COOKIE_FM_IDX=24:'僋僢僉乕偺僼儗乕儉儊儌儕乕偺僀儞僨僢僋僗
+260 SPACE_FM_IDX=26:'僗儁乕僗偺僼儗乕儉儊儌儕乕偺僀儞僨僢僋僗
+270 POWERUP_FM_IDX=25:'僷儚乕傾僢僾僄僒偺僼儗乕儉儊儌儕乕偺僀儞僨僢僋僗
+500 gosub 50000:'價僢僩儅僢僾偺掕媊
+550 gosub 59000:'壒偺掕媊
+570 CHAR_TO_MAP_CELL_IDX="+=Tt7i|l~89Ffj12Ggr-?ILJ.0 ":'MAP僉儍儔仺FM曄姺僥乕僽儖
+600 GHOST_NUM=4:'僑乕僗僩偺悢
+610 dim GHOST_X[GHOST_NUM],GHOST_Y[GHOST_NUM],GHOST_DIR[GHOST_NUM],GHOST_FRIGHTENED_MODE[GHOST_NUM]:'僑乕僗僩娭楢偺曄悢 GHOST_FRIGHTENED_MODE:僀僕働儌乕僪偺帪1丄偦偆偱側偄帪偼0
+620 dim GHOST_TX[GHOST_NUM],GHOST_TY[GHOST_NUM]:'僑乕僗僩偺僞乕僎僢僩僞僀儖
 625 dim GHOST_SLEEP_COUNT[GHOST_NUM]
-630 GHOST_MODE_SCATTER=0:GHOST_MODE_CHASE=1:'ゴ〖ストのモ〖ドの年眶
-640 dim MODE_CHANGE_TABLE[3]:MODE_CHANGE_NUM=7:dim MODE_CHANGE_COUNT[MODE_CHANGE_NUM]:'モ〖ド磊仑箕粗　1烫:0 2-4烫:1 5烫笆惯:2
-1000 '================　メインル〖チン ================
-1100 '---------- 介袋肋年 ------------
-1110 PACMAN_MULTIPLIER=PACMAN_ANIME_NUM+1:'4ステップ
-1130 MAP_S_WIDTH=MAP_X_NUM*MAP_CELL_S_SIZE:MAP_S_HIGHT=MAP_Y_NUM*MAP_CELL_S_SIZE-2:'教井マップエリア∈MAP_S)の郝筛肋年
+630 GHOST_MODE_SCATTER=0:GHOST_MODE_CHASE=1:'僑乕僗僩偺儌乕僪偺掕悢
+640 dim MODE_CHANGE_TABLE[3]:MODE_CHANGE_NUM=7:dim MODE_CHANGE_COUNT[MODE_CHANGE_NUM]:'儌乕僪愗懼帪娫丂1柺:0 2-4柺:1 5柺埲崀:2
+1000 '================丂儊僀儞儖乕僠儞 ================
+1100 '---------- 弶婜愝掕 ------------
+1110 PACMAN_MULTIPLIER=PACMAN_ANIME_NUM+1:'4僗僥僢僾
+1130 MAP_S_WIDTH=MAP_X_NUM*MAP_CELL_S_SIZE:MAP_S_HIGHT=MAP_Y_NUM*MAP_CELL_S_SIZE-2:'弅彫儅僢僾僄儕傾乮MAP_S)偺嵗昗愝掕
 1140 MAP_S_AREA_X=SCREEN_WIDTH-MAP_S_WIDTH:MAP_S_AREA_Y=0
-1150 MAP_L_WIDTH=MAP_X_NUM*MAP_CELL_SIZE:MAP_L_HIGHT=MAP_Y_NUM*MAP_CELL_SIZE:'マップエリア∈MAP_L)の郝筛肋年
+1150 MAP_L_WIDTH=MAP_X_NUM*MAP_CELL_SIZE:MAP_L_HIGHT=MAP_Y_NUM*MAP_CELL_SIZE:'儅僢僾僄儕傾乮MAP_L)偺嵗昗愝掕
 1160 MAP_L_AREA_X=0:MAP_L_AREA_Y=0:MAP_L_AREA_WIDTH=SCREEN_WIDTH-MAP_S_WIDTH-2:MAP_L_AREA_HIGHT=SCREEN_HIGHT
-1170 MAP_L_FM=createFM(MAP_L_WIDTH,MAP_L_HIGHT):'マップのフレ〖ムメモリ〖
-1180 MAP_S_FM=createFM(MAP_S_WIDTH,MAP_S_HIGHT):'教井マップのフレ〖ムメモリ〖
+1170 MAP_L_FM=createFM(MAP_L_WIDTH,MAP_L_HIGHT):'儅僢僾偺僼儗乕儉儊儌儕乕
+1180 MAP_S_FM=createFM(MAP_S_WIDTH,MAP_S_HIGHT):'弅彫儅僢僾偺僼儗乕儉儊儌儕乕
 1190 MAP_L_CENTER_X=MAP_L_AREA_WIDTH/2-CHAR_SIZE/2-1:MAP_L_CENTER_Y=MAP_L_AREA_HIGHT/2-CHAR_SIZE/2-1
 1310 SCORE_X=SCREEN_WIDTH-MAP_S_WIDTH+4:SCORE_Y=SCREEN_HIGHT-FONT_HIGHT+1
-1320 END_PROGRAM=0:'プログラム姜位:1 费鲁:0
-1330 MAP_L_AREA_FM=createFM(MAP_L_AREA_WIDTH,MAP_L_AREA_HIGHT):'マップエリアのフレ〖ムメモリ〖
-2000 '-------------------- メインル〖プ ---------------------
+1320 END_PROGRAM=0:'僾儘僌儔儉廔椆:1 宲懕:0
+1330 MAP_L_AREA_FM=createFM(MAP_L_AREA_WIDTH,MAP_L_AREA_HIGHT):'儅僢僾僄儕傾偺僼儗乕儉儊儌儕乕
+2000 '-------------------- 儊僀儞儖乕僾 ---------------------
 2010 while END_PROGRAM=0
-2030    gosub 63000:'略怠茶烫
+2030    gosub 63000:'懸婡夋柺
 2040    if END_PROGRAM=1 then exit while
-2050    END_GAME=0:'ゲ〖ム姜位:1　费鲁:0
-2060    SCORE=0:'スコア
-2070    STAGE=1:'烫眶
-2080    LIFE=3:'介袋ライフ
+2050    END_GAME=0:'僎乕儉廔椆:1丂宲懕:0
+2060    SCORE=0:'僗僐傾
+2070    STAGE=1:'柺悢
+2080    LIFE=3:'弶婜儔僀僼
 2100    while END_GAME=0
 2110        cls F
-2120        if LIFE=3 then gosub 40000:COOKIE_NUM=0:'マップの年盗
-2130        gosub 5200:'マップの闪茶
-2140        gosub 5000:'教井マップの闪茶
-2150        gosub 5300:'教井マップの山绩
+2120        if LIFE=3 then gosub 40000:COOKIE_NUM=0:'儅僢僾偺掕媊
+2130        gosub 5200:'儅僢僾偺昤夋
+2140        gosub 5000:'弅彫儅僢僾偺昤夋
+2150        gosub 5300:'弅彫儅僢僾偺昞帵
 2190        update 
-2200        gosub 9500:'モ〖ド磊仑テ〖ブルの鸥倡
-2250        gosub 3000:'烫倡幌
-2300        if END_GAME=1 then gosub 63700:'ステ〖ジ姜位茶烫
+2200        gosub 9500:'儌乕僪愗懼僥乕僽儖偺揥奐
+2250        gosub 3000:'柺奐巒
+2300        if END_GAME=1 then gosub 63700:'僗僥乕僕廔椆夋柺
 2450    end while
 2500 end while
-2570 sound 0,"L8.":play 0:'不を久す
-2580 sound 1,"L8.":play 1:'不を久す
-2590 cls:end:'姜位
-3000 '----------------- ゲ〖ムメイン ------------------
-3010 COUNT=0:'ゲ〖ム柒箕粗
-3020 STAGE_CLEAR=0:GAME_OVER=0:'ステ〖ジクリア∈ゲ〖ムオ〖バ〖∷でない¨0　 ステ〖ジクリア∈ゲ〖ムオ〖バ〖∷:1
-3030 POWER_UP_COUNT=0:'パワ〖アップしていない:0　パワ〖アップ面:0笆嘲
-3040 PAC_MOVE_SKIP_COUNT=0:'バックマンの败瓢をスキップするカウンタ、エサを咯べると１になる
-3050 for I=0 to GHOST_NUM-1:IDX=I:gosub 6400:GHOST_X[I]=X:GHOST_Y[I]=Y:GHOST_DIR[I]=DIR:GHOST_FRIGHTENED_MODE[I]=0:GHOST_SLEEP_COUNT[I]=0:next:GHOST_MODE=GHOST_MODE_SCATTER:'ゴ〖スト簇息の恃眶の介袋步
-3060 PAC_X=(MAP_X_NUM/2-1)*PACMAN_MULTIPLIER+PACMAN_MULTIPLIER/2:'パックマンの郝筛は、マップ１セルを4として纷换する郝筛废で山す
+2570 sound 0,"L8.":play 0:'壒傪徚偡
+2580 sound 1,"L8.":play 1:'壒傪徚偡
+2590 cls:end:'廔椆
+3000 '----------------- 僎乕儉儊僀儞 ------------------
+3010 COUNT=0:'僎乕儉撪帪娫
+3020 STAGE_CLEAR=0:GAME_OVER=0:'僗僥乕僕僋儕傾乮僎乕儉僆乕僶乕乯偱側偄丗0丂 僗僥乕僕僋儕傾乮僎乕儉僆乕僶乕乯:1
+3030 POWER_UP_COUNT=0:'僷儚乕傾僢僾偟偰偄側偄:0丂僷儚乕傾僢僾拞:0埲奜
+3040 PAC_MOVE_SKIP_COUNT=0:'僶僢僋儅儞偺堏摦傪僗僉僢僾偡傞僇僂儞僞丄僄僒傪怘傋傞偲侾偵側傞
+3050 for I=0 to GHOST_NUM-1:IDX=I:gosub 6400:GHOST_X[I]=X:GHOST_Y[I]=Y:GHOST_DIR[I]=DIR:GHOST_FRIGHTENED_MODE[I]=0:GHOST_SLEEP_COUNT[I]=0:next:GHOST_MODE=GHOST_MODE_SCATTER:'僑乕僗僩娭楢偺曄悢偺弶婜壔
+3060 PAC_X=(MAP_X_NUM/2-1)*PACMAN_MULTIPLIER+PACMAN_MULTIPLIER/2:'僷僢僋儅儞偺嵗昗偼丄儅僢僾侾僙儖傪4偲偟偰寁嶼偡傞嵗昗宯偱昞偡
 3070 PAC_Y=PACMAN_MULTIPLIER*15:PAC_DIR=STOP
 3080 COOKIE_BONUS_RATE=1
-3090 sound 0,SOUND02:'クッキ〖を咯べる不をチャネル0にセット 
+3090 sound 0,SOUND02:'僋僢僉乕傪怘傋傞壒傪僠儍僱儖0偵僙僢僩 
 3100 while STAGE_CLEAR=0 && GAME_OVER=0
-3110    cls F,MAP_L_AREA_FM:'マップエリアの久殿
-3120    gosub 5700:'マップの山绩
-3130    gosub 5400:'パックマンの山绩
-3140    gosub 5450:'パックマンの山绩∈教井マップ∷
-3145    if mod(COUNT,4)<3 then gosub 6700:'ゴ〖ストの山绩∈教井マップ∷
-3150    if mod(COUNT,10)=0 then gosub 6000:'パワ〖アップエサの爬糖
-3160    gosub 30000:'スコアの山绩
-3170    gosub 6500:'ゴ〖ストの山绩
-3290    put 0,0,MAP_L_AREA_FM,set,F:'マップエリアを茶烫に山绩
+3110    cls F,MAP_L_AREA_FM:'儅僢僾僄儕傾偺徚嫀
+3120    gosub 5700:'儅僢僾偺昞帵
+3130    gosub 5400:'僷僢僋儅儞偺昞帵
+3140    gosub 5450:'僷僢僋儅儞偺昞帵乮弅彫儅僢僾乯
+3145    if mod(COUNT,4)<3 then gosub 6700:'僑乕僗僩偺昞帵乮弅彫儅僢僾乯
+3150    if mod(COUNT,10)=0 then gosub 6000:'僷儚乕傾僢僾僄僒偺揰柵
+3160    gosub 30000:'僗僐傾偺昞帵
+3170    gosub 6500:'僑乕僗僩偺昞帵
+3290    put 0,0,MAP_L_AREA_FM,set,F:'儅僢僾僄儕傾傪夋柺偵昞帵
 3300    update
-3310    gosub 5450:'パックマンの久殿∈教井マップ∷
-3315    if mod(COUNT,4)<3 then gosub 6700:'ゴ〖ストの久殿∈教井マップ∷
-3320    if PAC_MOVE_SKIP_COUNT=0 then gosub 5500 else PAC_MOVE_SKIP_COUNT=PAC_MOVE_SKIP_COUNT-1:'パックマン败瓢
+3310    gosub 5450:'僷僢僋儅儞偺徚嫀乮弅彫儅僢僾乯
+3315    if mod(COUNT,4)<3 then gosub 6700:'僑乕僗僩偺徚嫀乮弅彫儅僢僾乯
+3320    if PAC_MOVE_SKIP_COUNT=0 then gosub 5500 else PAC_MOVE_SKIP_COUNT=PAC_MOVE_SKIP_COUNT-1:'僷僢僋儅儞堏摦
 3330    SLEEP_TIME=20-STAGE:if SLEEP_TIME<0 then SLEEP_TIME=0 else sleep SLEEP_TIME
 3340    COUNT=COUNT+1
 3350    if POWER_UP_COUNT<>0 then
-3360        if sound1status()=0 then sound 1,SOUND03:play 1:'いじけ不を棠らす 
+3360        if sound1status()=0 then sound 1,SOUND03:play 1:'偄偠偗壒傪柭傜偡 
 3370        POWER_UP_COUNT=POWER_UP_COUNT-1:if POWER_UP_COUNT=0 then for I=0 to GHOST_NUM-1:GHOST_FRIGHTENED_MODE[I]=0:COOKIE_BONUS_RATE=1:next:sound 1,"L32.":play 1
 3380    end if
-3390    gosub 8000:'咀仆冉年
-3400    gosub 7000:'ゴ〖スト败瓢
-3410    gosub 9600:'モ〖ド磊仑
+3390    gosub 8000:'徴撍敾掕
+3400    gosub 7000:'僑乕僗僩堏摦
+3410    gosub 9600:'儌乕僪愗懼
 3600    if keyA()=1 && keyB()=1 then GAME_OVER=1:END_GAME=1:END_PROGRAM=1:exit while 
 3610 end while
 3690 return
-5000 '-------------- 教井マップの闪茶 ------------------
+5000 '-------------- 弅彫儅僢僾偺昤夋 ------------------
 5005 cls F,MAP_S_FM
 5010 for Y=0 to MAP_Y_NUM-1
 5020    for X=0 to MAP_X_NUM-1
 5030        MAP_FM_IDX=inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X,X+1),0)
 5040        if MAP_FM_IDX<=23 then
-5050            MAP_CELL_S_IDX=0:'噬
+5050            MAP_CELL_S_IDX=0:'暻
 5060        else
 5070            MAP_CELL_S_IDX=MAP_FM_IDX-23
 5080        end if
@@ -901,7 +901,7 @@
 5100    next
 5110 next
 5120 return
-5200 '-------------- マップの闪茶 ------------------
+5200 '-------------- 儅僢僾偺昤夋 ------------------
 5205 cls F,MAP_L_FM
 5210 for Y=0 to MAP_Y_NUM-1
 5220    for X=0 to MAP_X_NUM-1
@@ -911,37 +911,37 @@
 5250    next
 5260 next
 5270 return
-5300 '-------------- 教井マップの山绩 ------------------
+5300 '-------------- 弅彫儅僢僾偺昞帵 ------------------
 5310 put MAP_S_AREA_X,MAP_S_AREA_Y,MAP_S_FM,set,F
 5320 return
-5400 '--------------- パックマン山绩 -----------------
+5400 '--------------- 僷僢僋儅儞昞帵 -----------------
 5410 PAC_ANIME_IDX=mod((PAC_X+PAC_Y),PACMAN_MULTIPLIER):if PAC_ANIME_IDX=3 then PAC_ANIME_IDX=1
 5420 if PAC_DIR=STOP then IDX=0 else IDX=PAC_DIR*PACMAN_ANIME_NUM+PAC_ANIME_IDX
-5430 put MAP_L_CENTER_X,MAP_L_CENTER_Y,PACMAN_FM[IDX],or,F,MAP_L_AREA_FM:' MAP_L_AREA_X、MAP_L_AREA_Yを颅すのが赖しいがどちらも０なので庐刨を庭黎して裁换しない
+5430 put MAP_L_CENTER_X,MAP_L_CENTER_Y,PACMAN_FM[IDX],or,F,MAP_L_AREA_FM:' MAP_L_AREA_X丄MAP_L_AREA_Y傪懌偡偺偑惓偟偄偑偳偪傜傕侽側偺偱懍搙傪桪愭偟偰壛嶼偟側偄
 5440 return
-5450 '--------------- パックマン山绩∈教井マップ∷ -----------------
+5450 '--------------- 僷僢僋儅儞昞帵乮弅彫儅僢僾乯 -----------------
 5460 X=PAC_X/PACMAN_MULTIPLIER:Y=PAC_Y/PACMAN_MULTIPLIER
-5470 put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE-1,MAP_CELL_S_FM[0],xor,F:'教井マップ山绩
+5470 put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE-1,MAP_CELL_S_FM[0],xor,F:'弅彫儅僢僾昞帵
 5480 return
-5500 '-------------- パックマン败瓢 -------------------
+5500 '-------------- 僷僢僋儅儞堏摦 -------------------
 5510 NEXT_X=PAC_X:NEXT_Y=PAC_Y:CHECK_POINT=0
 5520 if PAC_DIR=UP then NEXT_Y=NEXT_Y-1:CHECK_POINT=mod(PAC_Y,PACMAN_MULTIPLIER)
 5530 if PAC_DIR=DOWN then NEXT_Y=NEXT_Y+1:CHECK_POINT=mod(PAC_Y,PACMAN_MULTIPLIER)
 5540 if PAC_DIR=RIGHT then NEXT_X=NEXT_X+1:CHECK_POINT=mod(PAC_X,PACMAN_MULTIPLIER)
 5560 if PAC_DIR=LEFT then NEXT_X=NEXT_X-1:CHECK_POINT=mod(PAC_X,PACMAN_MULTIPLIER)
-5561 ' --- ワ〖プ --
+5561 ' --- 儚乕僾 --
 5562 if NEXT_X<0 then NEXT_X=(MAP_X_NUM-1)*PACMAN_MULTIPLIER
 5565 if NEXT_X>(MAP_X_NUM-1)*PACMAN_MULTIPLIER then NEXT_X=0
 5567 '-------------
 5570 if CHECK_POINT=0 then
-5580    X=PAC_X/PACMAN_MULTIPLIER:Y=PAC_Y/PACMAN_MULTIPLIER:DIR_CHANGE=0:'败瓢涟のX,Y
+5580    X=PAC_X/PACMAN_MULTIPLIER:Y=PAC_Y/PACMAN_MULTIPLIER:DIR_CHANGE=0:'堏摦慜偺X,Y
 5590    if keyU()=1 && PAC_DIR<>UP then if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then PAC_DIR=UP:DIR_CHANGE=1
 5600    if keyD()=1 && PAC_DIR<>DOWN then if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)>=COOKIE_FM_IDX then PAC_DIR=DOWN:DIR_CHANGE=1
 5610    if keyR()=1 && PAC_DIR<>RIGHT then if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)>=COOKIE_FM_IDX then PAC_DIR=RIGHT:DIR_CHANGE=1
 5620    if keyL()=1 && PAC_DIR<>LEFT then if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then PAC_DIR=LEFT:DIR_CHANGE=1
 5625    if DIR_CHANGE=0 then
-5630        X=NEXT_X/PACMAN_MULTIPLIER:Y=NEXT_Y/PACMAN_MULTIPLIER:'败瓢稿のX,Y
-5640        ' UP,LEFTは磊り嘉てられて肌の疤弥を绩す。
+5630        X=NEXT_X/PACMAN_MULTIPLIER:Y=NEXT_Y/PACMAN_MULTIPLIER:'堏摦屻偺X,Y
+5640        ' UP,LEFT偼愗傝幪偰傜傟偰師偺埵抲傪帵偡丅
 5650        if mod(NEXT_X,PACMAN_MULTIPLIER)<>0 && PAC_DIR=RIGHT then X=X+1
 5660        if mod(NEXT_Y,PACMAN_MULTIPLIER)<>0 && PAC_DIR=DOWN then Y=Y+1
 5670        MAP_FM_IDX=inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X,X+1),0)
@@ -951,19 +951,19 @@
 5695    PAC_X=NEXT_X:PAC_Y=NEXT_Y
 5697 end if
 5698 return
-5700 '------------------------- マップの山绩 ----------------------------
-5705 'マップのフレ〖ムメモリ惧のパックマンの面看郝筛がマップを山绩するエリアの面看になるように、磊り艰って茶烫惧に磨り烧ける
-5710 '  FM0の(MAP_L_AREA_X,MAP_L_AREA_Y)　　　　　　　FM0(茶烫)惧にマップを山绩するエリア
-5720 '                                             
+5700 '------------------------- 儅僢僾偺昞帵 ----------------------------
+5705 '儅僢僾偺僼儗乕儉儊儌儕忋偺僷僢僋儅儞偺拞怱嵗昗偑儅僢僾傪昞帵偡傞僄儕傾偺拞怱偵側傞傛偆偵丄愗傝庢偭偰夋柺忋偵挘傝晅偗傞
+5710 '  FM0偺(MAP_L_AREA_X,MAP_L_AREA_Y)丂丂丂丂丂丂丂FM0(夋柺)忋偵儅僢僾傪昞帵偡傞僄儕傾
+5720 '      伀                                       伀伀伀伀
 5730 '      +--------------------------------------------
-5740 '      |                                      マップのフレ〖ムメモリ∈MAP_L_FM∷
+5740 '      |                                      儅僢僾偺僼儗乕儉儊儌儕乮MAP_L_FM乯
 5745 '      |   (X,Y)
-5750 '      |     |<--- MAP_L_AREA_WIDTH/2 --->|    
+5750 '      |     |<--- MAP_L_AREA_WIDTH/2 --->|    伀伀伀伀
 5760 '      |     +-------------------------------------
 5770 '      |     |                            |
 5780 '      |     |                            |
 5790 '      |     |                            |
-5800 '      |     |                            + (PAC_X*7/4+CHAR_SIZE/2,PAC_Y*7/4+CHAR_SIZE/2)　 マップのフレ〖ムメモリ惧のパックマンの面看郝筛
+5800 '      |     |                            + (PAC_X*7/4+CHAR_SIZE/2,PAC_Y*7/4+CHAR_SIZE/2)丂仼 儅僢僾偺僼儗乕儉儊儌儕忋偺僷僢僋儅儞偺拞怱嵗昗
 5810 X=PAC_X*MAP_CELL_SIZE/PACMAN_MULTIPLIER+CHAR_SIZE/2-MAP_L_AREA_WIDTH/2
 5820 DX=0:if X<0 then DX=X:X=0
 5830 Y=PAC_Y*MAP_CELL_SIZE/PACMAN_MULTIPLIER+CHAR_SIZE/2-MAP_L_AREA_HIGHT/2
@@ -971,42 +971,42 @@
 5850 WIDTH=DX+MAP_L_AREA_WIDTH:HIGHT=DY+MAP_L_AREA_HIGHT
 5860 if MAP_L_WIDTH<X+WIDTH then WIDTH=MAP_L_WIDTH-X:'WIDTH-(X+WIDTH-MAP_L_WIDTH)
 5865 if MAP_L_HIGHT<Y+HIGHT then HIGHT=MAP_L_HIGHT-Y:'HIGHT-(Y+HIGHT-MAP_L_HIGHT)
-5870 get -DX,-DY,MAP_L_FM,X,Y,WIDTH,HIGHT,set,F,MAP_L_AREA_FM:' MAP_L_AREA_X、MAP_L_AREA_Yを颅すのが赖しいがどちらも０なので庐刨を庭黎して裁换しない
+5870 get -DX,-DY,MAP_L_FM,X,Y,WIDTH,HIGHT,set,F,MAP_L_AREA_FM:' MAP_L_AREA_X丄MAP_L_AREA_Y傪懌偡偺偑惓偟偄偑偳偪傜傕侽側偺偱懍搙傪桪愭偟偰壛嶼偟側偄
 5875 'print format("%-3D,",-DX)+format("%-3D,",-DY)+format("%-3D,",X)+format("%-3D,",Y)+format("%-3D,",WIDTH)+format("%-3D,",HIGHT)
 5880 return
-6000 '------------- パワ〖アップエサの山绩 -------------
+6000 '------------- 僷儚乕傾僢僾僄僒偺昞帵 -------------
 6010 X=1:Y=3:if mid( MAP[Y],X,X+1)="0" then put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE,MAP_CELL_S_FM[0],xor,F
 6020 X=26:Y=3:if mid( MAP[Y],X,X+1)="0" then put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE,MAP_CELL_S_FM[0],xor,F
 6030 X=1:Y=21:if mid( MAP[Y],X,X+1)="0" then put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE,MAP_CELL_S_FM[0],xor,F
 6040 X=26:Y=21:if mid( MAP[Y],X,X+1)="0" then put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE,MAP_CELL_S_FM[0],xor,F
 6090 return
-6100 ' ----------- クッキ〖ˇパワ〖アップエサを咯べる ---------------------
-6101 ' (X,Y):マップ郝筛废の败瓢稿のパックマンの郝筛
-6102 ' MAP_FM_IDX:败瓢稿のパックマンの郝筛にあるマップ惧のフレ〖ムメモリ〖のインデックス
-6103 ' COOKIE_FM_IDX:クッキ〖のフレ〖ムメモリ〖のインデックス
+6100 ' ----------- 僋僢僉乕丒僷儚乕傾僢僾僄僒傪怘傋傞 ---------------------
+6101 ' (X,Y):儅僢僾嵗昗宯偺堏摦屻偺僷僢僋儅儞偺嵗昗
+6102 ' MAP_FM_IDX:堏摦屻偺僷僢僋儅儞偺嵗昗偵偁傞儅僢僾忋偺僼儗乕儉儊儌儕乕偺僀儞僨僢僋僗
+6103 ' COOKIE_FM_IDX:僋僢僉乕偺僼儗乕儉儊儌儕乕偺僀儞僨僢僋僗
 6110 if MAP_FM_IDX=COOKIE_FM_IDX || MAP_FM_IDX=POWERUP_FM_IDX then
-6120    if sound0status()=0 then play 0:'クッキ〖を咯べる不を棠らす
-6130    MAP[Y]=mid( MAP[Y],0,X)+" "+mid( MAP[Y],X+1,MAP_X_NUM):'マップからクッキ〖ˇパワ〖アップエサを久殿
-6140    put X*MAP_CELL_SIZE,Y*MAP_CELL_SIZE,MAP_CELL_FM[SPACE_FM_IDX],set,F,MAP_L_FM:'マップフレ〖ムメモリ〖からクッキ〖ˇパワ〖アップエサを久殿
-6150    put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE-1,MAP_CELL_S_FM[3],set,F:'教井マップからクッキ〖ˇパワ〖アップエサを久殿
-6160    SCORE=SCORE+10:'スコアを笼やす
+6120    if sound0status()=0 then play 0:'僋僢僉乕傪怘傋傞壒傪柭傜偡
+6130    MAP[Y]=mid( MAP[Y],0,X)+" "+mid( MAP[Y],X+1,MAP_X_NUM):'儅僢僾偐傜僋僢僉乕丒僷儚乕傾僢僾僄僒傪徚嫀
+6140    put X*MAP_CELL_SIZE,Y*MAP_CELL_SIZE,MAP_CELL_FM[SPACE_FM_IDX],set,F,MAP_L_FM:'儅僢僾僼儗乕儉儊儌儕乕偐傜僋僢僉乕丒僷儚乕傾僢僾僄僒傪徚嫀
+6150    put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE-1,MAP_CELL_S_FM[3],set,F:'弅彫儅僢僾偐傜僋僢僉乕丒僷儚乕傾僢僾僄僒傪徚嫀
+6160    SCORE=SCORE+10:'僗僐傾傪憹傗偡
 6190    if MAP_FM_IDX=POWERUP_FM_IDX then
 6200        for I=0 to GHOST_NUM-1:GHOST_FRIGHTENED_MODE[I]=1:next
 6210        SCORE=SCORE+50
-6220        POWER_UP_COUNT=(40-STAGE*2)*4:if POWER_UP_COUNT<0 then POWER_UP_COUNT=4:'パワ〖アップカウンタを肋年
+6220        POWER_UP_COUNT=(40-STAGE*2)*4:if POWER_UP_COUNT<0 then POWER_UP_COUNT=4:'僷儚乕傾僢僾僇僂儞僞傪愝掕
 6230    end if
 6250    COOKIE_NUM=COOKIE_NUM-1:if COOKIE_NUM=0 then STAGE_CLEAR=1
 6260    PAC_MOVE_SKIP_COUNT=1
 6380 end if
 6390 return
-6400 '-------------- ゴ〖ストの介袋郝筛を手す ----------------------------
-6405 ' IDX 0:アカべエ 1:ピンキ〖 2:アオスケ 3:グズタ
+6400 '-------------- 僑乕僗僩偺弶婜嵗昗傪曉偡 ----------------------------
+6405 ' IDX 0:傾僇傋僄 1:僺儞僉乕 2:傾僆僗働 3:僌僘僞
 6410 if IDX=0 then X=(MAP_X_NUM/2-1)*PACMAN_MULTIPLIER+PACMAN_MULTIPLIER/2:Y=PACMAN_MULTIPLIER*11:DIR=LEFT
 6420 if IDX=1 then X=(MAP_X_NUM/2-1)*PACMAN_MULTIPLIER+PACMAN_MULTIPLIER/2:Y=PACMAN_MULTIPLIER*13:DIR=RIGHT
 6430 if IDX=2 then X=(MAP_X_NUM/2-3)*PACMAN_MULTIPLIER:Y=PACMAN_MULTIPLIER*13:DIR=UP
 6440 if IDX=3 then X=(MAP_X_NUM/2+2)*PACMAN_MULTIPLIER:Y=PACMAN_MULTIPLIER*13:DIR=DOWN
 6450 return
-6500 '------------------- ゴ〖ストの山绩 -------------------------
+6500 '------------------- 僑乕僗僩偺昞帵 -------------------------
 6510 for I=0 to GHOST_NUM-1
 6520    X=MAP_L_CENTER_X+(GHOST_X[I]-PAC_X)*MAP_CELL_SIZE/PACMAN_MULTIPLIER
 6530    Y=MAP_L_CENTER_Y+(GHOST_Y[I]-PAC_Y)*MAP_CELL_SIZE/PACMAN_MULTIPLIER
@@ -1015,97 +1015,97 @@
 6550    if GHOST_FRIGHTENED_MODE[I]=0 then put X,Y,GHOST_FM[GHOST_DIR[I]],or,F,MAP_L_AREA_FM else if POWER_UP_COUNT>16 ||( POWER_UP_COUNT<=16 && mod(COUNT,4)<3 ) then put X,Y,GHOST_FM[GHOST_FRIGHTENED],or,F,MAP_L_AREA_FM
 6560 next
 6570 return
-6700 '------------------ ゴ〖ストの山绩∈教井マップ∷---------------------
+6700 '------------------ 僑乕僗僩偺昞帵乮弅彫儅僢僾乯---------------------
 6720 for I=0 to GHOST_NUM-1
 6750    X=GHOST_X[I]/PACMAN_MULTIPLIER:Y=GHOST_Y[I]/PACMAN_MULTIPLIER
-6760    put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE-1,MAP_CELL_S_FM[0],xor,F:'教井マップ山绩
+6760    put MAP_S_AREA_X+X*MAP_CELL_S_SIZE,MAP_S_AREA_Y+Y*MAP_CELL_S_SIZE-1,MAP_CELL_S_FM[0],xor,F:'弅彫儅僢僾昞帵
 6780 next
 6790 return
-7000 '================== ゴ〖スト败瓢 =======================
+7000 '================== 僑乕僗僩堏摦 =======================
 7010 for I=0 to GHOST_NUM-1
-7015   if GHOST_SLEEP_COUNT[I]=0 then:'やられていない箕
-7020    XY=mod(GHOST_DIR[I],2):'0:X数羹の败瓢,1:Y数羹の败瓢
+7015   if GHOST_SLEEP_COUNT[I]=0 then:'傗傜傟偰偄側偄帪
+7020    XY=mod(GHOST_DIR[I],2):'0:X曽岦偺堏摦,1:Y曽岦偺堏摦
 7030    if XY=1 then CHECK_POINT=mod(GHOST_Y[I],PACMAN_MULTIPLIER) else CHECK_POINT=mod(GHOST_X[I],PACMAN_MULTIPLIER)
 7040    'print format("I:%D ",I)+format("X,Y:%D,",GHOST_X[I])+format("%D ",GHOST_Y[I])+format("DIR:%D ",GHOST_DIR[I])+format("CP:%D",CHECK_POINT)  
 7050    DIR=GHOST_DIR[I]
 7060    if CHECK_POINT=0 then
-7070        '========= チェックポイントの眷圭 ===============
-7080        IDX=I:gosub 9000:'タ〖ゲットタイルの疯年
+7070        '========= 僠僃僢僋億僀儞僩偺応崌 ===============
+7080        IDX=I:gosub 9000:'僞乕僎僢僩僞僀儖偺寛掕
 7090        'print format("TX:%D ",GHOST_TX[I])+format("TY:%D",GHOST_TY[I])
-7100        '--------- DIRを疯める ----------
-7101        '   』イジケモ〖ドの箕
-7102        '       蛤汗爬で宛眶で数羹を疯める∈ただし、嫡瘤はしない∷
-7104        '   』イジケモ〖ド笆嘲
-7105        '   1. 渴乖数羹とは嫡の即∈X数羹に渴乖面の箕はY、Y数羹に渴乖面の眷圭はX∷のタ〖ゲットタイルの郝筛に汗がある箕、
-7110        '       1)汗が教む数羹に渴めれば、その数羹を联买する。
-7120        '       2)木渴できれば、木渴を联买する。
-7130        '       3)1)とは嫡数羹に渴めればその数羹を联买する。
-7140        '       4)嫡瘤を联买する。
-7150        '   2.渴乖数羹とは嫡の即∈X数羹に渴乖面の箕はY、Y数羹に渴乖面の眷圭はX∷のタ〖ゲットタイルの郝筛に汗がない箕、
-7160        '       1)木渴できれば、木渴を联买する。
-7170        '       2)宝に妒がれれば、焊を联买する。
-7180        '       3)焊に妒がれれば、焊を联买する。
-7190        '       4)嫡瘤を联买する。
+7100        '--------- DIR傪寛傔傞 ----------
+7101        '   乑僀僕働儌乕僪偺帪
+7102        '       岎嵎揰偱棎悢偱曽岦傪寛傔傞乮偨偩偟丄媡憱偼偟側偄乯
+7104        '   乑僀僕働儌乕僪埲奜
+7105        '   1. 恑峴曽岦偲偼媡偺幉乮X曽岦偵恑峴拞偺帪偼Y丄Y曽岦偵恑峴拞偺応崌偼X乯偺僞乕僎僢僩僞僀儖偺嵗昗偵嵎偑偁傞帪丄
+7110        '       1)嵎偑弅傓曽岦偵恑傔傟偽丄偦偺曽岦傪慖戰偡傞丅
+7120        '       2)捈恑偱偒傟偽丄捈恑傪慖戰偡傞丅
+7130        '       3)1)偲偼媡曽岦偵恑傔傟偽偦偺曽岦傪慖戰偡傞丅
+7140        '       4)媡憱傪慖戰偡傞丅
+7150        '   2.恑峴曽岦偲偼媡偺幉乮X曽岦偵恑峴拞偺帪偼Y丄Y曽岦偵恑峴拞偺応崌偼X乯偺僞乕僎僢僩僞僀儖偺嵗昗偵嵎偑側偄帪丄
+7160        '       1)捈恑偱偒傟偽丄捈恑傪慖戰偡傞丅
+7170        '       2)塃偵嬋偑傟傟偽丄嵍傪慖戰偡傞丅
+7180        '       3)嵍偵嬋偑傟傟偽丄嵍傪慖戰偡傞丅
+7190        '       4)媡憱傪慖戰偡傞丅
 7200        X=GHOST_X[I]/PACMAN_MULTIPLIER:Y=GHOST_Y[I]/PACMAN_MULTIPLIER
-7205      if GHOST_FRIGHTENED_MODE[I]=0 then:' イジケモ〖ドでない箕
-7210        if XY=1 then :'Y数羹に渴んでいる
+7205      if GHOST_FRIGHTENED_MODE[I]=0 then:' 僀僕働儌乕僪偱側偄帪
+7210        if XY=1 then :'Y曽岦偵恑傫偱偄傞
 7220            DX=GHOST_TX[I]-GHOST_X[I]
-7230            if DX<>0 then:'X数羹の汗がある眷圭
-7240                if DX<0 then:'タ〖ゲットタイルは焊
-7250                    if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then:'焊が噬でない眷圭 
+7230            if DX<>0 then:'X曽岦偺嵎偑偁傞応崌
+7240                if DX<0 then:'僞乕僎僢僩僞僀儖偼嵍
+7250                    if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then:'嵍偑暻偱側偄応崌 
 7252                        DIR=LEFT
-7253                    else:'焊が噬だった眷圭
-7256                        if (DIR=UP && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)<COOKIE_FM_IDX) || (DIR=DOWN && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)<COOKIE_FM_IDX) then :'木渴できない
-7257                            if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)>=COOKIE_FM_IDX then DIR=RIGHT else DIR=(DIR=UP)*DOWN+(DIR=DOWN)*UP:'宝に乖ければ宝、そうでなければ嫡瘤
-7258                        end if:'木渴できる眷圭は、海の数羹
+7253                    else:'嵍偑暻偩偭偨応崌
+7256                        if (DIR=UP && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)<COOKIE_FM_IDX) || (DIR=DOWN && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)<COOKIE_FM_IDX) then :'捈恑偱偒側偄
+7257                            if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)>=COOKIE_FM_IDX then DIR=RIGHT else DIR=(DIR=UP)*DOWN+(DIR=DOWN)*UP:'塃偵峴偗傟偽塃丄偦偆偱側偗傟偽媡憱
+7258                        end if:'捈恑偱偒傞応崌偼丄崱偺曽岦
 7259                    end if
-7260                else:'タ〖ゲットタイルは宝
-7270                    if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)>=COOKIE_FM_IDX then:'宝が噬でない眷圭
+7260                else:'僞乕僎僢僩僞僀儖偼塃
+7270                    if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)>=COOKIE_FM_IDX then:'塃偑暻偱側偄応崌
 7272                        DIR=RIGHT
-7275                    else:'宝が噬だった眷圭
-7276                        if (DIR=UP && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)<COOKIE_FM_IDX) || (DIR=DOWN && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)<COOKIE_FM_IDX) then :'木渴できない
-7277                            if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then DIR=LEFT else DIR=(DIR=UP)*DOWN+(DIR=DOWN)*UP:'焊に乖ければ焊、そうでなければ嫡瘤
-7278                        end if:'木渴できる眷圭は、木渴
+7275                    else:'塃偑暻偩偭偨応崌
+7276                        if (DIR=UP && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)<COOKIE_FM_IDX) || (DIR=DOWN && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)<COOKIE_FM_IDX) then :'捈恑偱偒側偄
+7277                            if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then DIR=LEFT else DIR=(DIR=UP)*DOWN+(DIR=DOWN)*UP:'嵍偵峴偗傟偽嵍丄偦偆偱側偗傟偽媡憱
+7278                        end if:'捈恑偱偒傞応崌偼丄捈恑
 7279                    end if
 7280                end if
-7290            else:'X数羹の汗がない眷圭
-7300                if (DIR=UP && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)<COOKIE_FM_IDX) || (DIR=DOWN && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)<COOKIE_FM_IDX) then :'木渴できない
-7305 '宝に乖ければ宝、焊に乖ければ焊、そうでなければ嫡瘤
+7290            else:'X曽岦偺嵎偑側偄応崌
+7300                if (DIR=UP && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)<COOKIE_FM_IDX) || (DIR=DOWN && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)<COOKIE_FM_IDX) then :'捈恑偱偒側偄
+7305 '塃偵峴偗傟偽塃丄嵍偵峴偗傟偽嵍丄偦偆偱側偗傟偽媡憱
 7310 if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)>=COOKIE_FM_IDX then DIR=RIGHT else if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then DIR=LEFT else DIR=(DIR=UP)*DOWN+(DIR=DOWN)*UP
-7320                end if:'木渴できる眷圭は、木渴
+7320                end if:'捈恑偱偒傞応崌偼丄捈恑
 7330            end if
-7400        else:' X数羹に渴んでいる∈ゴ〖ストは贿まらないので、Y数羹でなければX数羹に渴んでいる∷
+7400        else:' X曽岦偵恑傫偱偄傞乮僑乕僗僩偼巭傑傜側偄偺偱丄Y曽岦偱側偗傟偽X曽岦偵恑傫偱偄傞乯
 7420            DY=GHOST_TY[I]-GHOST_Y[I]
-7430            if DY<>0 then:'Y数羹の汗がある眷圭
-7440                if DY<0 then:'タ〖ゲットタイルは惧
-7450                    if ((X<9 || 18<X ) || (Y<>11 && Y<>21 )) && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then :'惧に乖ける眷圭 
+7430            if DY<>0 then:'Y曽岦偺嵎偑偁傞応崌
+7440                if DY<0 then:'僞乕僎僢僩僞僀儖偼忋
+7450                    if ((X<9 || 18<X ) || (Y<>11 && Y<>21 )) && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then :'忋偵峴偗傞応崌 
 7452                        DIR=UP
-7455                    else:'惧が噬だった眷圭
-7456                        if (DIR=LEFT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)<COOKIE_FM_IDX) || (DIR=RIGHT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)<COOKIE_FM_IDX) then :'木渴できない
-7457                            if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)>=COOKIE_FM_IDX then DIR=DOWN else DIR=(DIR=LEFT)*RIGHT+(DIR=RIGHT)*LEFT:'布に乖ければ布、そうでなければ嫡瘤
-7458                        end if:'木渴できる眷圭は、海の数羹
+7455                    else:'忋偑暻偩偭偨応崌
+7456                        if (DIR=LEFT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)<COOKIE_FM_IDX) || (DIR=RIGHT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)<COOKIE_FM_IDX) then :'捈恑偱偒側偄
+7457                            if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)>=COOKIE_FM_IDX then DIR=DOWN else DIR=(DIR=LEFT)*RIGHT+(DIR=RIGHT)*LEFT:'壓偵峴偗傟偽壓丄偦偆偱側偗傟偽媡憱
+7458                        end if:'捈恑偱偒傞応崌偼丄崱偺曽岦
 7459                    end if
-7460                else:'タ〖ゲットタイルは布
-7470                    if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)>=COOKIE_FM_IDX then:'布が噬でない眷圭
+7460                else:'僞乕僎僢僩僞僀儖偼壓
+7470                    if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)>=COOKIE_FM_IDX then:'壓偑暻偱側偄応崌
 7471                        DIR=DOWN
-7472                    else:'布が噬だった眷圭
-7473                        if Y=13 && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then:'ホ〖ムの箕、惧が鄂いていたら惧を联买
+7472                    else:'壓偑暻偩偭偨応崌
+7473                        if Y=13 && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then:'儂乕儉偺帪丄忋偑嬻偄偰偄偨傜忋傪慖戰
 7474                            DIR=UP
 7475                        else
-7476                            if (DIR=LEFT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)<COOKIE_FM_IDX) || (DIR=RIGHT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)<COOKIE_FM_IDX) then :'木渴できない
-7477                                if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then DIR=UP else DIR=(DIR=LEFT)*RIGHT+(DIR=RIGHT)*LEFT:'惧に乖ければ惧、そうでなければ嫡瘤
-7478                            end if:'木渴できる眷圭は、木渴
+7476                            if (DIR=LEFT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)<COOKIE_FM_IDX) || (DIR=RIGHT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)<COOKIE_FM_IDX) then :'捈恑偱偒側偄
+7477                                if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then DIR=UP else DIR=(DIR=LEFT)*RIGHT+(DIR=RIGHT)*LEFT:'忋偵峴偗傟偽忋丄偦偆偱側偗傟偽媡憱
+7478                            end if:'捈恑偱偒傞応崌偼丄捈恑
 7479                        end if
 7480                    end if
 7485                end if
-7490            else:'Y数羹の汗がない眷圭
-7500                if (DIR=LEFT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)<COOKIE_FM_IDX) || (DIR=RIGHT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)<COOKIE_FM_IDX) then :'木渴できない
-7505 '惧に乖ければ惧、布に乖ければ布、そうでなければ嫡瘤
+7490            else:'Y曽岦偺嵎偑側偄応崌
+7500                if (DIR=LEFT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)<COOKIE_FM_IDX) || (DIR=RIGHT && inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X+1,X+2),0)<COOKIE_FM_IDX) then :'捈恑偱偒側偄
+7505 '忋偵峴偗傟偽忋丄壓偵峴偗傟偽壓丄偦偆偱側偗傟偽媡憱
 7510 if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y-1],X,X+1),0)>=COOKIE_FM_IDX then DIR=UP else if inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y+1],X,X+1),0)>=COOKIE_FM_IDX then DIR=DOWN else DIR=(DIR=LEFT)*RIGHT+(DIR=RIGHT)*LEFT
-7520                end if:'木渴できる眷圭は、木渴
+7520                end if:'捈恑偱偒傞応崌偼丄捈恑
 7530            end if
 7540        end if
-7600     else :' イジケモ〖ドの箕
+7600     else :' 僀僕働儌乕僪偺帪
 7610       while -1
 7620            DIR=rand()*DIR_NUM/255:if DIR=DIR_NUM then DIR=LEFT
 7630            if DIR=LEFT && (GHOST_DIR[I]<>RIGHT || Y=13)&& inStr(CHAR_TO_MAP_CELL_IDX,mid( MAP[Y],X-1,X),0)>=COOKIE_FM_IDX then exit while
@@ -1116,58 +1116,58 @@
 7680      end if
 7690    end if
 7700    GHOST_DIR[I]=DIR
-7710    XY=mod(GHOST_DIR[I],2):'0:X数羹の败瓢,1:Y数羹の败瓢
-7720    if GHOST_FRIGHTENED_MODE[I]=0 || (GHOST_FRIGHTENED_MODE[I]=1 && mod(COUNT,2)=0) then if XY=1 then GHOST_Y[I]=GHOST_Y[I]+GHOST_DIR[I]-2 else GHOST_X[I]=GHOST_X[I]+GHOST_DIR[I]-1:'DIRの数羹に败瓢する
-7730  else:'やられた稿のペナルティ面
+7710    XY=mod(GHOST_DIR[I],2):'0:X曽岦偺堏摦,1:Y曽岦偺堏摦
+7720    if GHOST_FRIGHTENED_MODE[I]=0 || (GHOST_FRIGHTENED_MODE[I]=1 && mod(COUNT,2)=0) then if XY=1 then GHOST_Y[I]=GHOST_Y[I]+GHOST_DIR[I]-2 else GHOST_X[I]=GHOST_X[I]+GHOST_DIR[I]-1:'DIR偺曽岦偵堏摦偡傞
+7730  else:'傗傜傟偨屻偺儁僫儖僥傿拞
 7740    GHOST_SLEEP_COUNT[I]=GHOST_SLEEP_COUNT[I]-1
 7750  end if
 7980 next
 7990 return
-8000 '======================== 咀仆冉年 ========================
+8000 '======================== 徴撍敾掕 ========================
 8100 COLLISION=0:IDX=0
 8110 for I=0 to GHOST_NUM-1
 8120    if isCol(PAC_X,PAC_Y,PACMAN_MULTIPLIER,PACMAN_MULTIPLIER,GHOST_X[I],GHOST_Y[I],PACMAN_MULTIPLIER,PACMAN_MULTIPLIER)=1 then COLLISION=1:IDX=I:exit for
 8130 next
 8135 if COLLISION=1 then
-8140    if GHOST_FRIGHTENED_MODE[IDX]=0 then:'パックマンが梳まった
-8150        GAME_OVER=1:sound 1,SOUND05:play 1:'秽舜不を棠らす
+8140    if GHOST_FRIGHTENED_MODE[IDX]=0 then:'僷僢僋儅儞偑曔傑偭偨
+8150        GAME_OVER=1:sound 1,SOUND05:play 1:'巰朣壒傪柭傜偡
 8155        if PAC_DIR=STOP then PAC_DIR=UP
 8160        for I=0 to PACMAN_ANIME_NUM-1
 8170            IDX=PAC_DIR*PACMAN_ANIME_NUM+I
 8190            put MAP_L_CENTER_X,MAP_L_CENTER_Y,PACMAN_FM[IDX],set,F,MAP_L_AREA_FM
-8200            put 0,0,MAP_L_AREA_FM,set:'マップエリアを茶烫に山绩
+8200            put 0,0,MAP_L_AREA_FM,set:'儅僢僾僄儕傾傪夋柺偵昞帵
 8210            sleep 500
 8220        next
 8225        LIFE=LIFE-1:if LIFE=0 then END_GAME=1
-8230    else :'パックマンが?みついた
+8230    else :'僷僢僋儅儞偑?傒偮偄偨
 8240        SCORE=SCORE+200*COOKIE_BONUS_RATE
-8250        sound 1,SOUND04:play 1:'锄みつき不を棠らす
+8250        sound 1,SOUND04:play 1:'姎傒偮偒壒傪柭傜偡
 8260        X=MAP_L_CENTER_X+(GHOST_X[IDX]-PAC_X)*MAP_CELL_SIZE/PACMAN_MULTIPLIER
 8270        Y=MAP_L_CENTER_Y+(GHOST_Y[IDX]-PAC_Y)*MAP_CELL_SIZE/PACMAN_MULTIPLIER
 8280        putStr X-1,Y-1,format("%D",200*COOKIE_BONUS_RATE),1,set,F,MAP_L_AREA_FM
-8285        put 0,0,MAP_L_AREA_FM,set:'マップエリアを茶烫に山绩
+8285        put 0,0,MAP_L_AREA_FM,set:'儅僢僾僄儕傾傪夋柺偵昞帵
 8290        sleep 500:COOKIE_BONUS_RATE=COOKIE_BONUS_RATE*2
 8300        gosub 6400:GHOST_X[IDX]=X:GHOST_Y[IDX]=Y:GHOST_DIR[IDX]=DIR:GHOST_FRIGHTENED_MODE[IDX]=0:GHOST_SLEEP_COUNT[I]=16*3
 8370    end if
 8380 end if
 8390 return 
-9000 '------------------ タ〖ゲットタイルの肋年 --------------------
+9000 '------------------ 僞乕僎僢僩僞僀儖偺愝掕 --------------------
 9010 if GHOST_MODE=GHOST_MODE_SCATTER then
 9020    GHOST_TX[IDX]=val(mid(GHOST_TARGET_TILE,IDX*4,IDX*4+2))*PACMAN_MULTIPLIER
 9030    GHOST_TY[IDX]=val(mid(GHOST_TARGET_TILE,IDX*4+2,IDX*4+4))*PACMAN_MULTIPLIER
 9040 else
-9050    if IDX=0 then GHOST_TX[IDX]=PAC_X:GHOST_TY[IDX]=PAC_Y:' アカべエ¨パックマンの郝筛
-9060    if IDX=1 then:' ピンキ〖¨パックマンの４マス黎
+9050    if IDX=0 then GHOST_TX[IDX]=PAC_X:GHOST_TY[IDX]=PAC_Y:' 傾僇傋僄丗僷僢僋儅儞偺嵗昗
+9060    if IDX=1 then:' 僺儞僉乕丗僷僢僋儅儞偺係儅僗愭
 9070        GHOST_TX[IDX]=(PAC_DIR=STOP)*PAC_X+(PAC_DIR<>STOP)*(PAC_X+(mod(PAC_DIR,2)=0)*(PAC_DIR-1)*16)
 9080        GHOST_TY[IDX]=(PAC_DIR=STOP)*PAC_Y+(PAC_DIR<>STOP)*(PAC_Y+(mod(PAC_DIR,2)=1)*(PAC_DIR-2)*16)
 9090    end if
-9100    if IDX=2 then:' アオスケ:≈アカベエの疤弥∽と≈パックマンの2マス黎∽を冯んだベクトルの2擒凯ばした黎
+9100    if IDX=2 then:' 傾僆僗働:乽傾僇儀僄偺埵抲乿偲乽僷僢僋儅儞偺2儅僗愭乿傪寢傫偩儀僋僩儖偺2攞怢偽偟偨愭
 9200        X=(PAC_DIR=STOP)*PAC_X+(PAC_DIR<>STOP)*(PAC_X+(mod(PAC_DIR,2)=0)*(PAC_DIR-1)*16)
 9210        Y=(PAC_DIR=STOP)*PAC_Y+(PAC_DIR<>STOP)*(PAC_Y+(mod(PAC_DIR,2)=1)*(PAC_DIR-2)*16)
 9220        GHOST_TX[IDX]=GHOST_X[0]+2*(X-GHOST_X[0])
 9230        GHOST_TY[IDX]=GHOST_Y[0]+2*(Y-GHOST_Y[0])
 9240    end if
-9250    if IDX=3 then:'グズタ:8マス笆柒に夺づくと极尸の旗磨り、そうでなければアカべ〖と票じ
+9250    if IDX=3 then:'僌僘僞:8儅僗埲撪偵嬤偯偔偲帺暘偺撽挘傝丄偦偆偱側偗傟偽傾僇傋乕偲摨偠
 9260       if abs(PAC_X-GHOST_X[IDX])+abs(PAC_Y-GHOST_Y[IDX])<64 then
 9270            GHOST_TX[IDX]=val(mid(GHOST_TARGET_TILE,IDX*4,IDX*4+2))*PACMAN_MULTIPLIER
 9280            GHOST_TY[IDX]=val(mid(GHOST_TARGET_TILE,IDX*4+2,IDX*4+4))*PACMAN_MULTIPLIER
@@ -1178,7 +1178,7 @@
 9325    'print format("%D: ",IDX)+format("%-3D,",GHOST_TX[IDX])+format("%-3D",GHOST_TY[IDX])
 9330 end if
 9490 return
-9500 '------------------ モ〖ド磊仑テ〖ブルの鸥倡 ---------------------
+9500 '------------------ 儌乕僪愗懼僥乕僽儖偺揥奐 ---------------------
 9510 if STAGE=1 then IDX=0 else if STAGE<5 then IDX=1 else IDX=2
 9520 PREV_COUNT=0
 9530 for I=0 to MODE_CHANGE_NUM-1
@@ -1187,7 +1187,7 @@
 9555    'print format("I:%D ",I)+format("%D",PREV_COUNT)
 9560 next
 9570 return
-9600 '------------------ モ〖ド磊仑 -------------------------
+9600 '------------------ 儌乕僪愗懼 -------------------------
 9610 MODE=GHOST_MODE_CHASE
 9620 for I=0 to MODE_CHANGE_NUM-1
 9630    if COUNT<MODE_CHANGE_COUNT[I] then MODE=mod(I,2):exit for
@@ -1196,14 +1196,14 @@
 9660    GHOST_MODE=MODE
 9665    'print format("--Mode Change-- %D:",I)+format("%D",GHOST_MODE)
 9670    for I=0 to GHOST_NUM-1
-9680        if GHOST_FRIGHTENED_MODE[I]=0 then GHOST_DIR[I]=GHOST_DIR[I]+2:if GHOST_DIR[I]>=DIR_NUM then GHOST_DIR[I]=GHOST_DIR[I]-DIR_NUM:'イジケモ〖ドでないとき、嫡瘤に肋年
+9680        if GHOST_FRIGHTENED_MODE[I]=0 then GHOST_DIR[I]=GHOST_DIR[I]+2:if GHOST_DIR[I]>=DIR_NUM then GHOST_DIR[I]=GHOST_DIR[I]-DIR_NUM:'僀僕働儌乕僪偱側偄偲偒丄媡憱偵愝掕
 9690    next
 9700 end if
 9710 return
-30000 '---------------- スコア山绩 -------------------
+30000 '---------------- 僗僐傾昞帵 -------------------
 30010 putStr SCORE_X,SCORE_Y,format("%-6D ",SCORE)+format("%D",LIFE),1,set,F
 30020 return
-40000 '----------------マップ-----------------
+40000 '----------------儅僢僾-----------------
 40010 MAP[ 0]="+============Tt============7"
 40020 MAP[ 1]="|............II............i"
 40030 MAP[ 2]="|.r--?.r---?.II.r---?.r--?.i"
@@ -1233,11 +1233,11 @@
 40270 MAP[26]="|.L--------J.LJ.L--------J.i"
 40280 MAP[27]="|..........................i"
 40290 MAP[28]="l~~~~~~~~~~~~~~~~~~~~~~~~~~j"
-40300 GHOST_TARGET_TILE="0000270027280028":'いじけモ〖ドの箕のタ〖ゲットタイルの郝筛を2矢机ずつ4矢机でゴ〖スト１挛の郝筛を山す。アカべエ、ピンキ〖、アオスケ、グズタの界
-40310 MODE_CHANGE_TABLE[0]="0007002000070020000500200005":MODE_CHANGE_TABLE[1]="0007002000050020000510330001":MODE_CHANGE_TABLE[2]="0005002000050020000510370001":'16カウントを１擅と斧なす
+40300 GHOST_TARGET_TILE="0000270027280028":'偄偠偗儌乕僪偺帪偺僞乕僎僢僩僞僀儖偺嵗昗傪2暥帤偢偮4暥帤偱僑乕僗僩侾懱偺嵗昗傪昞偡丅傾僇傋僄丄僺儞僉乕丄傾僆僗働丄僌僘僞偺弴
+40310 MODE_CHANGE_TABLE[0]="0007002000070020000500200005":MODE_CHANGE_TABLE[1]="0007002000050020000510330001":MODE_CHANGE_TABLE[2]="0005002000050020000510370001":'16僇僂儞僩傪侾昩偲尒側偡
 40395 return
 50000 PACMAN_ANIME_NUM=3:dim PACMAN_FM[PACMAN_ANIME_NUM*DIR_NUM]
-50010 PACMAN_FM[0]=createFM(CHAR_SIZE,CHAR_SIZE):'10x10dotバ〖ジョン
+50010 PACMAN_FM[0]=createFM(CHAR_SIZE,CHAR_SIZE):'10x10dot僶乕僕儑儞
 50020 setBM PACMAN_FM[0], 0,"0001111000"
 50030 setBM PACMAN_FM[0], 1,"0111111110"
 50040 setBM PACMAN_FM[0], 2,"0111111110"
@@ -1275,7 +1275,7 @@
 50310   for J=0 to PACMAN_ANIME_NUM-1
 50320       PACMAN_FM[I*PACMAN_ANIME_NUM+J]=createFM(CHAR_SIZE,CHAR_SIZE)
 50330       SRC_FM=PACMAN_FM[(I-1)*PACMAN_ANIME_NUM+J]:DIST_FM=PACMAN_FM[I*PACMAN_ANIME_NUM+J]
-50340       gosub 58100:'SRC_FM -90‰搀啪-> DIST_FM
+50340       gosub 58100:'SRC_FM -90亱夞揮-> DIST_FM
 50350   next
 50360 next
 50400 dim GHOST_FM[DIR_NUM+2]
@@ -1303,7 +1303,7 @@
 50692 setBM GHOST_FM[UP], 9,"0110110110"
 50693 GHOST_FM[RIGHT]=createFM(CHAR_SIZE,CHAR_SIZE)
 50694 SRC_FM=GHOST_FM[LEFT]:DIST_FM=GHOST_FM[RIGHT]
-50695 gosub 58200:'セルを焊宝瓤啪させる
+50695 gosub 58200:'僙儖傪嵍塃斀揮偝偣傞
 50710 GHOST_FM[DOWN]=createFM(CHAR_SIZE,CHAR_SIZE)
 50720 setBM GHOST_FM[DOWN], 0,"0001111000"
 50730 setBM GHOST_FM[DOWN], 1,"0111111110"
@@ -1547,7 +1547,7 @@
 53550 setBM MAP_CELL_FM[POWERUP_FM_IDX], 4,"1111111"
 53560 setBM MAP_CELL_FM[POWERUP_FM_IDX], 5,"0111110"
 53570 setBM MAP_CELL_FM[POWERUP_FM_IDX], 6,"0011100"
-53600 MAP_CELL_FM[SPACE_FM_IDX]=createFM(MAP_CELL_SIZE,MAP_CELL_SIZE):'スペ〖ス
+53600 MAP_CELL_FM[SPACE_FM_IDX]=createFM(MAP_CELL_SIZE,MAP_CELL_SIZE):'僗儁乕僗
 53610 setBM MAP_CELL_FM[SPACE_FM_IDX], 0,"0000000"
 53620 setBM MAP_CELL_FM[SPACE_FM_IDX], 1,"0000000"
 53630 setBM MAP_CELL_FM[SPACE_FM_IDX], 2,"0000000"
@@ -1556,49 +1556,49 @@
 53660 setBM MAP_CELL_FM[SPACE_FM_IDX], 5,"0000000"
 53670 setBM MAP_CELL_FM[SPACE_FM_IDX], 6,"0000000"
 54000 dim MAP_CELL_S_FM[4]
-54010 MAP_CELL_S_FM[0]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'噬
+54010 MAP_CELL_S_FM[0]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'暻
 54020 setBM MAP_CELL_S_FM[0], 0,"11"
 54030 setBM MAP_CELL_S_FM[0], 1,"11"
-54110 MAP_CELL_S_FM[1]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'クッキ〖 
+54110 MAP_CELL_S_FM[1]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'僋僢僉乕 
 54120 setBM MAP_CELL_S_FM[1], 0,"00"
 54130 setBM MAP_CELL_S_FM[1], 1,"10"
-54210 MAP_CELL_S_FM[2]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'パワ〖アップエサ
+54210 MAP_CELL_S_FM[2]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'僷儚乕傾僢僾僄僒
 54220 setBM MAP_CELL_S_FM[2], 0,"00"
 54230 setBM MAP_CELL_S_FM[2], 1,"00"
-54310 MAP_CELL_S_FM[3]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'鄂球
+54310 MAP_CELL_S_FM[3]=createFM(MAP_CELL_S_SIZE,MAP_CELL_S_SIZE):'嬻敀
 54320 setBM MAP_CELL_S_FM[3], 0,"00"
 54330 setBM MAP_CELL_S_FM[3], 1,"00"
 57990 return
-58100 '------------ セルを90‰搀啪させる -------------
+58100 '------------ 僙儖傪90亱夞揮偝偣傞 -------------
 58105 for X=0 to CHAR_SIZE-1
 58110   for Y=0 to CHAR_SIZE-1
 58120       pset CHAR_SIZE-1-Y,X,point(SRC_FM,X,Y),set,F,DIST_FM
 58130   next
 58140 next
 58150 return
-58200 '------------ セルを焊宝瓤啪させる -------------
+58200 '------------ 僙儖傪嵍塃斀揮偝偣傞 -------------
 58205 for X=0 to CHAR_SIZE-1
 58210   for Y=0 to CHAR_SIZE-1
 58220       pset X,Y,point(SRC_FM,CHAR_SIZE-1-X,Y),set,F,DIST_FM
 58230   next
 58240 next
 58250 return
-59000 '------------- 不の年盗 ------------------
+59000 '------------- 壒偺掕媊 ------------------
 59100 SOUND01="T115V128L16_B5B6F#6D#6_L32B6L32HF#6L8D#6L32._L16C6C7G6E6_L32C7L32HG6L8E6L32._L16B5B6F#6D#6_L32B6L32HF#6L8D#6L32._L32D#6E6L16F6_L32F#6G6L16G#6_L32A6L8HB6_L32."
-59110 SOUND02="T150V50L64_E3..A#3D4C#4.":'クッキ〖咯べる
-59120 SOUND03="T150V1L128_G5G#5V200A5A5V100F#5F#5F5D5V200G#5V1G4G4B4B4..":'いじけ
-59130 SOUND04="T150V1L32_V128C4_C#4C3G#4B4B4_C#5F5F#5A5A5_B5B5C#4D6D6_F#6F#6F#6.":'锄みつき
-59140 SOUND05="T150V200L64_F#5F5_E5D#5E5F5F#5_F5E5D#5F4C#5_D#4E5F5E5D#5_D5C#5C5C#5D5_D#5D5C#5C5B4_B4C5C#5D5D5_C5B4A4A4A#4_B4C5B4A#4A4_G#4F1G#4F#4_C#5A#4C#6F#6G#6A#6C7._C#5A#4C#6F#6G#6A#6C7.":'秽舜
+59110 SOUND02="T150V50L64_E3..A#3D4C#4.":'僋僢僉乕怘傋傞
+59120 SOUND03="T150V1L128_G5G#5V200A5A5V100F#5F#5F5D5V200G#5V1G4G4B4B4..":'偄偠偗
+59130 SOUND04="T150V1L32_V128C4_C#4C3G#4B4B4_C#5F5F#5A5A5_B5B5C#4D6D6_F#6F#6F#6.":'姎傒偮偒
+59140 SOUND05="T150V200L64_F#5F5_E5D#5E5F5F#5_F5E5D#5F4C#5_D#4E5F5E5D#5_D5C#5C5C#5D5_D#5D5C#5C5B4_B4C5C#5D5D5_C5B4A4A4A#4_B4C5B4A#4A4_G#4F1G#4F#4_C#5A#4C#6F#6G#6A#6C7._C#5A#4C#6F#6G#6A#6C7.":'巰朣
 59200 return
-60000 '============= システム簇息サブル〖チン ===============================
-61000 '-------- EEPROMにハイスコアテ〖ブルを瘦赂する ------------
+60000 '============= 僔僗僥儉娭楢僒僽儖乕僠儞 ===============================
+61000 '-------- EEPROM偵僴僀僗僐傾僥乕僽儖傪曐懚偡傞 ------------
 61010 ADDR=0
 61020 write ADDR,GAME_TITLE:ADDR=ADDR+16
 61030 for I=0 to HIGH_SCORE_NUM-1
 61040   write ADDR,format("%D",HIGH_SCORE[I]):ADDR=ADDR+16
 61050 next
 61060 return
-61100 '-------- EEPROMからハイスコアテ〖ブルを粕み叫す ------------
+61100 '-------- EEPROM偐傜僴僀僗僐傾僥乕僽儖傪撉傒弌偡 ------------
 61110 ADDR=0
 61120 if GAME_TITLE=read(ADDR,strlen(GAME_TITLE)) then
 61125   ADDR=ADDR+16
@@ -1607,19 +1607,19 @@
 61150   next
 61160 end if
 61170 return
-62000 '---------ハイスコアテ〖ブルの面の呵络と呵井を滇める-------------
+62000 '---------僴僀僗僐傾僥乕僽儖偺拞偺嵟戝偲嵟彫傪媮傔傞-------------
 62010 MAX_HIGH_SCORE=0:MIN_HIGH_SCORE=100000
 62020 for I=0 to HIGH_SCORE_NUM-1
 62030   if HIGH_SCORE[I]>MAX_HIGH_SCORE then MAX_HIGH_SCORE=HIGH_SCORE[I]
 62035   if MIN_HIGH_SCORE>HIGH_SCORE[I] then MIN_HIGH_SCORE=HIGH_SCORE[I]
 62040 next
 62050 return
-62100 '--------ハイスコアテ〖ブルを介袋步する----------
+62100 '--------僴僀僗僐傾僥乕僽儖傪弶婜壔偡傞----------
 62110 for I=0 to HIGH_SCORE_NUM-1
 62120   HIGH_SCORE[I]=0
 62130 next
 62140 return
-62500 '--------ハイスコアテ〖ブルを构糠する----------
+62500 '--------僴僀僗僐傾僥乕僽儖傪峏怴偡傞----------
 62510 for I=0 to HIGH_SCORE_NUM-1
 62520   if HIGH_SCORE[I]<SCORE then exit for
 62530 next
@@ -1640,8 +1640,8 @@
 62690 gosub 61000 :' save High Score
 62820 sleep 3000
 62850 return
-63000 '================== 略怠茶烫 ======================
-63010 '----- スクリ〖ンの郝筛介袋步 -------
+63000 '================== 懸婡夋柺 ======================
+63010 '----- 僗僋儕乕儞偺嵗昗弶婜壔 -------
 63020 cls
 63030 COMMENT="PUSH B KEY"
 63040 TITLE_X=(SCREEN_WIDTH-strlen(GAME_TITLE)*FONT_WIDTH)/2
@@ -1652,12 +1652,12 @@
 63080 putStr COMMENT_X,COMMENT_Y,COMMENT,1
 63090 PAC_DIR=LEFT:PAC_X=SCREEN_WIDTH-CHAR_SIZE:PAC_Y=SCREEN_HIGHT-CHAR_SIZE:PAC_ANIME_IDX=0:PAC_ANIME_IDX_INC=1
 63095 DEMO_GHOST_DIR=RIGHT:DEMO_GHOST_X=0:DEMO_GHOST_Y=0
-63100 '--------------- KeyB略ち ---------------
+63100 '--------------- KeyB懸偪 ---------------
 63110 COUNT=0
 63120 while -1
 63125   put PAC_X,PAC_Y,PACMAN_FM[PAC_DIR*PACMAN_ANIME_NUM+PAC_ANIME_IDX],xor,F
 63126   put DEMO_GHOST_X,DEMO_GHOST_Y,GHOST_FM[DEMO_GHOST_DIR],xor,F
-63130   if keyA()=1 && keyB()=1 then END_PROGRAM=1:exit while:'AとBを尉数病したらプログラム姜位
+63130   if keyA()=1 && keyB()=1 then END_PROGRAM=1:exit while:'A偲B傪椉曽墴偟偨傜僾儘僌儔儉廔椆
 63140   if keyB()=1 then sound 1,SOUND01:play 1:exit while
 63170   if COUNT>10 then putStr COMMENT_X,COMMENT_Y,COMMENT,1,xor,F:COUNT=0
 63180   update
@@ -1681,7 +1681,7 @@
 63385   update
 63390 end while
 63395 return
-63700 '================== ステ〖ジ姜位茶烫 ======================
+63700 '================== 僗僥乕僕廔椆夋柺 ======================
 63710 cls
 63720 COMMENT=format("SCORE:%-5D",SCORE)
 63730 if STAGE_CLEAR=1 then STAGE=STAGE+1:TITLE=format("NEXT CLEAR %D",STAGE) else TITLE="GAME OVER"
@@ -1693,11 +1693,11 @@
 63780 putStr COMMENT_X,COMMENT_Y,COMMENT,1
 63790 sleep 2000
 63800 if GAME_OVER=1 then 
-63810    gosub 62000:'ハイスコアの呵你ラインを艰评
-63820    if MIN_HIGH_SCORE<SCORE then gosub 62500:'ハイスコアを山绩し、瘦赂する
+63810    gosub 62000:'僴僀僗僐傾偺嵟掅儔僀儞傪庢摼
+63820    if MIN_HIGH_SCORE<SCORE then gosub 62500:'僴僀僗僐傾傪昞帵偟丄曐懚偡傞
 63830 end if
 63890 return
-64000 '-------------- 败瓢 ------------------
+64000 '-------------- 堏摦 ------------------
 64010 if PAC_DIR=LEFT then PAC_X=PAC_X-1
 64020 if PAC_DIR=UP then PAC_Y=PAC_Y-1
 64030 if PAC_DIR=RIGHT then PAC_X=PAC_X+1
@@ -1712,95 +1712,95 @@
 
 
 @Invaders.bas
-100 '==============　茶烫やシステム簇息の年盗 =============
-110 GAME_TITLE="INVADERS":FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'フォントの升と光さ
+100 '==============丂夋柺傗僔僗僥儉娭楢偺掕媊 =============
+110 GAME_TITLE="INVADERS":FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'僼僅儞僩偺暆偲崅偝
 120 HIGH_SCORE_NUM=SCREEN_HIGHT/FONT_HIGHT-3:dim HIGH_SCORE[HIGH_SCORE_NUM]:gosub 62100
-130 if (keyA()<>1)||(keyB()<>1) then gosub 61100 : 'ハイスコアを粕み叫す
-200 '============== ゲ〖ム簇息の年盗 ================
-210 INVADER_Y_NUM=3:'インベ〖ダの乖眶
-220 gosub 50000:'ビットマップの年盗
-230 TANK_Y=SCREEN_HIGHT-TANK_HIGHT:'极怠のY郝筛
-240 SHIELD_Y_GAP=1:SHIELD_Y=TANK_Y-SHIELD_Y_GAP-SHIELD_HIGHT:'シ〖ルドのY郝筛
-250 SHIELD_NUM=4:SHIELD_X_GAP=(SCREEN_WIDTH-SHIELD_WIDTH*SHIELD_NUM)/SHIELD_NUM/2:'シ〖ルド山绩倡幌X郝筛
-260 dim SHIELD[SHIELD_NUM]:for I=0 to SHIELD_NUM-1:SHIELD[I]=createFM(SHIELD_WIDTH,SHIELD_HIGHT):next:'シ〖ルドのフレ〖ムメモリ〖を侯喇
-270 ABSENT=0:EXIST=1:EXPLOSION=2:'觉轮 0:稍哼 1:赂哼 2:曲券面
-280 INVADER_THIS_TIME_DY=0:INVADER_THIS_TIME_DX=0:'介搀の败瓢翁
-290 gosub 2000:'インベ〖ダ簇息の芹误离咐
-300 EXPLOSION_LENGTH=6:'曲券の墓さ
-950 gosub 59000:'不の年盗
-1000 '--------　メインル〖ティン --------------
-1010 B_END=0:'プログラム姜位∈0:费鲁 1:姜位∷
-1020 STAGE=1:'ステ〖ジを介袋步
-1030 TANK_NUM=2:'スペアのタンク眶
-1040 SCORE=0:'スコアを介袋步   
-1050 GAME_OVER=0: 'ゲ〖ムオ〖バ〖(1:姜位 0:费鲁∷
-1060 STAGE_CLEAR=0:'ステ〖ジクリア∈ゲ〖ム面:0,クリア箕:1)
+130 if (keyA()<>1)||(keyB()<>1) then gosub 61100 : '僴僀僗僐傾傪撉傒弌偡
+200 '============== 僎乕儉娭楢偺掕媊 ================
+210 INVADER_Y_NUM=3:'僀儞儀乕僟偺峴悢
+220 gosub 50000:'價僢僩儅僢僾偺掕媊
+230 TANK_Y=SCREEN_HIGHT-TANK_HIGHT:'帺婡偺Y嵗昗
+240 SHIELD_Y_GAP=1:SHIELD_Y=TANK_Y-SHIELD_Y_GAP-SHIELD_HIGHT:'僔乕儖僪偺Y嵗昗
+250 SHIELD_NUM=4:SHIELD_X_GAP=(SCREEN_WIDTH-SHIELD_WIDTH*SHIELD_NUM)/SHIELD_NUM/2:'僔乕儖僪昞帵奐巒X嵗昗
+260 dim SHIELD[SHIELD_NUM]:for I=0 to SHIELD_NUM-1:SHIELD[I]=createFM(SHIELD_WIDTH,SHIELD_HIGHT):next:'僔乕儖僪偺僼儗乕儉儊儌儕乕傪嶌惉
+270 ABSENT=0:EXIST=1:EXPLOSION=2:'忬懺 0:晄嵼 1:懚嵼 2:敋敪拞
+280 INVADER_THIS_TIME_DY=0:INVADER_THIS_TIME_DX=0:'弶夞偺堏摦検
+290 gosub 2000:'僀儞儀乕僟娭楢偺攝楍愰尵
+300 EXPLOSION_LENGTH=6:'敋敪偺挿偝
+950 gosub 59000:'壒偺掕媊
+1000 '--------丂儊僀儞儖乕僥傿儞 --------------
+1010 B_END=0:'僾儘僌儔儉廔椆乮0:宲懕 1:廔椆乯
+1020 STAGE=1:'僗僥乕僕傪弶婜壔
+1030 TANK_NUM=2:'僗儁傾偺僞儞僋悢
+1040 SCORE=0:'僗僐傾傪弶婜壔   
+1050 GAME_OVER=0: '僎乕儉僆乕僶乕(1:廔椆 0:宲懕乯
+1060 STAGE_CLEAR=0:'僗僥乕僕僋儕傾乮僎乕儉拞:0,僋儕傾帪:1)
 1100 while B_END=0
-1110    if STAGE_CLEAR=0 then gosub 63000 else STAGE_CLEAR=0:'略怠茶烫の山绩
-1140    A=0:'キ〖恃眶介袋步 (L,Rは、病しっぱなしで掐蜗OKなので、恃眶步しない。UとLは蝗わない。息继の材墙拉はAのみ∷
-1150    gosub 2100:'インベ〖ダ攫鼠介袋肋年
-1160    TANK_X=(SCREEN_WIDTH-TANK_WIDTH)/2:'极怠のX郝筛の介袋步
-1170    TANK_DX=0:TANK_STS=EXIST:'タンクの败瓢翁、タンク觉轮の介袋步
-1180    MISSILE_STS=ABSENT:MISSILE_X=0:MISSILE_Y=0:'ミサイル觉轮(0:踏券纪,1:券纪∷、ミサイルの郝筛の介袋步
-1200    for I=0 to SHIELD_NUM-1:put 0,0,SHIELD_FM,set,F,SHIELD[I]:next:'蝉れていないシ〖ルドのイメ〖ジを肋年
-1210    SLEEP_TIME=21-STAGE:if SLEEP_TIME<1 then SLEEP_TIME=1:'ステ〖ジの略ち箕粗を肋年
-1490    MOVE_COUNTER=1:EXIST_INVADER_NUM=INVADER_NUM:'败瓢カウンタと觉轮が赂哼のインベ〖ダの眶を肋年
+1110    if STAGE_CLEAR=0 then gosub 63000 else STAGE_CLEAR=0:'懸婡夋柺偺昞帵
+1140    A=0:'僉乕曄悢弶婜壔 (L,R偼丄墴偟偭傁側偟偱擖椡OK側偺偱丄曄悢壔偟側偄丅U偲L偼巊傢側偄丅楢幨偺壜擻惈偼A偺傒乯
+1150    gosub 2100:'僀儞儀乕僟忣曬弶婜愝掕
+1160    TANK_X=(SCREEN_WIDTH-TANK_WIDTH)/2:'帺婡偺X嵗昗偺弶婜壔
+1170    TANK_DX=0:TANK_STS=EXIST:'僞儞僋偺堏摦検丄僞儞僋忬懺偺弶婜壔
+1180    MISSILE_STS=ABSENT:MISSILE_X=0:MISSILE_Y=0:'儈僒僀儖忬懺(0:枹敪幩,1:敪幩乯丄儈僒僀儖偺嵗昗偺弶婜壔
+1200    for I=0 to SHIELD_NUM-1:put 0,0,SHIELD_FM,set,F,SHIELD[I]:next:'夡傟偰偄側偄僔乕儖僪偺僀儊乕僕傪愝掕
+1210    SLEEP_TIME=21-STAGE:if SLEEP_TIME<1 then SLEEP_TIME=1:'僗僥乕僕偺懸偪帪娫傪愝掕
+1490    MOVE_COUNTER=1:EXIST_INVADER_NUM=INVADER_NUM:'堏摦僇僂儞僞偲忬懺偑懚嵼偺僀儞儀乕僟偺悢傪愝掕
 1500    while GAME_OVER=0 && STAGE_CLEAR=0
-1510        MOVE_COUNTER=MOVE_COUNTER-1:gosub 4100:'极怠の拎侯、极怠ˇ浓のミサイルの败瓢
+1510        MOVE_COUNTER=MOVE_COUNTER-1:gosub 4100:'帺婡偺憖嶌丄帺婡丒揋偺儈僒僀儖偺堏摦
 1520        if MOVE_COUNTER=0 then
-1550            gosub 3000:MOVE_COUNTER=EXIST_INVADER_NUM:'インベ〖ダの败瓢
+1550            gosub 3000:MOVE_COUNTER=EXIST_INVADER_NUM:'僀儞儀乕僟偺堏摦
 1560            sound 0,TEMPO0+INVADER_SOUND[INVADER_SOUND_IDX]:play 0
 1570            INVADER_SOUND_IDX=INVADER_SOUND_IDX+1:if INVADER_SOUND_IDX>=INVADER_SOUND_NUM then INVADER_SOUND_IDX=0
-1575            cls F:gosub 2500:'インベ〖ダの山绩
+1575            cls F:gosub 2500:'僀儞儀乕僟偺昞帵
 1580        end if
-1590        gosub 4100:'极怠の拎侯、极怠ˇ浓のミサイルの败瓢
-1600        gosub 4000:'极怠の山绩
-1650        gosub 5000:'シ〖ルドの山绩
-1660        gosub 7000:'曲券アニメ〖ション
+1590        gosub 4100:'帺婡偺憖嶌丄帺婡丒揋偺儈僒僀儖偺堏摦
+1600        gosub 4000:'帺婡偺昞帵
+1650        gosub 5000:'僔乕儖僪偺昞帵
+1660        gosub 7000:'敋敪傾僯儊乕僔儑儞
 1680        if keyU()=1 then B_END=1:GMAE_OVER=1
-1710        gosub 4100:'极怠の拎侯、极怠ˇ浓のミサイルの败瓢
-1720        gosub 6000:'极怠ミサイルと浓の咀仆冉年 
-1730        gosub 6500:'极怠ミサイルˇ浓ミサイルˇ浓とシ〖ルドの咀仆冉年
-1740        gosub 4500:'极怠と浓ˇ浓ミサイルの咀仆冉年
+1710        gosub 4100:'帺婡偺憖嶌丄帺婡丒揋偺儈僒僀儖偺堏摦
+1720        gosub 6000:'帺婡儈僒僀儖偲揋偺徴撍敾掕 
+1730        gosub 6500:'帺婡儈僒僀儖丒揋儈僒僀儖丒揋偲僔乕儖僪偺徴撍敾掕
+1740        gosub 4500:'帺婡偲揋丒揋儈僒僀儖偺徴撍敾掕
 1880        update
-1890        sleep SLEEP_TIME:gosub 63500:'キ〖が办枚违されたことのスキャン
+1890        sleep SLEEP_TIME:gosub 63500:'僉乕偑堦扷棧偝傟偨偙偲偺僗僉儍儞
 1900    end while
-1910    if STAGE_CLEAR=1 then gosub 8000:STAGE=STAGE+1:TANK_NUM=TANK_NUM+1:'ステ〖ジクリア山绩
-1920    if GAME_OVER=1 then gosub 8200:GAME_OVER=0:STAGE=1:TANK_NUM=2:SCORE=0:'ゲ〖ムオ〖バ〖山绩
+1910    if STAGE_CLEAR=1 then gosub 8000:STAGE=STAGE+1:TANK_NUM=TANK_NUM+1:'僗僥乕僕僋儕傾昞帵
+1920    if GAME_OVER=1 then gosub 8200:GAME_OVER=0:STAGE=1:TANK_NUM=2:SCORE=0:'僎乕儉僆乕僶乕昞帵
 1950 end while
-1970 sound 0,"L8.":play 0:'不を久す
-1980 sound 1,"L8.":play 1:'不を久す
-1990 end:'姜位
-2000 '---------------------- インベ〖ダ簇息の芹误离咐 -------------------------------
-2020 INVADER_GAP=4:INVADER_X_NUM=SCREEN_WIDTH/(INVADER_A_WIDTH+INVADER_GAP)-2:'インベ〖ダの误眶
+1970 sound 0,"L8.":play 0:'壒傪徚偡
+1980 sound 1,"L8.":play 1:'壒傪徚偡
+1990 end:'廔椆
+2000 '---------------------- 僀儞儀乕僟娭楢偺攝楍愰尵 -------------------------------
+2020 INVADER_GAP=4:INVADER_X_NUM=SCREEN_WIDTH/(INVADER_A_WIDTH+INVADER_GAP)-2:'僀儞儀乕僟偺楍悢
 2030 INVADER_NUM=INVADER_X_NUM*INVADER_Y_NUM
-2040 dim INVADER_X[INVADER_NUM],INVADER_Y[INVADER_NUM]:'インベ〖ダの焊惧の郝筛
-2050 dim INVADER_WIDTH[INVADER_NUM],INVADER_HIGHT[INVADER_NUM]:'インベ〖ダの升と光さ
-2060 dim INVADER_STS[INVADER_NUM]:'インベ〖ダの觉轮
-2070 dim INVADER_EDGE_IDX[INVADER_Y_NUM*2]:'称乖の眉のインベ〖ダのインデックス
-2080 dim INVADER_MISSILE_X[INVADER_NUM],INVADER_MISSILE_Y[INVADER_NUM],INVADER_MISSILE_WIDTH[INVADER_NUM]:'インベ〖ダのミサイルの年盗
-2090 dim INVADER_MISSILE_HIGHT[INVADER_NUM],INVADER_MISSILE_STS[INVADER_NUM]:'インベ〖ダのミサイルの年盗
+2040 dim INVADER_X[INVADER_NUM],INVADER_Y[INVADER_NUM]:'僀儞儀乕僟偺嵍忋偺嵗昗
+2050 dim INVADER_WIDTH[INVADER_NUM],INVADER_HIGHT[INVADER_NUM]:'僀儞儀乕僟偺暆偲崅偝
+2060 dim INVADER_STS[INVADER_NUM]:'僀儞儀乕僟偺忬懺
+2070 dim INVADER_EDGE_IDX[INVADER_Y_NUM*2]:'奺峴偺抂偺僀儞儀乕僟偺僀儞僨僢僋僗
+2080 dim INVADER_MISSILE_X[INVADER_NUM],INVADER_MISSILE_Y[INVADER_NUM],INVADER_MISSILE_WIDTH[INVADER_NUM]:'僀儞儀乕僟偺儈僒僀儖偺掕媊
+2090 dim INVADER_MISSILE_HIGHT[INVADER_NUM],INVADER_MISSILE_STS[INVADER_NUM]:'僀儞儀乕僟偺儈僒僀儖偺掕媊
 2099 return
-2100 '---------------------- インベ〖ダ攫鼠介袋肋年 -------------------------------
-2110 INVADER_ANIME_IDX=0:'インベ〖ダのアニメ〖ションインデックス
+2100 '---------------------- 僀儞儀乕僟忣曬弶婜愝掕 -------------------------------
+2110 INVADER_ANIME_IDX=0:'僀儞儀乕僟偺傾僯儊乕僔儑儞僀儞僨僢僋僗
 2200 for I=0 to INVADER_X_NUM-1
 2210    INVADER_X[I]=I*(INVADER_A_WIDTH+INVADER_GAP)+(INVADER_A_WIDTH-INVADER_C_WIDTH)/2:INVADER_Y[I]=0:INVADER_WIDTH[I]=INVADER_C_WIDTH:INVADER_HIGHT[I]=INVADER_C_HIGHT
 2220    INVADER_X[I+INVADER_X_NUM]=I*(INVADER_A_WIDTH+INVADER_GAP)+(INVADER_A_WIDTH-INVADER_B_WIDTH)/2:INVADER_Y[I+INVADER_X_NUM]=INVADER_A_HIGHT+1:INVADER_WIDTH[I+INVADER_X_NUM]=INVADER_B_WIDTH:INVADER_HIGHT[I+INVADER_X_NUM]=INVADER_B_HIGHT
 2230    INVADER_X[I+INVADER_X_NUM*2]=I*(INVADER_A_WIDTH+INVADER_GAP):INVADER_Y[I+INVADER_X_NUM*2]=INVADER_A_HIGHT+INVADER_B_HIGHT+2:INVADER_WIDTH[I+INVADER_X_NUM*2]=INVADER_A_WIDTH:INVADER_HIGHT[I+INVADER_X_NUM*2]=INVADER_A_HIGHT
 2250 next
 2300 for I=0 to INVADER_NUM-1
-2310    INVADER_STS[I]=EXIST:INVADER_MISSILE_STS[I]=ABSENT:'インベ〖ダとミサイルの觉轮を介袋步
+2310    INVADER_STS[I]=EXIST:INVADER_MISSILE_STS[I]=ABSENT:'僀儞儀乕僟偲儈僒僀儖偺忬懺傪弶婜壔
 2315    INVADER_MISSILE_WIDTH[I]=MISSILE_WIDTH:INVADER_MISSILE_HIGHT[I]=MISSILE_HIGHT
 2320 next
-2330 INVADER_EDGE_IDX[0]=0:INVADER_EDGE_IDX[1]=INVADER_X_NUM-1:'１乖誊の眉のインベ〖ダのインデックスを肋年
-2340 INVADER_EDGE_IDX[2]=INVADER_X_NUM:INVADER_EDGE_IDX[3]=INVADER_X_NUM*2-1:'２乖誊の眉のインベ〖ダのインデックスを肋年
-2350 INVADER_EDGE_IDX[4]=INVADER_X_NUM*2:INVADER_EDGE_IDX[5]=INVADER_X_NUM*3-1:'３乖誊の眉のインベ〖ダのインデックスを肋年
-2360 INVADER_MISSILE_RATE=10-STAGE:if INVADER_MISSILE_RATE<1 then INVADER_MISSILE_RATE=1:'ミサイルの券纪唯　井さいほどよく券纪する
-2370 INVADER_DX=INVADER_A_WIDTH/2+STAGE:INVADER_DY=INVADER_A_HIGHT/2+STAGE:'インベ〖ダの败瓢翁
+2330 INVADER_EDGE_IDX[0]=0:INVADER_EDGE_IDX[1]=INVADER_X_NUM-1:'侾峴栚偺抂偺僀儞儀乕僟偺僀儞僨僢僋僗傪愝掕
+2340 INVADER_EDGE_IDX[2]=INVADER_X_NUM:INVADER_EDGE_IDX[3]=INVADER_X_NUM*2-1:'俀峴栚偺抂偺僀儞儀乕僟偺僀儞僨僢僋僗傪愝掕
+2350 INVADER_EDGE_IDX[4]=INVADER_X_NUM*2:INVADER_EDGE_IDX[5]=INVADER_X_NUM*3-1:'俁峴栚偺抂偺僀儞儀乕僟偺僀儞僨僢僋僗傪愝掕
+2360 INVADER_MISSILE_RATE=10-STAGE:if INVADER_MISSILE_RATE<1 then INVADER_MISSILE_RATE=1:'儈僒僀儖偺敪幩棪丂彫偝偄傎偳傛偔敪幩偡傞
+2370 INVADER_DX=INVADER_A_WIDTH/2+STAGE:INVADER_DY=INVADER_A_HIGHT/2+STAGE:'僀儞儀乕僟偺堏摦検
 2380 if INVADER_DX>INVADER_C_WIDTH then INVADER_DX=INVADER_C_WIDTH
 2390 if INVADER_DY>INVADER_C_HIGHT then INVADER_DY=INVADER_C_HIGHT
 2490 return
-2500 '---------------------- インベ〖ダ山绩 -------------------------------
+2500 '---------------------- 僀儞儀乕僟昞帵 -------------------------------
 2510 for I=0 to INVADER_NUM-1
 2520    if INVADER_STS[I]=EXIST then
 2530        INVADER_X[I]=INVADER_X[I]+INVADER_THIS_TIME_DX:INVADER_Y[I]=INVADER_Y[I]+INVADER_THIS_TIME_DY
@@ -1810,14 +1810,14 @@
 2760 next
 2770 INVADER_ANIME_IDX=INVADER_ANIME_IDX+1:if INVADER_ANIME_IDX=INVADER_PAT_NUM then INVADER_ANIME_IDX=0
 2890 return
-3000 '---------------------- インベ〖ダの败瓢 ---------------------------
-3010 '-------インベ〖ダ凡の焊宝の眉の郝筛を滇める---------------
+3000 '---------------------- 僀儞儀乕僟偺堏摦 ---------------------------
+3010 '-------僀儞儀乕僟孮偺嵍塃偺抂偺嵗昗傪媮傔傞---------------
 3020 LEFT_X=INVADER_X[INVADER_EDGE_IDX[0]]:RIGHT_X=INVADER_X[INVADER_EDGE_IDX[1]]+INVADER_WIDTH[INVADER_EDGE_IDX[1]]
 3030 for I=2 to INVADER_Y_NUM*2-1 step 2
 3040    if LEFT_X> INVADER_X[INVADER_EDGE_IDX[I]] then LEFT_X=INVADER_X[INVADER_EDGE_IDX[I]]
 3050    if RIGHT_X< (INVADER_X[INVADER_EDGE_IDX[I+1]]+INVADER_WIDTH[INVADER_EDGE_IDX[I+1]]) then RIGHT_X=INVADER_X[INVADER_EDGE_IDX[I+1]]+INVADER_WIDTH[INVADER_EDGE_IDX[I+1]]
 3060 next
-3070 '---------------- 败瓢翁を滇める -----------------------
+3070 '---------------- 堏摦検傪媮傔傞 -----------------------
 3080 INVADER_THIS_TIME_DY=0:INVADER_THIS_TIME_DX=INVADER_DX
 3090 if INVADER_DX>0 then
 3095    if RIGHT_X=SCREEN_WIDTH then 
@@ -1833,12 +1833,12 @@
 3125    end if
 3130 end if
 3190 return
-4000 '--------------　极怠の山绩 --------------------
+4000 '--------------丂帺婡偺昞帵 --------------------
 4010 put TANK_X,TANK_Y,TANK_BLANK_FM,set
 4020 TANK_X=TANK_X+TANK_DX:TANK_DX=0
 4030 put TANK_X,TANK_Y,TANK_FM,or
 4090 return
-4100 '--------------　极怠の拎侯、极怠ˇ浓のミサイルの败瓢、极怠と浓ミサイルの咀仆冉年 --------------------
+4100 '--------------丂帺婡偺憖嶌丄帺婡丒揋偺儈僒僀儖偺堏摦丄帺婡偲揋儈僒僀儖偺徴撍敾掕 --------------------
 4105 if TANK_STS=EXIST then
 4110    DX=0:if keyL()=1 then DX=-1 else if keyR()=1 then DX=1
 4120    if TANK_X+TANK_DX+DX>=0 && TANK_X+TANK_DX+DX+TANK_WIDTH<SCREEN_WIDTH then TANK_DX=TANK_DX+DX
@@ -1848,21 +1848,21 @@
 4160        if MISSILE_Y>=0 then put MISSILE_X,MISSILE_Y,MISSILE_FM,set else put MISSILE_X,0,TANK_BLANK_FM,set:MISSILE_STS=ABSENT
 4170    end if
 4180 end if
-4280 gosubM INVADER_MISSILE_STS,IDX,EXIST,4300:'浓のミサイルの败瓢
+4280 gosubM INVADER_MISSILE_STS,IDX,EXIST,4300:'揋偺儈僒僀儖偺堏摦
 4290 return
-4300 '--------------- 浓ミサイルの败瓢 --------------------------
+4300 '--------------- 揋儈僒僀儖偺堏摦 --------------------------
 4310 INVADER_MISSILE_Y[IDX]=INVADER_MISSILE_Y[IDX]+1
 4330 if INVADER_MISSILE_Y[IDX]<SCREEN_HIGHT-MISSILE_HIGHT then put INVADER_MISSILE_X[IDX],INVADER_MISSILE_Y[IDX],INVADER_MISSILE_FM,set else put INVADER_MISSILE_X[IDX],SCREEN_HIGHT-MISSILE_HIGHT,INVADER_MISSILE_FM,set:INVADER_MISSILE_STS[IDX]=ABSENT
 4390 return
-4500 '--------------　极怠と浓ミサイルの咀仆冉年 --------------------
+4500 '--------------丂帺婡偲揋儈僒僀儖偺徴撍敾掕 --------------------
 4505 if TANK_STS=EXIST then
-4510    IDX=isColM(TANK_X,TANK_Y,TANK_WIDTH,TANK_HIGHT,INVADER_MISSILE_X,INVADER_MISSILE_Y,INVADER_MISSILE_WIDTH,INVADER_MISSILE_HIGHT,INVADER_MISSILE_STS,EXIST):'极怠と浓ミサイルの咀仆冉年
+4510    IDX=isColM(TANK_X,TANK_Y,TANK_WIDTH,TANK_HIGHT,INVADER_MISSILE_X,INVADER_MISSILE_Y,INVADER_MISSILE_WIDTH,INVADER_MISSILE_HIGHT,INVADER_MISSILE_STS,EXIST):'帺婡偲揋儈僒僀儖偺徴撍敾掕
 4520    if IDX<>INVADER_NUM then
 4530        TANK_STS=EXPLOSION
 4540        INVADER_MISSILE_STS[IDX]=ABSENT
 4550        sound 1,SOUND8:play 1
 4560    end if
-4580    IDX=isColM(TANK_X,TANK_Y,TANK_WIDTH,TANK_HIGHT,INVADER_X,INVADER_Y,INVADER_WIDTH,INVADER_HIGHT,INVADER_STS,EXIST):'极怠と浓の咀仆冉年
+4580    IDX=isColM(TANK_X,TANK_Y,TANK_WIDTH,TANK_HIGHT,INVADER_X,INVADER_Y,INVADER_WIDTH,INVADER_HIGHT,INVADER_STS,EXIST):'帺婡偲揋偺徴撍敾掕
 4585    'print format("T-I IDX:%D ",IDX)+format("X:%D ",TANK_X)+format("Y:%D ",TANK_Y)+format("W:%D ",TANK_WIDTH)+format("H:%D ",TANK_HIGHT)
 4590    if IDX<>INVADER_NUM then
 4600        TANK_STS=EXPLOSION
@@ -1870,31 +1870,31 @@
 4670    end if
 4680 end if
 4690 return
-5000 '--------------　シ〖ルドの山绩 ----------------
+5000 '--------------丂僔乕儖僪偺昞帵 ----------------
 5010 for I=0 to SHIELD_NUM-1
 5020    put SHIELD_X_GAP+I*(SHIELD_WIDTH+SHIELD_X_GAP*2),SHIELD_Y,SHIELD[I],or,F
 5030 next
 5050 return
-6000 '--------------　极怠ミサイルと浓ˇ浓ミサイルの咀仆冉年 ----------------
+6000 '--------------丂帺婡儈僒僀儖偲揋丒揋儈僒僀儖偺徴撍敾掕 ----------------
 6010 if MISSILE_STS=EXIST then
-6020    IDX=isColM(MISSILE_X,MISSILE_Y,MISSILE_WIDTH,MISSILE_HIGHT,INVADER_X,INVADER_Y,INVADER_WIDTH,INVADER_HIGHT,INVADER_STS,EXIST):'极怠ミサイルと浓の咀仆冉年
+6020    IDX=isColM(MISSILE_X,MISSILE_Y,MISSILE_WIDTH,MISSILE_HIGHT,INVADER_X,INVADER_Y,INVADER_WIDTH,INVADER_HIGHT,INVADER_STS,EXIST):'帺婡儈僒僀儖偲揋偺徴撍敾掕
 6030    if IDX<>INVADER_NUM then
-6035        ' インデックスがIDXのインベ〖ダにミサイルが碰たった
+6035        ' 僀儞僨僢僋僗偑IDX偺僀儞儀乕僟偵儈僒僀儖偑摉偨偭偨
 6040        put MISSILE_X,MISSILE_Y,MISSILE_BLANK_FM,set:MISSILE_STS=ABSENT
 6050        INVADER_STS[IDX]=EXPLOSION:sound 1,SOUND3:play 1:SCORE=SCORE+((INVADER_A_WIDTH-INVADER_WIDTH[IDX])/2+1)*10
 6055        put INVADER_X[IDX]+(INVADER_WIDTH[IDX]-EXPLOSION_WIDTH)/2,INVADER_Y[IDX],EXPLOSION_FM[0],set,T
 6060        EXIST_INVADER_NUM=EXIST_INVADER_NUM-1:if EXIST_INVADER_NUM=0 then STAGE_CLEAR=1:sound 1,SOUND4:play 1
-6065        ' インベ〖ダ凡の焊宝の眉をインデックスを构糠
+6065        ' 僀儞儀乕僟孮偺嵍塃偺抂傪僀儞僨僢僋僗傪峏怴
 6070        for I=0 to INVADER_Y_NUM*2-1 step 2
 6080            if INVADER_EDGE_IDX[I]= IDX then
-6085                B_FOUND=0:'焊眉が斧つかったら1
+6085                B_FOUND=0:'嵍抂偑尒偮偐偭偨傜1
 6090                for J=IDX to INVADER_EDGE_IDX[I+1]
 6100                    if INVADER_STS[J]=EXIST then B_FOUND=1:INVADER_EDGE_IDX[I]=J:exit for
 6110                next
 6120                if B_FOUND=0 then INVADER_EDGE_IDX[I]=INVADER_EDGE_IDX[I+1]
 6130                exit for
 6140            else if INVADER_EDGE_IDX[I+1]= IDX then
-6150                B_FOUND=0:'宝眉が斧つかったら1
+6150                B_FOUND=0:'塃抂偑尒偮偐偭偨傜1
 6160                for J=IDX to INVADER_EDGE_IDX[I] step -1
 6170                    if INVADER_STS[J]=EXIST then B_FOUND=1:INVADER_EDGE_IDX[I+1]=J: exit for
 6180                next
@@ -1903,7 +1903,7 @@
 6210            end if
 6220        next                
 6230    end if
-6300    IDX=isColM(MISSILE_X,MISSILE_Y,MISSILE_WIDTH,MISSILE_HIGHT,INVADER_MISSILE_X,INVADER_MISSILE_Y,INVADER_MISSILE_WIDTH,INVADER_MISSILE_HIGHT,INVADER_MISSILE_STS,EXIST):'极怠ミサイルと浓ミサイルの咀仆冉年
+6300    IDX=isColM(MISSILE_X,MISSILE_Y,MISSILE_WIDTH,MISSILE_HIGHT,INVADER_MISSILE_X,INVADER_MISSILE_Y,INVADER_MISSILE_WIDTH,INVADER_MISSILE_HIGHT,INVADER_MISSILE_STS,EXIST):'帺婡儈僒僀儖偲揋儈僒僀儖偺徴撍敾掕
 6310    if IDX<>INVADER_NUM then
 6320        put MISSILE_X,MISSILE_Y,MISSILE_BLANK_FM,set:MISSILE_STS=ABSENT
 6330        INVADER_MISSILE_STS[IDX]=ABSENT
@@ -1911,21 +1911,21 @@
 6350    end if
 6480 end if
 6490 return
-6500 '--------------　极怠ミサイルˇ浓ミサイルˇ浓とシ〖ルドの咀仆冉年 ----------------
+6500 '--------------丂帺婡儈僒僀儖丒揋儈僒僀儖丒揋偲僔乕儖僪偺徴撍敾掕 ----------------
 6510 for SHIELD_IDX=0 to SHIELD_NUM-1
 6511    XS=SHIELD_X_GAP+SHIELD_IDX*(SHIELD_WIDTH+SHIELD_X_GAP*2)
 6512    if MISSILE_STS=EXIST then
-6520        if isCol(MISSILE_X,MISSILE_Y,MISSILE_WIDTH,MISSILE_HIGHT,XS,SHIELD_Y,SHIELD_WIDTH,SHIELD_HIGHT)=1 then : ' 极怠ミサイルとシ〖ルドの咀仆冉年
+6520        if isCol(MISSILE_X,MISSILE_Y,MISSILE_WIDTH,MISSILE_HIGHT,XS,SHIELD_Y,SHIELD_WIDTH,SHIELD_HIGHT)=1 then : ' 帺婡儈僒僀儖偲僔乕儖僪偺徴撍敾掕
 6530            X=MISSILE_X-XS:Y=MISSILE_Y-SHIELD_Y:W=MISSILE_WIDTH:H=MISSILE_HIGHT:SHIELD_HIT=0:gosub 6600
 6540            if SHIELD_HIT=1 then MISSILE_STS=ABSENT
 6550        end if
 6560    end if
-6570    gosubM INVADER_MISSILE_STS,IDX,EXIST,6700:'浓ミサイルとシ〖ルドの咀仆冉年
-6575    gosubM INVADER_STS,IDX,EXIST,6800:'浓とシ〖ルドの咀仆冉年
+6570    gosubM INVADER_MISSILE_STS,IDX,EXIST,6700:'揋儈僒僀儖偲僔乕儖僪偺徴撍敾掕
+6575    gosubM INVADER_STS,IDX,EXIST,6800:'揋偲僔乕儖僪偺徴撍敾掕
 6580 next
 6590 return
-6600 '-------------- シ〖ルド柒婶の冉年と山绩 -------------
-6610 ' X,Y:シ〖ルドフレ〖ムワ〖ク柒の郝筛
+6600 '-------------- 僔乕儖僪撪晹偺敾掕偲昞帵 -------------
+6610 ' X,Y:僔乕儖僪僼儗乕儉儚乕僋撪偺嵗昗
 6620 for I=0 to W-1
 6630    for J=0 to H-1
 6640        if point(SHIELD[SHIELD_IDX],X+I,Y+J)=1 then
@@ -1935,18 +1935,18 @@
 6680    next
 6690 next
 6695 return
-6700 '-------------- 浓ミサイルとシ〖ルドの咀仆冉年 -------------
+6700 '-------------- 揋儈僒僀儖偲僔乕儖僪偺徴撍敾掕 -------------
 6710 if isCol(INVADER_MISSILE_X[IDX],INVADER_MISSILE_Y[IDX],INVADER_MISSILE_WIDTH[IDX],INVADER_MISSILE_HIGHT[IDX],XS,SHIELD_Y,SHIELD_WIDTH,SHIELD_HIGHT)=1 then
 6720    X=INVADER_MISSILE_X[IDX]-XS:Y=INVADER_MISSILE_Y[IDX]-SHIELD_Y:W=INVADER_MISSILE_WIDTH[IDX]:H=INVADER_MISSILE_HIGHT[IDX]:SHIELD_HIT=0:gosub 6600 
 6730    if SHIELD_HIT=1 then INVADER_MISSILE_STS[IDX]=ABSENT
 6740 end if
 6750 return
-6800 '-------------- 浓とシ〖ルドの咀仆冉年 -------------
+6800 '-------------- 揋偲僔乕儖僪偺徴撍敾掕 -------------
 6810 if isCol(INVADER_X[IDX],INVADER_Y[IDX],INVADER_WIDTH[IDX],INVADER_HIGHT[IDX],XS,SHIELD_Y,SHIELD_WIDTH,SHIELD_HIGHT)=1 then
 6820    put INVADER_X[IDX]-XS,INVADER_Y[IDX]-SHIELD_Y,INVADER_FM[INVADER_A_WIDTH-INVADER_WIDTH[IDX]+INVADER_ANIME_IDX],not,F,SHIELD[SHIELD_IDX]
 6840 end if
 6850 return
-7000 '------------ 曲券アニメ〖ション --------------------
+7000 '------------ 敋敪傾僯儊乕僔儑儞 --------------------
 7010 for I=0 to INVADER_NUM-1
 7050    if EXPLOSION<=INVADER_STS[I] && INVADER_STS[I]<=EXPLOSION+EXPLOSION_LENGTH then
 7060        INVADER_STS[I]=INVADER_STS[I]+1
@@ -1961,7 +1961,7 @@
 7180    end if
 7190 end if
 7290 return
-8000 '-------------- ステ〖ジクリア山绩 ------------------
+8000 '-------------- 僗僥乕僕僋儕傾昞帵 ------------------
 8020 cls
 8030 COMMENT=format("NEXT STAGE:%-2D",STAGE)
 8035 COMMENT1=format("SCORE:%-5D",SCORE)
@@ -1977,7 +1977,7 @@
 8110 putStr COMMENT2_X,COMMENT2_Y,COMMENT2,1
 8120 sleep 3000
 8190 return
-8200 '-------------- ゲ〖ムオ〖バ〖山绩 ------------------
+8200 '-------------- 僎乕儉僆乕僶乕昞帵 ------------------
 8220 cls
 8230 COMMENT="GAME OVER"
 8235 COMMENT1=format("SCORE:%-5D",SCORE)
@@ -1992,10 +1992,10 @@
 8300 COMMENT2_Y=SCREEN_HIGHT-FONT_HIGHT*2
 8310 putStr COMMENT2_X,COMMENT2_Y,COMMENT2,1
 8320 sleep 3000
-8330 gosub 62000:'ハイスコアの呵你ラインを艰评
-8340 if MIN_HIGH_SCORE<SCORE then gosub 62500:'ハイスコアを山绩し、瘦赂する
+8330 gosub 62000:'僴僀僗僐傾偺嵟掅儔僀儞傪庢摼
+8340 if MIN_HIGH_SCORE<SCORE then gosub 62500:'僴僀僗僐傾傪昞帵偟丄曐懚偡傞
 8390 return
-50000 '--------------ビットマップの年盗 ----------------
+50000 '--------------價僢僩儅僢僾偺掕媊 ----------------
 50001 INVADER_PAT_NUM=2:dim INVADER_FM[INVADER_Y_NUM*INVADER_PAT_NUM]
 50005 INVADER_A_WIDTH=12:INVADER_A_HIGHT=8
 50010 INVADER_FM[0]=createFM(INVADER_A_WIDTH,INVADER_A_HIGHT)
@@ -2054,14 +2054,14 @@
 50570 setBM INVADER_FM[5],5,"00100100"
 50580 setBM INVADER_FM[5],6,"01011010"
 50590 setBM INVADER_FM[5],7,"10100101"
-50600 '-------- タンク -------------
+50600 '-------- 僞儞僋 -------------
 50610 TANK_WIDTH=10:TANK_HIGHT=5:TANK_FM=createFM(TANK_WIDTH,TANK_HIGHT)
 50620 setBM TANK_FM,0,"0000110000"
 50640 setBM TANK_FM,1,"0011111100"
 50650 setBM TANK_FM,2,"0011111100"
 50660 setBM TANK_FM,3,"1111111111"
 50670 setBM TANK_FM,4,"1111111111"
-50700 '-------- シ〖ルド -------------
+50700 '-------- 僔乕儖僪 -------------
 50710 SHIELD_WIDTH=20:SHIELD_HIGHT=6:SHIELD_FM=createFM(SHIELD_WIDTH,SHIELD_HIGHT)
 50720 setBM SHIELD_FM,0,"00111111111111111100"
 50740 setBM SHIELD_FM,1,"01111111111111111110"
@@ -2069,14 +2069,14 @@
 50760 setBM SHIELD_FM,3,"11111111111111111111"
 50770 setBM SHIELD_FM,4,"11111111111111111111"
 50780 setBM SHIELD_FM,5,"11111111111111111111"
-50800 '-------- タンク -------------
+50800 '-------- 僞儞僋 -------------
 50810 TANK_BLANK_FM=createFM(TANK_WIDTH,TANK_HIGHT)
 50820 setBM TANK_BLANK_FM,0,"00000000"
 50840 setBM TANK_BLANK_FM,1,"00000000"
 50850 setBM TANK_BLANK_FM,2,"00000000"
 50860 setBM TANK_BLANK_FM,3,"00000000"
 50870 setBM TANK_BLANK_FM,4,"00000000"
-50900 '-------- ミサイル -------------
+50900 '-------- 儈僒僀儖 -------------
 50910 MISSILE_WIDTH=2:MISSILE_HIGHT=3:MISSILE_FM=createFM(MISSILE_WIDTH,MISSILE_HIGHT)
 50920 setBM MISSILE_FM,0,"11"
 50940 setBM MISSILE_FM,1,"11"
@@ -2085,7 +2085,7 @@
 50970 setBM MISSILE_BLANK_FM,0,"00"
 50980 setBM MISSILE_BLANK_FM,1,"00"
 50990 setBM MISSILE_BLANK_FM,2,"00"
-51000 '-------- 曲券 -------------
+51000 '-------- 敋敪 -------------
 51003 EXPLOSION_PAT_NUM=2:dim EXPLOSION_FM[EXPLOSION_PAT_NUM]
 51005 EXPLOSION_WIDTH=8:EXPLOSION_HIGHT=8
 51010 EXPLOSION_FM[0]=createFM(EXPLOSION_WIDTH,EXPLOSION_HIGHT)
@@ -2106,7 +2106,7 @@
 51170 setBM EXPLOSION_FM[1],5,"00101100"
 51180 setBM EXPLOSION_FM[1],6,"01000010"
 51190 setBM EXPLOSION_FM[1],7,"00000000"
-51200 '-------- ミサイル曲券 -------------
+51200 '-------- 儈僒僀儖敋敪 -------------
 51210 MISSILE_EXPLOSION_WIDTH=4:MISSILE_EXPLOSION_HIGHT=6:MISSILE_EXPLOSION_FM=createFM(MISSILE_EXPLOSION_WIDTH,MISSILE_EXPLOSION_HIGHT)
 51220 setBM MISSILE_EXPLOSION_FM,0,"0110"
 51240 setBM MISSILE_EXPLOSION_FM,1,"1001"
@@ -2133,15 +2133,15 @@
 59130 INVADER_SOUND[2]="L4A2L64."
 59140 INVADER_SOUND[3]="L4G2L64."
 59190 return
-60000 '============= システム簇息サブル〖チン ===============================
-61000 '-------- EEPROMにハイスコアテ〖ブルを瘦赂する ------------
+60000 '============= 僔僗僥儉娭楢僒僽儖乕僠儞 ===============================
+61000 '-------- EEPROM偵僴僀僗僐傾僥乕僽儖傪曐懚偡傞 ------------
 61010 ADDR=0
 61020 write ADDR,GAME_TITLE:ADDR=ADDR+16
 61030 for I=0 to HIGH_SCORE_NUM-1
 61040   write ADDR,format("%D",HIGH_SCORE[I]):ADDR=ADDR+16
 61050 next
 61060 return
-61100 '-------- EEPROMからハイスコアテ〖ブルを粕み叫す ------------
+61100 '-------- EEPROM偐傜僴僀僗僐傾僥乕僽儖傪撉傒弌偡 ------------
 61110 ADDR=0
 61120 if GAME_TITLE=read(ADDR,strlen(GAME_TITLE)) then
 61125   ADDR=ADDR+16
@@ -2150,19 +2150,19 @@
 61150   next
 61160 end if
 61170 return
-62000 '---------ハイスコアテ〖ブルの面の呵络と呵井を滇める-------------
+62000 '---------僴僀僗僐傾僥乕僽儖偺拞偺嵟戝偲嵟彫傪媮傔傞-------------
 62010 MAX_HIGH_SCORE=0:MIN_HIGH_SCORE=100000
 62020 for I=0 to HIGH_SCORE_NUM-1
 62030   if HIGH_SCORE[I]>MAX_HIGH_SCORE then MAX_HIGH_SCORE=HIGH_SCORE[I]
 62035   if MIN_HIGH_SCORE>HIGH_SCORE[I] then MIN_HIGH_SCORE=HIGH_SCORE[I]
 62040 next
 62050 return
-62100 '--------ハイスコアテ〖ブルを介袋步する----------
+62100 '--------僴僀僗僐傾僥乕僽儖傪弶婜壔偡傞----------
 62110 for I=0 to HIGH_SCORE_NUM-1
 62120   HIGH_SCORE[I]=0
 62130 next
 62140 return
-62500 '--------ハイスコアテ〖ブルを构糠する----------
+62500 '--------僴僀僗僐傾僥乕僽儖傪峏怴偡傞----------
 62510 for I=0 to HIGH_SCORE_NUM-1
 62520   if HIGH_SCORE[I]<SCORE then exit for
 62530 next
@@ -2184,8 +2184,8 @@
 62700 '----- SOUND -------
 62820 sleep 3000
 62850 return
-63000 '================== 略怠茶烫 ======================
-63010 '----- スクリ〖ンの郝筛介袋步 -------
+63000 '================== 懸婡夋柺 ======================
+63010 '----- 僗僋儕乕儞偺嵗昗弶婜壔 -------
 63020 cls
 63030 COMMENT="PUSH B KEY"
 63040 TITLE_X=(SCREEN_WIDTH-strlen(GAME_TITLE)*FONT_WIDTH)/2
@@ -2199,12 +2199,12 @@
 63092 put DEMO_INVADER_X,DEMO_INVADER_Y,INVADER_FM[0]
 63093 put DEMO_INVADER_X+INVADER_A_WIDTH+10,DEMO_INVADER_Y,INVADER_FM[2]
 63094 put DEMO_INVADER_X+INVADER_A_WIDTH+INVADER_B_WIDTH+20,DEMO_INVADER_Y,INVADER_FM[4]
-63100 '--------------- KeyB略ち ---------------
+63100 '--------------- KeyB懸偪 ---------------
 63105 INVADER_ANIME_IDX=0:INVADER_SOUND_IDX=0:sound 0,TEMPO0:play 0
 63110 KEY_B_PUSHED=0
 63120 while -1
 63130   for I=0 to 10
-63135     if keyA()=1 && keyB()=1 then KEY_B_PUSHED=1:B_END=1:exit for:'AとBを尉数病したらプログラム姜位
+63135     if keyA()=1 && keyB()=1 then KEY_B_PUSHED=1:B_END=1:exit for:'A偲B傪椉曽墴偟偨傜僾儘僌儔儉廔椆
 63140     if keyB()=1 then KEY_B_PUSHED=1:exit for
 63150     sleep 50
 63160   next
@@ -2220,7 +2220,7 @@
 63190   end if
 63195 end while
 63196 return
-63500 '------- キ〖が违されたことのスキャン-------------
+63500 '------- 僉乕偑棧偝傟偨偙偲偺僗僉儍儞-------------
 63550 if keyA()=0 then A=0
 63580 return
 
@@ -2228,79 +2228,79 @@
 
 @Tetris.bas
 10 GAME_TITLE="TETRIS":MINO_NUM=7:BLOCK_NUM_PER_MINO=4
-20 dim MX[MINO_NUM*BLOCK_NUM_PER_MINO],MY[MINO_NUM*BLOCK_NUM_PER_MINO]:' ミノの妨觉
-30 dim CURRENT_MX[BLOCK_NUM_PER_MINO],CURRENT_MY[BLOCK_NUM_PER_MINO]:' 山绩面のミノ
-40 dim TEMP_MX[BLOCK_NUM_PER_MINO],TEMP_MY[BLOCK_NUM_PER_MINO]:' ミノ搀啪脱ワ〖ク
-50 CX=5:CY=5:'ミノを山绩する郝筛
-60 BLOCK_WIDTH=3:'１ブロックの升と光さ
-70 SCORE=0:LEVEL=1:'スコアとレベル
-80 GAPX=2:GAPY=2:'噬の升
-90 X_BLOCK_NUM=10:Y_BLOCK_NUM=20:dim GAME_BOARD[Y_BLOCK_NUM]:EMPTY_ROW="0000000000":FULL_ROW="1111111111":'ゲ〖ム茸の弓さ
-100 FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'フォントの升と光さ
-110 ANIME_X_GAP=1:ANIME_X=GAPX*2+BLOCK_WIDTH*X_BLOCK_NUM+ANIME_X_GAP:'アニメ〖ションエリア簇息の年盗
-120 ANIME_Y_GAP=1:ANIME_Y=FONT_HIGHT*2+ANIME_Y_GAP:'アニメ〖ションエリア簇息の年盗
-130 ANIME_WIDTH=SCREEN_WIDTH-ANIME_X:ANIME_HIGHT=SCREEN_HIGHT-ANIME_Y:ANIME_F_WIDTH=160:ANIME_F_HIGHT=160:'アニメ〖ションエリア簇息の年盗
-150 gosub 10000:gosub 10200:gosub 10400:'アニメ〖ションエリア簇息の年盗
-160 ANIME_FM_NUM=3:dim ANIME_FM[ANIME_FM_NUM]:ANIME_FM[0]=girl01:ANIME_FM[1]=girl02:ANIME_FM[2]=girl03:'アニメ〖ションエリア簇息の年盗
-170 gosub 12000:'不の年盗
-230 ' 死(I) MINO_NO=0
+20 dim MX[MINO_NUM*BLOCK_NUM_PER_MINO],MY[MINO_NUM*BLOCK_NUM_PER_MINO]:' 儈僲偺宍忬
+30 dim CURRENT_MX[BLOCK_NUM_PER_MINO],CURRENT_MY[BLOCK_NUM_PER_MINO]:' 昞帵拞偺儈僲
+40 dim TEMP_MX[BLOCK_NUM_PER_MINO],TEMP_MY[BLOCK_NUM_PER_MINO]:' 儈僲夞揮梡儚乕僋
+50 CX=5:CY=5:'儈僲傪昞帵偡傞嵗昗
+60 BLOCK_WIDTH=3:'侾僽儘僢僋偺暆偲崅偝
+70 SCORE=0:LEVEL=1:'僗僐傾偲儗儀儖
+80 GAPX=2:GAPY=2:'暻偺暆
+90 X_BLOCK_NUM=10:Y_BLOCK_NUM=20:dim GAME_BOARD[Y_BLOCK_NUM]:EMPTY_ROW="0000000000":FULL_ROW="1111111111":'僎乕儉斦偺峀偝
+100 FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'僼僅儞僩偺暆偲崅偝
+110 ANIME_X_GAP=1:ANIME_X=GAPX*2+BLOCK_WIDTH*X_BLOCK_NUM+ANIME_X_GAP:'傾僯儊乕僔儑儞僄儕傾娭楢偺掕媊
+120 ANIME_Y_GAP=1:ANIME_Y=FONT_HIGHT*2+ANIME_Y_GAP:'傾僯儊乕僔儑儞僄儕傾娭楢偺掕媊
+130 ANIME_WIDTH=SCREEN_WIDTH-ANIME_X:ANIME_HIGHT=SCREEN_HIGHT-ANIME_Y:ANIME_F_WIDTH=160:ANIME_F_HIGHT=160:'傾僯儊乕僔儑儞僄儕傾娭楢偺掕媊
+150 gosub 10000:gosub 10200:gosub 10400:'傾僯儊乕僔儑儞僄儕傾娭楢偺掕媊
+160 ANIME_FM_NUM=3:dim ANIME_FM[ANIME_FM_NUM]:ANIME_FM[0]=girl01:ANIME_FM[1]=girl02:ANIME_FM[2]=girl03:'傾僯儊乕僔儑儞僄儕傾娭楢偺掕媊
+170 gosub 12000:'壒偺掕媊
+230 ' 朹(I) MINO_NO=0
 240 MX[0]=-1:MX[1]=0:MX[2]=1:MX[3]=2
 250 MY[0]=0:MY[1]=0:MY[2]=0:MY[3]=0
-260 ' 煌逞(O) MINO_NO=1
+260 ' 巐妏(O) MINO_NO=1
 270 MX[4]=0:MX[5]=1:MX[6]=1:MX[7]=0
 280 MY[4]=0:MY[5]=0:MY[6]=1:MY[7]=1
-290 ' T机(T) MINO_NO=2
+290 ' T帤(T) MINO_NO=2
 300 MX[8]=-1:MX[9]=0:MX[10]=1:MX[11]=0
 310 MY[8]=0:MY[9]=0:MY[10]=0:MY[11]=1
-320 ' S机(S) MINO_NO=3
+320 ' S帤(S) MINO_NO=3
 330 MX[12]=-1:MX[13]=0:MX[14]=0:MX[15]=1
 340 MY[12]=0:MY[13]=0:MY[14]=1:MY[15]=1
-350 ' Z机(Z) MINO_NO=4
+350 ' Z帤(Z) MINO_NO=4
 360 MX[16]=-1:MX[17]=0:MX[18]=0:MX[19]=1
 370 MY[16]=1:MY[17]=0:MY[18]=1:MY[19]=0
-380 ' L机(L) MINO_NO=5
+380 ' L帤(L) MINO_NO=5
 390 MX[20]=0:MX[21]=0:MX[22]=0:MX[23]=1
 400 MY[20]=-1:MY[21]=0:MY[22]=1:MY[23]=1
-410 ' J机(J) MINO_NO=6
+410 ' J帤(J) MINO_NO=6
 420 MX[24]=0:MX[25]=0:MX[26]=0:MX[27]=-1
 430 MY[24]=-1:MY[25]=0:MY[26]=1:MY[27]=1
-460 gosub 9200:'ブロックのフレ〖ムメモリ〖の年盗
+460 gosub 9200:'僽儘僢僋偺僼儗乕儉儊儌儕乕偺掕媊
 470 HIGH_SCORE_NUM=SCREEN_HIGHT/FONT_HIGHT-3
 480 dim HIGH_SCORE[HIGH_SCORE_NUM]:gosub 62100
-490 if (keyA()<>1)||(keyB()<>1) then gosub 61100 : 'ハイスコアを粕み叫す
-1000 '--------　メインル〖ティン --------------
-1010 B_END=0:'プログラム姜位∈0:费鲁 1:姜位∷
+490 if (keyA()<>1)||(keyB()<>1) then gosub 61100 : '僴僀僗僐傾傪撉傒弌偡
+1000 '--------丂儊僀儞儖乕僥傿儞 --------------
+1010 B_END=0:'僾儘僌儔儉廔椆乮0:宲懕 1:廔椆乯
 1100 while B_END=0
-1110    gosub 9600: '略ち茶烫
+1110    gosub 9600: '懸偪夋柺
 1115    if B_END=1 then exit while
-1120    gosub 9800:gosub 9400: '介袋山绩(噬山绩、スコア山绩∷
-1130    GMAE_OVER=0: 'ゲ〖ムオ〖バ〖(1:姜位 0:费鲁∷
-1140    B_MINO_EXIST=0:'ミノ铜痰(0:ミノがなし 1:ミノあり∷
-1150    FALL_COUNTER=0:WAIT_FOR_FALL=3:'皖布カウンタ介袋步
-1160    gosub 7300:'ゲ〖ム茸介袋步
-1170    D=0:L=0:R=0:'キ〖恃眶介袋步
-1180    MUSIC_NO=0:'妒戎规の肋年
-1190    LEVEL_COUNTER=0:'久殿眶を裁换する。办年笆惧委まるとレベルが惧がる
-1195    SLEEP_TIME=50:'略ち箕粗
+1120    gosub 9800:gosub 9400: '弶婜昞帵(暻昞帵丄僗僐傾昞帵乯
+1130    GMAE_OVER=0: '僎乕儉僆乕僶乕(1:廔椆 0:宲懕乯
+1140    B_MINO_EXIST=0:'儈僲桳柍(0:儈僲偑側偟 1:儈僲偁傝乯
+1150    FALL_COUNTER=0:WAIT_FOR_FALL=3:'棊壓僇僂儞僞弶婜壔
+1160    gosub 7300:'僎乕儉斦弶婜壔
+1170    D=0:L=0:R=0:'僉乕曄悢弶婜壔
+1180    MUSIC_NO=0:'嬋斣崋偺愝掕
+1190    LEVEL_COUNTER=0:'徚嫀悢傪壛嶼偡傞丅堦掕埲忋棴傑傞偲儗儀儖偑忋偑傞
+1195    SLEEP_TIME=50:'懸偪帪娫
 1200    while GMAE_OVER=0
-1210        gosub 7500:gosub 9400:'茸山绩
-1220        if B_MINO_EXIST=0 then gosub 7000:'ミノがない箕、糠しいミノを疯める
-1225        if GMAE_OVER=1 then gosub 6000:exit while:'ゲ〖ムオ〖バ〖
-1230        gosub 9000:gosub 11020:update: 'ミノを山绩
-1240        FALL_COUNTER=FALL_COUNTER+1:gosub 5300:'キ〖が办枚违されたことのスキャン
+1210        gosub 7500:gosub 9400:'斦昞帵
+1220        if B_MINO_EXIST=0 then gosub 7000:'儈僲偑側偄帪丄怴偟偄儈僲傪寛傔傞
+1225        if GMAE_OVER=1 then gosub 6000:exit while:'僎乕儉僆乕僶乕
+1230        gosub 9000:gosub 11020:update: '儈僲傪昞帵
+1240        FALL_COUNTER=FALL_COUNTER+1:gosub 5300:'僉乕偑堦扷棧偝傟偨偙偲偺僗僉儍儞
 1250        if FALL_COUNTER>WAIT_FOR_FALL then 
-1260            NEXT_CX=CX:NEXT_CY=CY+1:gosub 7700:gosub 7600:'咀仆冉年
-1270            if B_COLLISION=0 then CY=CY+1:FALL_COUNTER=0 else B_MINO_EXIST=0:gosub 7400: ' 咀仆する眷圭、ミノを盖年する。咀仆しない眷圭、ミノを皖布させる           
+1260            NEXT_CX=CX:NEXT_CY=CY+1:gosub 7700:gosub 7600:'徴撍敾掕
+1270            if B_COLLISION=0 then CY=CY+1:FALL_COUNTER=0 else B_MINO_EXIST=0:gosub 7400: ' 徴撍偡傞応崌丄儈僲傪屌掕偡傞丅徴撍偟側偄応崌丄儈僲傪棊壓偝偣傞           
 1290        end if
-1300        gosub 7100:'皖布冉年
-1320        if sound0status()=0 then sound 0,MUSIC[MUSIC_NO]:play 0 :'妒が姜わったら、浩刨、妒の遍琳を倡幌
-1330        gosub 5000:'キ〖拎侯
-1340        gosub 4000:'ミノ久殿
-1400        sleep SLEEP_TIME:gosub 5300:'キ〖が办枚违されたことのスキャン
+1300        gosub 7100:'棊壓敾掕
+1320        if sound0status()=0 then sound 0,MUSIC[MUSIC_NO]:play 0 :'嬋偑廔傢偭偨傜丄嵞搙丄嬋偺墘憈傪奐巒
+1330        gosub 5000:'僉乕憖嶌
+1340        gosub 4000:'儈僲徚嫀
+1400        sleep SLEEP_TIME:gosub 5300:'僉乕偑堦扷棧偝傟偨偙偲偺僗僉儍儞
 1410    end while
 1420 end while
-1500 sound 0,SOUND7:play 0:end:'不を久して姜位
-4000 '----------- ミノ久殿 ----------------
+1500 sound 0,SOUND7:play 0:end:'壒傪徚偟偰廔椆
+4000 '----------- 儈僲徚嫀 ----------------
 4010 ERASE_NUM=0:I=Y_BLOCK_NUM-1
 4100 while -1
 4110    if GAME_BOARD[I]=FULL_ROW then
@@ -2327,25 +2327,25 @@
 4300    end if
 4310 end if
 4400 return
-5000 '----------- キ〖拎侯 ----------------
+5000 '----------- 僉乕憖嶌 ----------------
 5010 DCX=0:ROTATE=0
 5100 if L=0 && keyL()=1 then DCX=-1:L=1
 5110 if R=0 && keyR()=1 then DCX=1:R=1
 5120 if D=0 && keyD()=1 then ROTATE=1:D=1
-5130 NEXT_CX=CX+DCX:NEXT_CY=CY:gosub 7700:gosub 7600:'咀仆冉年
+5130 NEXT_CX=CX+DCX:NEXT_CY=CY:gosub 7700:gosub 7600:'徴撍敾掕
 5140 if B_COLLISION=0 then CX=NEXT_CX
 5150 if ROTATE=1 then
-5160    gosub 9300:'簿に搀啪
-5170    NEXT_CX=CX:NEXT_CY=CY:gosub 7600:'咀仆冉年
-5180    if B_COLLISION=0 then sound 1,SOUND1:play 1:gosub 9330:'搀啪
+5160    gosub 9300:'壖偵夞揮
+5170    NEXT_CX=CX:NEXT_CY=CY:gosub 7600:'徴撍敾掕
+5180    if B_COLLISION=0 then sound 1,SOUND1:play 1:gosub 9330:'夞揮
 5190 end if
 5200 return
-5300 '------- キ〖スキャン-------------
+5300 '------- 僉乕僗僉儍儞-------------
 5310 if keyL()=0 then L=0
 5320 if keyR()=0 then R=0
 5330 if keyD()=0 then D=0
 5340 return
-6000 '---------- ゲ〖ムオ〖バ〖 ------------
+6000 '---------- 僎乕儉僆乕僶乕 ------------
 6010 sound 0,SOUND7:play 0:cls
 6012 gosub 62000
 6013 if MIN_HIGH_SCORE<SCORE then
@@ -2359,26 +2359,26 @@
 6060    sleep 1500
 6065 end if
 6070 return
-7000 '---------- 糠しいミノの疯年 ---------------
-7010 MINO_NO=(rand()*MINO_NUM-1)/255:'ミノ戎规疯年
-7020 CX=X_BLOCK_NUM/2:CY=2:'ミノ叫附郝筛の肋年
-7030 C_ROTATE=0:'ミノの逞刨を0‰に肋年∈宝搀りに90‰:1 180‰:2 270‰:3)
+7000 '---------- 怴偟偄儈僲偺寛掕 ---------------
+7010 MINO_NO=(rand()*MINO_NUM-1)/255:'儈僲斣崋寛掕
+7020 CX=X_BLOCK_NUM/2:CY=2:'儈僲弌尰嵗昗偺愝掕
+7030 C_ROTATE=0:'儈僲偺妏搙傪0亱偵愝掕乮塃夞傝偵90亱:1 180亱:2 270亱:3)
 7040 gosub 9100:B_MINO_EXIST=1
-7050 NEXT_CX=CX:NEXT_CY=CY:gosub 7700:gosub 7600:'咀仆冉年
-7060 if B_COLLISION<>0 then GMAE_OVER=1:'ミノの叫附箕爬で咀仆したらゲ〖ムオ〖バ〖
+7050 NEXT_CX=CX:NEXT_CY=CY:gosub 7700:gosub 7600:'徴撍敾掕
+7060 if B_COLLISION<>0 then GMAE_OVER=1:'儈僲偺弌尰帪揰偱徴撍偟偨傜僎乕儉僆乕僶乕
 7090 return
-7100 '-------------- 皖布冉年 ----------------
+7100 '-------------- 棊壓敾掕 ----------------
 7110 for I=0 to BLOCK_NUM_PER_MINO-1
 7120    BX=CX+CURRENT_MX[I]:BY=CY+CURRENT_MY[I]
 7130    if BY=Y_BLOCK_NUM-1 then B_MINO_EXIST=0:gosub 7400:exit for
 7250 next
 7290 return
-7300 '-------------- ゲ〖ム茸介袋步 --------------
+7300 '-------------- 僎乕儉斦弶婜壔 --------------
 7310 for I=0 to Y_BLOCK_NUM-1
 7320    GAME_BOARD[I]=EMPTY_ROW
 7330 next
 7350 return
-7400 '-------------- 皖布ミノをゲ〖ム茸に盖年 -----------
+7400 '-------------- 棊壓儈僲傪僎乕儉斦偵屌掕 -----------
 7410 for J=0 to BLOCK_NUM_PER_MINO-1
 7420    BX=CX+CURRENT_MX[J]:BY=CY+CURRENT_MY[J]
 7440    GAME_BOARD[BY]=mid(GAME_BOARD[BY],0,BX)+"1"+mid(GAME_BOARD[BY],BX+1,X_BLOCK_NUM)
@@ -2390,7 +2390,7 @@
 7470    if MUSIC_NO<>TEMP_MUSIC_NO then MUSIC_NO=TEMP_MUSIC_NO:sound 0,MUSIC[MUSIC_NO]:play 0
 7480 next
 7490 return
-7500 '------------ ゲ〖ム茸山绩 ------------------
+7500 '------------ 僎乕儉斦昞帵 ------------------
 7510 fill GAPX+1,GAPY+1,X_BLOCK_NUM*BLOCK_WIDTH,Y_BLOCK_NUM*BLOCK_WIDTH,0,set,F
 7520 for I=0 to Y_BLOCK_NUM-1
 7530    if GAME_BOARD[I]<>EMPTY_ROW then
@@ -2400,9 +2400,9 @@
 7565    end if
 7570 next
 7580 return
-7600 '---------------咀仆冉年 ---------------
-7605 ' NEXT_CX,NEXT_CY,TEMP_MX[],TEMP_MY[]にブロックが败瓢した箕に咀仆するかを冉年する
-7606 ' ブロックと咀仆¨B_COLLISION=1,噬に咀仆¨B_COLLISION=2
+7600 '---------------徴撍敾掕 ---------------
+7605 ' NEXT_CX,NEXT_CY,TEMP_MX[],TEMP_MY[]偵僽儘僢僋偑堏摦偟偨帪偵徴撍偡傞偐傪敾掕偡傞
+7606 ' 僽儘僢僋偲徴撍丗B_COLLISION=1,暻偵徴撍丗B_COLLISION=2
 7610 B_COLLISION=0
 7620 for I=0 to BLOCK_NUM_PER_MINO-1
 7630    BX=NEXT_CX+TEMP_MX[I]:BY=NEXT_CY+TEMP_MY[I]
@@ -2411,47 +2411,47 @@
 7670    if mid(GAME_BOARD[BY],BX,BX+1)="1" then B_COLLISION=1: exit for
 7680 next
 7690 return
-7700 '----- 附哼のミノ陵滦郝筛を簿恃眶に呈羌 ----------
+7700 '----- 尰嵼偺儈僲憡懳嵗昗傪壖曄悢偵奿擺 ----------
 7710 for I=0 to BLOCK_NUM_PER_MINO-1
 7720   TEMP_MX[I]=CURRENT_MX[I]:TEMP_MY[I]=CURRENT_MY[I]
 7730 next
 7740 return
-9000 '--------- CX,CYに附哼のミノを山绩 ----------
+9000 '--------- CX,CY偵尰嵼偺儈僲傪昞帵 ----------
 9010 for I=0 to BLOCK_NUM_PER_MINO-1
 9020    BX=CX+CURRENT_MX[I]:BY=CY+CURRENT_MY[I]:put GAPX+BX*BLOCK_WIDTH,GAPY+BY*BLOCK_WIDTH,BOX_FM,set,F
 9030 next
 9040 return
-9100 '-------- MINO_NOのミノを附哼のミノに肋年 -----------
+9100 '-------- MINO_NO偺儈僲傪尰嵼偺儈僲偵愝掕 -----------
 9110 for I=0 to BLOCK_NUM_PER_MINO-1
 9120    CURRENT_MX[I]=MX[MINO_NO*BLOCK_NUM_PER_MINO+I]
 9130    CURRENT_MY[I]=MY[MINO_NO*BLOCK_NUM_PER_MINO+I]
 9140 next
 9150 return
-9200 '-------- ブロックのフレ〖ムメモリ〖の年盗 -----------
+9200 '-------- 僽儘僢僋偺僼儗乕儉儊儌儕乕偺掕媊 -----------
 9210 BOX_FM=createFM(BLOCK_WIDTH,BLOCK_WIDTH):cls F,BOX_FM
 9220 box 0,0,BLOCK_WIDTH-1,BLOCK_WIDTH-1,1,set,F,BOX_FM
 9230 return
-9300 '---------- ミノ宝90‰搀啪　(x,y)->(-y,x) ----------
-9301 ' TEMP_MX、TEMP_MYに搀啪した陵滦郝筛を呈羌
+9300 '---------- 儈僲塃90亱夞揮丂(x,y)->(-y,x) ----------
+9301 ' TEMP_MX丄TEMP_MY偵夞揮偟偨憡懳嵗昗傪奿擺
 9310 for I=0 to BLOCK_NUM_PER_MINO-1
 9320   TEMP_MX[I]=-CURRENT_MY[I]:TEMP_MY[I]=CURRENT_MX[I]
 9325 next
 9326 return
-9330 '---------- 簿の陵滦郝筛を悸狠の陵滦郝筛に瓤鼻 ----------
+9330 '---------- 壖偺憡懳嵗昗傪幚嵺偺憡懳嵗昗偵斀塮 ----------
 9340 for I=0 to BLOCK_NUM_PER_MINO-1
 9350   CURRENT_MX[I]=TEMP_MX[I]:CURRENT_MY[I]=TEMP_MY[I]
 9360 next
 9370 return
-9400 '-------------- スコア山绩 ------------
+9400 '-------------- 僗僐傾昞帵 ------------
 9405 putStr GAPX*2+X_BLOCK_NUM*BLOCK_WIDTH+6,0,format("SCORE:%-5D",SCORE),1,set,F
 9410 putStr GAPX*2+X_BLOCK_NUM*BLOCK_WIDTH+6,FONT_HIGHT,format("LEVEL:%-5D",LEVEL),1,set,F
 9420 return
-9500 '-------------- 噬山绩 ---------------
+9500 '-------------- 暻昞帵 ---------------
 9510 fill 0,0,GAPX*2+X_BLOCK_NUM*BLOCK_WIDTH-1,GAPY*2+Y_BLOCK_NUM*BLOCK_WIDTH-1,1,set,F
 9520 fill GAPX+1,GAPY+1,X_BLOCK_NUM*BLOCK_WIDTH,Y_BLOCK_NUM*BLOCK_WIDTH,0,set,F
 9530 return
-9600 '================== オ〖プニング ======================
-9610 '----- スクリ〖ンの郝筛介袋步 -------
+9600 '================== 僆乕僾僯儞僌 ======================
+9610 '----- 僗僋儕乕儞偺嵗昗弶婜壔 -------
 9620 cls
 9630 COMMENT="PUSH B KEY"
 9640 TITLE_X=(SCREEN_WIDTH-strlen(GAME_TITLE)*FONT_WIDTH)/2
@@ -2459,11 +2459,11 @@
 9660 putStr TITLE_X,TITLE_Y,GAME_TITLE,1
 9670 COMMENT_X=(SCREEN_WIDTH-strlen(COMMENT)*FONT_WIDTH)/2
 9680 putStr COMMENT_X,TITLE_Y*2,COMMENT,1
-9700 '--------------- KeyB略ち ---------------
+9700 '--------------- KeyB懸偪 ---------------
 9710 KEY_B_PUSHED=0
 9720 while -1
 9730   for I=0 to 20
-9735     if keyA()=1 && keyB()=1 then KEY_B_PUSHED=1:B_END=1:exit for:'AとBを尉数病したらプログラム姜位
+9735     if keyA()=1 && keyB()=1 then KEY_B_PUSHED=1:B_END=1:exit for:'A偲B傪椉曽墴偟偨傜僾儘僌儔儉廔椆
 9740     if keyB()=1 then KEY_B_PUSHED=1:exit for
 9750     sleep 50
 9760   next
@@ -2471,10 +2471,10 @@
 9780   if KEY_B_PUSHED=1 then sleep 1000:exit while
 9795 end while
 9796 return
-9800 '---- ステ〖ジ介袋山绩 --------
-9810 cls:gosub 9500:'噬山绩
-9820 gosub 9400:'スコア山绩
-9830 gosub 11000:'炳辩アニメ〖ション介袋步
+9800 '---- 僗僥乕僕弶婜昞帵 --------
+9810 cls:gosub 9500:'暻昞帵
+9820 gosub 9400:'僗僐傾昞帵
+9830 gosub 11000:'墳墖傾僯儊乕僔儑儞弶婜壔
 9840 update
 9850 return
 10000 girl01=createFM(ANIME_F_WIDTH,ANIME_F_HIGHT)
@@ -2963,7 +2963,7 @@
 10559 setBM girl03,158,"0000000000000000000000000000000000000000000000000000001111111111111100000000000000000000000000011111111111110000000000000000000000000000000000000000000000000000"
 10560 setBM girl03,159,"0000000000000000000000000000000000000000000000000000001111111111111100000000000000000000000000011111111111110000000000000000000000000000000000000000000000000000"
 10570 return
-11000 ' 炳辩アニメ〖ション
+11000 ' 墳墖傾僯儊乕僔儑儞
 11010 ANIME_DX=12:ANIME_DY=12:ANIME_CX=20:ANIME_CY=0:ANIME_FM_NO=0
 11020 get ANIME_X,ANIME_Y,ANIME_FM[ANIME_FM_NO],ANIME_CX,ANIME_CY,ANIME_WIDTH,ANIME_HIGHT,set,F
 11030 ANIME_CX=ANIME_CX+ANIME_DX:if ANIME_CX>=ANIME_F_WIDTH-ANIME_WIDTH then ANIME_CX=ANIME_F_WIDTH-ANIME_WIDTH:ANIME_DX=-ANIME_DX
@@ -2990,14 +2990,14 @@
 12620 SOUND6="T150L128V200C7."
 12650 SOUND7="L8."
 12700 return
-61000 '-------- EEPROMにハイスコアテ〖ブルを瘦赂する ------------
+61000 '-------- EEPROM偵僴僀僗僐傾僥乕僽儖傪曐懚偡傞 ------------
 61010 ADDR=0
 61020 write ADDR,GAME_TITLE:ADDR=ADDR+16
 61030 for I=0 to HIGH_SCORE_NUM-1
 61040   write ADDR,format("%D",HIGH_SCORE[I]):ADDR=ADDR+16
 61050 next
 61060 return
-61100 '-------- EEPROMからハイスコアテ〖ブルを粕み叫す ------------
+61100 '-------- EEPROM偐傜僴僀僗僐傾僥乕僽儖傪撉傒弌偡 ------------
 61110 ADDR=0
 61120 if GAME_TITLE=read(ADDR,strlen(GAME_TITLE)) then
 61125   ADDR=ADDR+16
@@ -3006,19 +3006,19 @@
 61150   next
 61160 end if
 61170 return
-62000 '---------ハイスコアテ〖ブルの面の呵络と呵井を滇める-------------
+62000 '---------僴僀僗僐傾僥乕僽儖偺拞偺嵟戝偲嵟彫傪媮傔傞-------------
 62010 MAX_HIGH_SCORE=0:MIN_HIGH_SCORE=100000
 62020 for I=0 to HIGH_SCORE_NUM-1
 62030   if HIGH_SCORE[I]>MAX_HIGH_SCORE then MAX_HIGH_SCORE=HIGH_SCORE[I]
 62035   if MIN_HIGH_SCORE>HIGH_SCORE[I] then MIN_HIGH_SCORE=HIGH_SCORE[I]
 62040 next
 62050 return
-62100 '--------ハイスコアテ〖ブルを介袋步する----------
+62100 '--------僴僀僗僐傾僥乕僽儖傪弶婜壔偡傞----------
 62110 for I=0 to HIGH_SCORE_NUM-1
 62120   HIGH_SCORE[I]=0
 62130 next
 62140 return
-62500 '--------ハイスコアテ〖ブルを构糠する----------
+62500 '--------僴僀僗僐傾僥乕僽儖傪峏怴偡傞----------
 62510 for I=0 to HIGH_SCORE_NUM-1
 62520   if HIGH_SCORE[I]<SCORE then exit for
 62530 next
@@ -3040,30 +3040,30 @@
 62700 '----- SOUND -------
 62820 sleep 3000
 62830 '----- NEW GAME -------
-62840 SCORE=0:LEVEL=1:'スコアとレベルを介袋步
+62840 SCORE=0:LEVEL=1:'僗僐傾偲儗儀儖傪弶婜壔
 62850 return
 
 @block.bas
 10 '==============================
-20 ' ブロック束し∈Pocket BASIC∷
+20 ' 僽儘僢僋曵偟乮Pocket BASIC乯
 30 '==============================
 40 cls
-50 '==== 茶烫サイズ ====
+50 '==== 夋柺僒僀僘 ====
 60 SCREEN_WIDTH  = 128
 70 SCREEN_HEIGHT = 64
-80 '==== パドル ====
+80 '==== 僷僪儖 ====
 90 PADDLE_WIDTH   = 20
 100 PADDLE_HEIGHT = 3
 110 PADDLE_X = (SCREEN_WIDTH - PADDLE_WIDTH) / 2
 120 PADDLE_Y = SCREEN_HEIGHT - 6
 130 PADDLE_SPEED = 2
-140 '==== ボ〖ル ====
+140 '==== 儃乕儖 ====
 150 BALL_SIZE = 2
 160 BALL_X  = SCREEN_WIDTH / 2
 170 BALL_Y  = SCREEN_HEIGHT / 2
 180 BALL_VX = 0
 190 BALL_VY = -1
-200 '==== ブロック∈侠妄2肌傅∷ ====
+200 '==== 僽儘僢僋乮榑棟2師尦乯 ====
 210 BLOCK_COLS = 8
 220 BLOCK_ROWS = 3
 230 BLOCK_WIDTH  = 14
@@ -3076,34 +3076,34 @@
 300 gosub 2000
 310 goto 400
 400 '==============================
-410 ' メインル〖プ
+410 ' 儊僀儞儖乕僾
 420 '==============================
-430 '--- 掐蜗 ---
+430 '--- 擖椡 ---
 440 if keyL()=1 then PADDLE_X=PADDLE_X-PADDLE_SPEED
 450 if keyR()=1 then PADDLE_X=PADDLE_X+PADDLE_SPEED
 460 if PADDLE_X<0 then PADDLE_X=0
 470 if PADDLE_X+PADDLE_WIDTH>SCREEN_WIDTH then
 480     PADDLE_X=SCREEN_WIDTH-PADDLE_WIDTH
 490 end if
-500 '--- ボ〖ル败瓢 ---
+500 '--- 儃乕儖堏摦 ---
 510 BALL_X=BALL_X+BALL_VX
 520 BALL_Y=BALL_Y+BALL_VY
-530 '--- 噬 ---
+530 '--- 暻 ---
 540 if BALL_X<0 then BALL_X=0:BALL_VX=-BALL_VX
 550 if BALL_X+BALL_SIZE>SCREEN_WIDTH then
 560     BALL_X=SCREEN_WIDTH-BALL_SIZE:BALL_VX=-BALL_VX
 570 end if
 580 if BALL_Y<0 then BALL_Y=0:BALL_VY=-BALL_VY
-590 '--- パドル咀仆 ---
+590 '--- 僷僪儖徴撍 ---
 600 if isCol(BALL_X,BALL_Y,BALL_SIZE,BALL_SIZE, PADDLE_X,PADDLE_Y,PADDLE_WIDTH,PADDLE_HEIGHT)=1 then
 610     BALL_VY = -1
 620     BALL_VX = (BALL_X + BALL_SIZE/2) - (PADDLE_X + PADDLE_WIDTH/2)
 630     if BALL_VX>2 then BALL_VX=2
 640     if BALL_VX<-2 then BALL_VX=-2
 650 end if
-660 '--- 皖布 ---
+660 '--- 棊壓 ---
 670 if BALL_Y>SCREEN_HEIGHT then goto 1600
-680 '--- ブロック咀仆 ---
+680 '--- 僽儘僢僋徴撍 ---
 690 for BLOCK_INDEX=0 to BLOCK_COUNT-1
 700 if BLOCK_ALIVE[BLOCK_INDEX]=1 then
 710     BLOCK_COL = mod(BLOCK_INDEX,BLOCK_COLS)
@@ -3116,7 +3116,7 @@
 780     end if
 790 end if
 800 next
-810 '--- CLEAR 冉年 ---
+810 '--- CLEAR 敾掕 ---
 820 CLEAR_FLAG=1
 830 for BLOCK_INDEX=0 to BLOCK_COUNT-1
 840 if BLOCK_ALIVE[BLOCK_INDEX]=1 then CLEAR_FLAG=0
@@ -3134,10 +3134,10 @@
 1720 putStr 45,30,"CLEAR!",1
 1730 end
 2000 '==============================
-2010 ' 闪茶
+2010 ' 昤夋
 2020 '==============================
 2030 cls
-2040 '--- ブロック ---
+2040 '--- 僽儘僢僋 ---
 2050 for BLOCK_INDEX=0 to BLOCK_COUNT-1
 2060 if BLOCK_ALIVE[BLOCK_INDEX]=1 then
 2070     BLOCK_COL = mod(BLOCK_INDEX,BLOCK_COLS)
@@ -3145,9 +3145,9 @@
 2090     box BLOCK_COL*BLOCK_WIDTH,BLOCK_ROW*BLOCK_HEIGHT,BLOCK_COL*BLOCK_WIDTH+BLOCK_WIDTH-1,BLOCK_ROW*BLOCK_HEIGHT+BLOCK_HEIGHT-1,1
 2130 end if
 2140 next
-2150 '--- パドル ---
+2150 '--- 僷僪儖 ---
 2160 box PADDLE_X,PADDLE_Y,PADDLE_X+PADDLE_WIDTH,PADDLE_Y+PADDLE_HEIGHT,1
-2190 '--- ボ〖ル∈2x2∷ ---
+2190 '--- 儃乕儖乮2x2乯 ---
 2200 box BALL_X,BALL_Y,BALL_X+BALL_SIZE-1,BALL_Y+BALL_SIZE-1,1
 2230 return
 
