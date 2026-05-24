@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICでゲームを作ろう ～ プロジェクトローダ ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta name="description" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        background-color: #f0f0f0;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    #terminal {
+        background-color: #000;
+        color: #0f0;
+        font-family: monospace;
+        padding: 10px;
+        height: 24em;
+        overflow-y: scroll;
+        border: 2px solid #333;
+        margin-top: 15px;
+        white-space: pre-wrap;
+    }
+
+    .status {
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/encoding-japanese@2.2.0/encoding.min.js"></script>
+</head>
+
+<body>
+<include id='menu.html'></include>
+
+<p class="chapter8">プロジェクトローダ</p>
+<div>
+    <button id="btn-connect">マイコンに接続</button>
+    <span id="status" class="status">未接続</span>
+</div>
+<div>
+    <p class="chapter6">プロジェクトをダウンロード</p>
+
+    <button id="btn-Sample" disabled>Sample Project</button>
+
+    <div
+        id="drop-area"
+        style="
+            margin-top:10px;
+            padding:20px;
+            border:2px dashed #888;
+            background:#fafafa;
+            color:#333;
+            width:320px;
+            text-align:center;
+            border-radius:10px;
+        "
+    >
+        プロジェクトファイルをここへドロップ、または<br><br>
+
+        <input
+            type="file"
+            id="file-input"
+            accept=".bas,.txt"
+        >
+    </div>
+</div>
+
+<p class="chapter6">マイコンへテキスト送信</p>
+<div>
+    <input
+        type="text"
+        id="text-input"
+        placeholder="送信したい文字列を入力"
+        style="width:70%; font-size:16px; padding:8px;"
+    >
+
+    <button id="btn-send-text" disabled>
+        テキスト送信
+    </button>
+</div>
+
+    <p class="chapter6">マイコンからのエコーバック</p>
+
+<div id="terminal"></div>
+
+<script>
+
+let port;
+let writer;
+let reader;
+let keepReading = true;
+
+const btnConnect = document.getElementById('btn-connect');
+
+const btnSample = document.getElementById('btn-Sample');
+
+const dropArea = document.getElementById('drop-area');
+const fileInput = document.getElementById('file-input');
+
+const btnSendText = document.getElementById('btn-send-text');
+const textInput = document.getElementById('text-input');
+
+const statusEl = document.getElementById('status');
+const terminal = document.getElementById('terminal');
+
+const programs = {
+    samplePj: 'project_loader/Project.txt'
+};
+
+function logToTerminal(text) {
+    terminal.textContent += text;
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+// ★文字列をマイコンが期待する「EUC-JP」のバイナリ(Uint8Array)に変換する関数
+function convertToEUCJP(text) {
+
+    // Unicode文字列 → UTF16配列
+    const unicodeArray = Encoding.stringToCode(text);
+
+    // UTF16 → EUC-JP
+    const eucArray = Encoding.convert(unicodeArray, {
+        to: 'EUCJP',
+        from: 'UNICODE'
+    });
+
+    return new Uint8Array(eucArray);
+}
+
+
+// ========================================
+// シリアル接続
+// ========================================
+
+btnConnect.addEventListener('click', async () => {
+
+    if (!('serial' in navigator)) {
+        alert('Web Serial API未対応ブラウザです');
+        return;
+    }
+
+    try {
+
+        port = await navigator.serial.requestPort();
+
+        await port.open({
+            baudRate: 57600,
+            dataBits: 8,
+            stopBits: 1,
+            parity: 'none',
+            flowControl: 'none'
+        });
+
+        statusEl.textContent = '接続済み';
+        statusEl.style.color = 'green';
+
+        btnSample.disabled = false;
+        readLoop();
+
+    } catch (error) {
+
+        console.error(error);
+
+        statusEl.textContent = '接続失敗: ' + error.message;
+        statusEl.style.color = 'red';
+    }
+});
+
+
+// ========================================
+// 受信処理 (★マイコンに合わせて EUC-JP でデコード)
+// ========================================
+
+async function readLoop() {
+
+    while (port && port.readable && keepReading) {
+
+        try {
+
+            reader = port.readable.getReader();
+
+            while (true) {
+
+                const { value, done } = await reader.read();
+
+                if (done) {
+                    break;
+                }
+
+                if (value && value.length > 0) {
+
+                    const bytes = Array.from(value);
+
+                    const unicodeArray = Encoding.convert(bytes, {
+                        to: 'UNICODE',
+                        from: 'EUCJP'
+                    });
+
+                    const text = Encoding.codeToString(unicodeArray);
+
+                    // CR → CRLF に変換
+                    logToTerminal(text.replace(/\r/g, '\r\n'));
+                }
+            }
+
+        } catch (error) {
+
+            console.error(error);
+            break;
+
+        } finally {
+
+            if (reader) {
+                reader.releaseLock();
+            }
+        }
+    }
+}
+
+
+// ========================================
+// BASIC転送
+// ========================================
+
+async function downloadAndSend(url) {
+
+    setButtonsDisabled(true);
+
+    logToTerminal(`\n--- ダウンロード開始: ${url} ---\n`);
+
+    try {
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('ファイル取得失敗');
+        }
+
+        const buffer = await response.arrayBuffer();
+
+        // ★1. ファイルはSJISなので、まずは shift_jis で正しくデコード
+        // Shift_JIS のバイト列
+        const sjisArray = new Uint8Array(buffer);
+
+        // Shift_JIS → Unicode
+        const unicodeArray = Encoding.convert(sjisArray, {
+            to: 'UNICODE',
+            from: 'SJIS'
+        });
+
+        const text = Encoding.codeToString(unicodeArray);
+
+        const lines = text.split(/\r?\n/);
+
+        const EraseText = 'EEPErase\r'; // EEPROMの消去
+        await writer.write(EraseText);
+        await sleep(3000);
+
+        writer = port.writable.getWriter();
+
+        for (let i = 0; i < lines.length; i++) {
+
+            const line = lines[i];
+
+            if (i === lines.length - 1 && line.trim() === '') {
+                continue;
+            }
+
+            const sendText = line + '\r';
+
+            // ★2. マイコンが期待する EUC-JP のバイナリに変換して送信
+            const encoded = await convertToEUCJP(sendText);
+
+            await writer.write(encoded);
+
+            await sleep(100);
+        }
+
+        logToTerminal('\n--- 送信完了 ---\n');
+
+    } catch (error) {
+
+        alert('エラー: ' + error.message);
+        logToTerminal(`\nエラー: ${error.message}\n`);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+
+        setButtonsDisabled(false);
+    }
+}
+
+// ========================================
+// 任意ファイル送信
+// ========================================
+
+async function sendFile(file) {
+
+    setButtonsDisabled(true);
+
+    logToTerminal(`\n--- ファイル送信開始: ${file.name} ---\n`);
+
+    try {
+
+        // ファイル読み込み
+        const buffer = await file.arrayBuffer();
+
+        // Shift_JIS バイト列
+        const sjisArray = new Uint8Array(buffer);
+
+        // ========================================
+        // 文字コード自動判定
+        // ========================================
+
+        let detectedEncoding = Encoding.detect(sjisArray);
+
+        // 判定失敗時
+        if (
+            detectedEncoding === 'BINARY' ||
+            detectedEncoding === false
+        ) {
+            detectedEncoding = 'SJIS';
+        }
+
+        logToTerminal(
+            `\n[文字コード検出: ${detectedEncoding}]\n`
+        );
+
+        // Unicodeへ変換
+        const unicodeArray = Encoding.convert(sjisArray, {
+            to: 'UNICODE',
+            from: detectedEncoding
+        });
+
+        const text = Encoding.codeToString(unicodeArray);
+
+        const lines = text.split(/\r?\n/);
+
+        writer = port.writable.getWriter();
+
+        for (let i = 0; i < lines.length; i++) {
+
+            const line = lines[i];
+
+            // 最終空行スキップ
+            if (i === lines.length - 1 && line.trim() === '') {
+                continue;
+            }
+
+            const sendText = line + '\r';
+
+            // Unicode → EUC-JP
+            const encoded = convertToEUCJP(sendText);
+
+            await writer.write(encoded);
+
+            await sleep(100);
+        }
+
+        logToTerminal('\n--- ファイル送信完了 ---\n');
+
+    } catch (error) {
+
+        alert('ファイル送信エラー: ' + error.message);
+
+        console.error(error);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+
+        setButtonsDisabled(false);
+    }
+}
+
+// ========================================
+// Drag & Drop
+// ========================================
+
+dropArea.addEventListener('dragover', (e) => {
+
+    e.preventDefault();
+
+    dropArea.style.background = '#d0f0ff';
+});
+
+dropArea.addEventListener('dragleave', () => {
+
+    dropArea.style.background = '#fafafa';
+});
+
+dropArea.addEventListener('drop', async (e) => {
+
+    e.preventDefault();
+
+    dropArea.style.background = '#fafafa';
+
+    const files = e.dataTransfer.files;
+
+    if (files.length === 0) {
+        return;
+    }
+
+    await sendFile(files[0]);
+});
+// ========================================
+// ファイル選択
+// ========================================
+
+fileInput.addEventListener('change', async (e) => {
+
+    const files = e.target.files;
+
+    if (!files || files.length === 0) {
+        return;
+    }
+
+    await sendFile(files[0]);
+
+    // 同じファイル再選択対応
+    fileInput.value = '';
+});
+
+// ========================================
+// コマンド送信
+// ========================================
+
+async function sendCommand(command) {
+
+    try {
+
+        writer = port.writable.getWriter();
+
+        const sendText = command + '\r';
+
+        const encoded = convertToEUCJP(sendText);
+
+        await writer.write(encoded);
+
+        logToTerminal('\n> ' + command + '\n');
+
+    } catch (error) {
+
+        alert(command + '送信失敗: ' + error.message);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+    }
+}
+
+// ========================================
+// コマンド送信
+// ========================================
+
+async function sendRunCommand() {
+
+    await sendCommand('run');
+}
+
+async function sendListCommand() {
+
+    await sendCommand('list');
+}
+
+async function sendNewCommand() {
+
+    await sendCommand('new');
+}
+// ========================================
+// ボタン有効/無効
+// ========================================
+
+function setButtonsDisabled(disabled) {
+
+    btnSample.disabled = disabled;
+    btnSendText.disabled = disabled;
+}
+
+// ========================================
+// テキスト送信
+// ========================================
+
+async function sendTextToMicrocontroller() {
+
+    const text = textInput.value;
+
+    if (!text) {
+        return;
+    }
+
+    try {
+
+        writer = port.writable.getWriter();
+
+        // 改行付き送信
+        const sendText = text + '\r';
+
+        // EUC-JPへ変換
+        const encoded = convertToEUCJP(sendText);
+
+        await writer.write(encoded);
+
+        // ローカル表示
+        logToTerminal('\n> ' + text + '\n');
+
+        // 入力欄クリア
+        textInput.value = '';
+
+    } catch (error) {
+
+        alert('送信失敗: ' + error.message);
+
+    } finally {
+
+        if (writer) {
+            writer.releaseLock();
+        }
+    }
+}
+
+// ========================================
+// イベント
+// ========================================
+
+btnSample.addEventListener(
+    'click',
+    () => downloadAndSend(programs.samplePj)
+);
+
+
+btnSendText.addEventListener(
+    'click',
+    sendTextToMicrocontroller
+);
+
+textInput.addEventListener('keydown', (e) => {
+
+    if (e.key === 'Enter') {
+        sendTextToMicrocontroller();
+    }
+});
+</script>
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>
