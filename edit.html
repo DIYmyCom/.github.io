@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICでゲームを作ろう ～ スマホ用エディタ ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta name="description" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        background-color: #f0f0f0;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    #terminal {
+        background-color: #000;
+        color: #0f0;
+        font-family: monospace;
+        padding: 10px;
+        height: 24em;
+        overflow-y: scroll;
+        border: 2px solid #333;
+        margin-top: 15px;
+        white-space: pre-wrap;
+    }
+
+    .status {
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+
+<style>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:#f0f0f0;
+}
+
+.toolbar{
+    background:#333;
+    color:white;
+    padding:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+button{
+    padding:8px 14px;
+    cursor:pointer;
+}
+
+textarea{
+    width:100%;
+    height:calc(100vh - 60px);
+    box-sizing:border-box;
+    font-family:monospace;
+    font-size:16px;
+    padding:10px;
+    border:none;
+    resize:none;
+    outline:none;
+    white-space:pre;
+    overflow-wrap:normal;
+}
+
+.info{
+    margin-left:auto;
+    font-size:14px;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/encoding-japanese@2.2.0/encoding.min.js"></script>
+</head>
+
+<body>
+<include id='menu.html'></include>
+
+<p class="chapter8">BASIC コンソール</p>
+
+<div class="toolbar">
+
+    <input type="file" id="fileInput">
+
+    <button onclick="saveFile()">
+        保存（EUC-JP / CR）
+    </button>
+
+    <span>
+        Ctrl + F で検索可能
+    </span>
+
+    <div class="info" id="info"></div>
+</div>
+
+<textarea id="editor" spellcheck="false"></textarea>
+
+<script>
+const editor = document.getElementById("editor");
+const info = document.getElementById("info");
+
+
+// ========================================
+// ファイル読み込み
+// ========================================
+document.getElementById("fileInput").addEventListener("change", async (e)=>{
+
+    const file = e.target.files[0];
+    if(!file) return;
+
+    const buffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+
+    let text = "";
+    let encoding = "UTF-8";
+
+    // BOM付きUTF-8
+    if(bytes[0] === 0xEF &&
+       bytes[1] === 0xBB &&
+       bytes[2] === 0xBF){
+
+        encoding = "UTF-8";
+    }
+    else{
+
+        // UTF-8
+        try{
+            text = new TextDecoder("utf-8", {
+                fatal:true
+            }).decode(bytes);
+
+            encoding = "UTF-8";
+        }
+        catch{
+
+            // EUC-JP
+            try{
+                text = new TextDecoder("euc-jp", {
+                    fatal:true
+                }).decode(bytes);
+
+                encoding = "EUC-JP";
+            }
+            catch{
+
+                // Shift_JIS
+                try{
+                    text = new TextDecoder("shift_jis", {
+                        fatal:true
+                    }).decode(bytes);
+
+                    encoding = "Shift_JIS";
+                }
+                catch{
+
+                    // 最終手段
+                    text = new TextDecoder("utf-8")
+                        .decode(bytes);
+
+                    encoding = "不明";
+                }
+            }
+        }
+    }
+
+    if(text === ""){
+        text = new TextDecoder("utf-8")
+            .decode(bytes);
+    }
+
+    // 改行コード判定
+    let newline = "LF";
+
+    if(text.includes("\r\n")){
+        newline = "CRLF";
+    }
+    else if(text.includes("\r")){
+        newline = "CR";
+    }
+
+    editor.value = text;
+
+    info.textContent =
+        `文字コード: ${encoding} / 改行: ${newline}`;
+});
+
+
+// ========================================
+// 保存
+// EUC-JP + CR
+// 保存先フォルダ選択対応
+// ========================================
+async function saveFile(){
+
+    let text = editor.value;
+
+    // 改行コードをCRへ統一
+    text = text.replace(/\r\n/g, "\n");
+    text = text.replace(/\r/g, "\n");
+    text = text.replace(/\n/g, "\r");
+
+    let encoded;
+
+    try{
+        encoded = new TextEncoder("euc-jp")
+            .encode(text);
+    }
+    catch(e){
+
+        alert(
+            "このブラウザはEUC-JP保存に未対応です。\n" +
+            "Chrome系最新版を使用してください。"
+        );
+
+        return;
+    }
+
+    const blob = new Blob(
+        [encoded],
+        {type:"application/octet-stream"}
+    );
+
+    // ====================================
+    // File System Access API
+    // PC Chrome / Android Chrome対応
+    // 保存先フォルダを選択可能
+    // ====================================
+    if(window.showSaveFilePicker){
+
+        try{
+
+            const handle =
+                await window.showSaveFilePicker({
+
+                suggestedName: "text.txt",
+
+                types: [{
+                    description: "Text File",
+                    accept: {
+                        "text/plain": [".txt", ".bas"]
+                    }
+                }]
+            });
+
+            const writable =
+                await handle.createWritable();
+
+            await writable.write(blob);
+            await writable.close();
+
+            alert("保存しました");
+
+        }
+        catch(err){
+
+            console.log(err);
+        }
+    }
+    else{
+
+        // 古いブラウザ用フォールバック
+        const a = document.createElement("a");
+
+        a.href = URL.createObjectURL(blob);
+        a.download = "text.txt";
+
+        a.click();
+
+        URL.revokeObjectURL(a.href);
+    }
+}
+
+
+// ========================================
+// Ctrl + F
+// ========================================
+window.addEventListener("keydown", (e)=>{
+
+    if(e.ctrlKey &&
+       e.key.toLowerCase() === "f"){
+
+        editor.focus();
+    }
+});
+</script>
+
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>

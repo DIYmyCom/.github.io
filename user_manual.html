@@ -46,25 +46,29 @@
 					</div>
 
 					<p class="chapter6">BASICマイコンのスペック</p>
+
 					<div class="txtTempSet txtTemp6 clearfix">
 					<div class="fL">
 						<p>
-							<span>
-							<ul class="bgList5">
-							<li>CPU・・・・H8S/2128 20MHz</li>
-							<li>電源・・・・USB-TypeC</li>
-							<li>画面・・・・128×64dot</li>
-							<li>サウンド・・・・beep 2チャンネル</li>
-							<li>RAM・・・・68KB(BASICフリーエリア訳45KB)</li>
-							<li>ROM・・・・128KB(BASIC書込み済)</li>
-							<li>EEPROM・・・・16KB(BASICから読書可。ハイスコア等保存用)</li>
-							</ul>
-							<br />
-							【説明】<br />
-							PCとUSBケーブルで接続して使うことを前提としたBASICマイコン。<br />
-							PCからBASICプログラムをマイコンにダウンロードして実行する。<br />
-							<br />
-							</span>
+						<span>
+						<ul class="bgList5">
+						<li>CPU ・・・・ H8S/2128（20MHz）</li>
+						<li>電源 ・・・・ USB Type-C 給電</li>
+						<li>画面 ・・・・ 128×64 ドット LCD</li>
+						<li>サウンド ・・・・ Beep音源 2チャンネル</li>
+						<li>RAM ・・・・ 68KB（BASICで使用可能なフリーエリア：約45KB）</li>
+						<li>ROM ・・・・ 128KB（BASICシステム書込み済み）</li>
+						<li>EEPROM ・・・・ 16KB（BASICから読み書き可能。ハイスコア保存などに使用）</li>
+						</ul>
+						</span>
+						<br />
+						<span>
+						【説明】<br />
+						このBASICマイコンは、Androidスマホ または PC と USB ケーブルで接続して使用します。<br />
+						スマホやPCからBASICプログラムをマイコンへ転送し、実行できます。<br />
+						<br />
+						プログラムの作成・転送・実行を手軽に行えるため、BASICを使った電子工作やゲーム制作の学習に最適です。<br />
+						</span>
 						</p>
 					</div>
 						<p><a href="user_manual/PocketCom.jpg" target="_blank"><img src="user_manual/PocketCom.jpg" width="390"></a></p>
@@ -88,9 +92,11 @@
 					<div class="fL">
 						<span>
 						<p>
-							②下の写真のように、PCとマイコンを接続してください。<br />
+							②下の写真のように、Androidスマホ　または、<br />
+							　PCとマイコンを接続してください。<br />
 							　マイコン側は右の写真のようにAE-CH340Eボードを<br />
 							　マイコンにさして接続します。
+							<img src="user_manual/Phone_PocetCom.png" width="390">
 							<img src="user_manual/PC_PocetCom.png" width="390">
 						</p>
 						</span>
@@ -110,6 +116,60 @@
 					</div>
 					<br /><br />
 
+					<a id="inspection" name="inspection"></a>
+
+
+					<p class="chapter6">動かしてみる</p>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>
+						１）マイコンの電源を入れる。<br />
+						SW2 を ON にしてから電源を入れてください。<br />
+						（SW1 は常に「APPLI」側にしてください。）
+						</p></span>
+					</div>
+						<p><img src="user_manual/100.JPG" width="390"></p>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>
+						２）BASICコンソールをマイコンに接続する。<br />
+						① このサイトの「BASICコンソール」を開き、「マイコンに接続」ボタンを押します。<br />
+						② シリアルポート選択画面が表示されたら、一覧に表示された COM ポートの中から、マイコンの COM ポートを選択します。<br />
+						③ 「マイコンに接続」ボタンの右側に、緑色で「接続済み」と表示されれば接続成功です。<br />
+						④ エラーが表示された場合は、①からやり直してください。<br />
+						</p></span>
+					</div>
+						<p><img src="user_manual/101.png" width="390"></p>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>
+						３）サンプルプログラムを実行する。<br />
+						① 「HelloWorld」ボタンを押して、プログラムをマイコンへ送信します。<br />
+						② 「RUN」ボタンを押します。<br />
+						③ マイコンからのエコーバックに左のような表示が出て、LCD に「Hello World」と表示されれば成功です。<br />
+						</p></span>
+					</div>
+						<div><p><img src="user_manual/102.png" width="390"></p></div>
+					</div>
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src=""
+						width="800"
+						style="
+						position: absolute;
+						left: 450px;
+						bottom: 00;
+						">
+					</div>
+
+					<p class="chapter8">TeraTermを使う場合</p>
 					<a id="TERATERM" name="TERATERM"></a>
 					<p class="chapter6">PC側の設定</p>
 					<div class="txtTempSet txtTemp6 clearfix">
@@ -126,6 +186,7 @@
 						<p><img src="user_manual/007.png" width="390"></p>
 					</div>
 					<br /><br />
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
 
 					<a id="PowerOn" name="PowerOn"></a>
 					<p class="chapter6">電源を入れる</p>
@@ -162,7 +223,9 @@
 						②TeraTermの「ファイル＞ファイル送信」をメニューから選んで表示されるダイアログで、ダウンロードしたBASICプログラムを選択します。（左下の写真）</br>
 						③右下の写真のようにBASICプログラムがマイコンに転送されます。</br>
 						④終わったらTeraTermでrunと入力して改行してください。</br>
-						プログラムが実行されます。
+						プログラムが実行されます。</br></br>
+						※ このサイトの「BASICコンソール」を使う場合は、ファイルの文字コードはSJIS / EUC-JP / UTF-8 のどれでも使用できます。<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ただし、Teraterm を使って書き込む場合は、ファイルを SJIS 形式で保存してください。<br /></br>
 						</p></span>
 					</div>
 					<div class="txtTempSet txtTemp6 clearfix">
@@ -206,11 +269,14 @@
 					<a id="Menu" name="Menu"></a>
 					<ul id="subNavigation" class="bgList1">
 						<li><a href="#assembly" title="">組立</a></li>
-						<li><a href="#TERATERM" title="">TERATERMの設定</a></li>
-						<li><a href="#PowerOn" title="">電源を入れる</a></li>
-						<li><a href="#run" title="">BASICプログラムを動かす</a></li>
-						<li><a href="#trick" title="">裏技</a></li>
-						<br />
+						<li><a href="#inspection" title="">動かして見る</a></li>
+						<li><a href="#TERATERM" title="">TERATERMを使う場合</a></li>
+						<ul id="subNavigation1" class="bgList3">
+							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#TERATERM" title="">TERATERMの設定</a></li>
+							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#PowerOn" title="">電源を入れる</a></li>
+							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#run" title="">BASICプログラムを動かす</a></li>
+							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#trick" title="">裏技</a></li>
+						</ul>
 					</ul>
 					<br />
 				</div><!-- div#leftContents END -->
