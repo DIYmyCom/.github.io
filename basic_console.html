@@ -52,21 +52,17 @@
 <body>
 <include id='menu.html'></include>
 
-<h1>BASIC コンソール</h1>
-
+<p class="chapter8">BASIC コンソール</p>
 <div>
     <button id="btn-connect">マイコンに接続</button>
     <span id="status" class="status">未接続</span>
 </div>
-
-<hr>
-
 <div>
-    <h3>プログラムを選択してダウンロード</h3>
+    <p class="chapter6">プログラムを選択してダウンロード</p>
 
     <button id="btn-hello" disabled>HelloWorld</button>
-    <button id="btn-invader" disabled>インベーダ</button>
-    <button id="btn-pacman" disabled>パックマン</button>
+    <button id="btn-invader" disabled>INVADER</button>
+    <button id="btn-pacman" disabled>PAKMAN</button>
     <button id="btn-shoot" disabled>SHOOT</button>
 
     <div
@@ -82,8 +78,7 @@
             border-radius:10px;
         "
     >
-        .basファイルをここへドロップ<br>
-        または<br><br>
+        .basファイルをここへドロップ、または<br><br>
 
         <input
             type="file"
@@ -92,19 +87,15 @@
         >
     </div>
 </div>
-
-<hr>
+<br>
+    <p class="chapter6">コマンドを実行</p>
 <div>
-    <h3>コマンドを実行</h3>
     <button id="btn-run" disabled>RUN</button>
     <button id="btn-list" disabled>LIST</button>
     <button id="btn-new" disabled>NEW</button>
 </div>
 
-
-<hr>
-
-<h3>マイコンへテキスト送信</h3>
+    <p class="chapter6">マイコンへテキスト送信</p>
 
 <div>
     <input
@@ -119,9 +110,8 @@
     </button>
 </div>
 
-<hr>
+    <p class="chapter6">マイコンからのエコーバック</p>
 
-<h3>マイコンからのエコーバック</h3>
 <div id="terminal"></div>
 
 <script>
