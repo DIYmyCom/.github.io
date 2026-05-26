@@ -216,24 +216,20 @@ async function saveFile(){
     text = text.replace(/\r/g, "\n");
     text = text.replace(/\n/g, "\r");
 
-    let encoded;
+    // UTF-16(JavaScript文字列) → EUC-JP
+    const encoded = Encoding.convert(
+        Encoding.stringToCode(text),
+        {
+            to: "EUCJP",
+            from: "UNICODE"
+        }
+    );
 
-    try{
-        encoded = new TextEncoder("euc-jp")
-            .encode(text);
-    }
-    catch(e){
-
-        alert(
-            "このブラウザはEUC-JP保存に未対応です。\n" +
-            "Chrome系最新版を使用してください。"
-        );
-
-        return;
-    }
+    // Uint8Array化
+    const uint8 = new Uint8Array(encoded);  
 
     const blob = new Blob(
-        [encoded],
+        [uint8],
         {type:"application/octet-stream"}
     );
 
