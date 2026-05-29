@@ -249,7 +249,9 @@ async function readLoop() {
                     const text = Encoding.codeToString(unicodeArray);
 
                     // CR → CRLF に変換
-                    logToTerminal(text.replace(/\r/g, '\r\n'));
+                    //logToTerminal(text.replace(/\r/g, '\r\n'));
+                    // CRLFを受信するよう仕様変更
+                    logToTerminal(text);
                 }
             }
 
