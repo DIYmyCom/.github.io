@@ -321,7 +321,7 @@ async function downloadAndSend(url) {
 
             await writer.write(encoded);
 
-            await sleep(100);
+            //await sleep(100);
         }
 
         logToTerminal('--- 送信完了 ---\n');
@@ -405,7 +405,7 @@ async function sendFile(file) {
 
             await writer.write(encoded);
 
-            await sleep(100);
+            //await sleep(100);
         }
 
         logToTerminal('--- ファイル送信完了 ---\n');
