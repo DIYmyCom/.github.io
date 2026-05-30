@@ -36,7 +36,7 @@
 1330    if SEL_ITEM<>ITEM then
 1340        gosub 3000:sound 0,SOUND01:play 0 
 1350        ITEM=SEL_ITEM
-1360        gosub 3000:update:sleep 500
+1360        gosub 3000:update:sleep 200
 1370    end if
 1380    if keyA()=1 then sound 0,SOUND02:play 0:print FILE[ITEM]:end
 1390 end while
