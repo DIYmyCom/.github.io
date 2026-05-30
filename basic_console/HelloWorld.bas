@@ -1,3 +1,5 @@
+*** Program Start ***
 10 print "Hello World"
 20 cls
 30 putStr 0,0,"Hello World",1
+*** Program End ***

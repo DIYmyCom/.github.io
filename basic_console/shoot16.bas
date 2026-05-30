@@ -1,4 +1,4 @@
-***program start***
+*** Program Start ***
 10 '=========== SHOOTING =============
 20 GameTitle="SHOOTING"
 30 ScWidth=128:ScHight=64
@@ -739,4 +739,4 @@
 63020 for I=0 to BuMax-1:BuX[I]=0:BuY[I]=0:BuSt[I]=None:next:PrevA=0
 63030 for I=0 to EnBuMax-1:EnBuSt[I]=None:next
 63040 return
-***program end***
+*** Program End ***

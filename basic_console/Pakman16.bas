@@ -1,3 +1,4 @@
+*** Program Start ***
 100 '==============　画面やシステム関連の定義 =============
 110 GAME_TITLE="PAK-MAN":FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'フォントの幅と高さ
 120 HIGH_SCORE_NUM=SCREEN_HIGHT/FONT_HIGHT-3:dim HIGH_SCORE[HIGH_SCORE_NUM]:gosub 62100:'ハイスコアテーブルを初期化する
@@ -916,3 +917,4 @@
 64090    PAC_ANIME_IDX_INC=-PAC_ANIME_IDX_INC:PAC_ANIME_IDX=1
 64100 end if
 64110 return
+*** Program End ***

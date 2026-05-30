@@ -1,3 +1,4 @@
+*** Program Start ***
 100 '==============　画面やシステム関連の定義 =============
 110 GAME_TITLE="INVADERS":FONT_WIDTH=6:FONT_HIGHT=8:SCREEN_WIDTH=128:SCREEN_HIGHT=64:'フォントの幅と高さ
 120 HIGH_SCORE_NUM=SCREEN_HIGHT/FONT_HIGHT-3:dim HIGH_SCORE[HIGH_SCORE_NUM]:gosub 62100
@@ -509,4 +510,4 @@
 63500 '------- キーが離されたことのスキャン-------------
 63550 if keyA()=0 then A=0
 63580 return
-
+*** Program End ***

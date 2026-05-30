@@ -278,7 +278,7 @@ async function downloadAndSend(url) {
 
     setButtonsDisabled(true);
 
-    logToTerminal(`\n--- ダウンロード開始: ${url} ---\n`);
+    logToTerminal(`--- ダウンロード開始: ${url} ---\n`);
 
     try {
 
@@ -324,7 +324,7 @@ async function downloadAndSend(url) {
             await sleep(100);
         }
 
-        logToTerminal('\n--- 送信完了 ---\n');
+        logToTerminal('--- 送信完了 ---\n');
 
     } catch (error) {
 
@@ -349,7 +349,7 @@ async function sendFile(file) {
 
     setButtonsDisabled(true);
 
-    logToTerminal(`\n--- ファイル送信開始: ${file.name} ---\n`);
+    logToTerminal(`--- ファイル送信開始: ${file.name} ---\n`);
 
     try {
 
@@ -374,7 +374,7 @@ async function sendFile(file) {
         }
 
         logToTerminal(
-            `\n[文字コード検出: ${detectedEncoding}]\n`
+            `[文字コード検出: ${detectedEncoding}]\n`
         );
 
         // Unicodeへ変換
@@ -408,7 +408,7 @@ async function sendFile(file) {
             await sleep(100);
         }
 
-        logToTerminal('\n--- ファイル送信完了 ---\n');
+        logToTerminal('--- ファイル送信完了 ---\n');
 
     } catch (error) {
 
@@ -490,7 +490,7 @@ async function sendCommand(command) {
 
         await writer.write(encoded);
 
-        logToTerminal('\n> ' + command + '\n');
+        logToTerminal( command + '\n');
 
     } catch (error) {
 
@@ -563,7 +563,7 @@ async function sendTextToMicrocontroller() {
         await writer.write(encoded);
 
         // ローカル表示
-        logToTerminal('\n> ' + text + '\n');
+        logToTerminal(text + '\n');
 
         // 入力欄クリア
         textInput.value = '';
