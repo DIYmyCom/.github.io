@@ -294,8 +294,10 @@ async function downloadAndSend(url) {
 
         const buffer = await response.arrayBuffer();
 
+        // ★1. 取得したファイルのバイト列
+        const fileArray = new Uint8Array(buffer);
 
-        let detectedEncoding = Encoding.detect(buffer);
+        let detectedEncoding = Encoding.detect(fileArray);
 
         // 判定失敗時
         if (
@@ -308,11 +310,6 @@ async function downloadAndSend(url) {
         logToTerminal(
             `[文字コード検出: ${detectedEncoding}]\n`
         );
-
-
-
-        // ★1. 取得したファイルのバイト列
-        const fileArray = new Uint8Array(buffer);
 
         // Shift_JIS → Unicode
         const unicodeArray = Encoding.convert(fileArray, {
@@ -355,7 +352,7 @@ async function downloadAndSend(url) {
             }
         }
 
-        logToTerminal('--- 送信完了 ---\n');
+        logToTerminal('\n--- 送信完了 ---\n');
 
     } catch (error) {
 
@@ -450,7 +447,7 @@ async function sendFile(file) {
             }
         }
 
-        logToTerminal('--- ファイル送信完了 ---\n');
+        logToTerminal('\n--- ファイル送信完了 ---\n');
 
     } catch (error) {
 
