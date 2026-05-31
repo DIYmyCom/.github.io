@@ -125,7 +125,7 @@ const statusEl = document.getElementById('status');
 const terminal = document.getElementById('terminal');
 
 const programs = {
-    samplePj: 'project_loader/Project.txt'
+    samplePj: 'AutoLoader/Project_EUC_CRLF.txt'
 };
 
 function logToTerminal(text) {
@@ -263,14 +263,27 @@ async function downloadAndSend(url) {
 
         const buffer = await response.arrayBuffer();
 
-        // ★1. ファイルはSJISなので、まずは shift_jis で正しくデコード
-        // Shift_JIS のバイト列
-        const sjisArray = new Uint8Array(buffer);
+        // ★1. 取得したファイルのバイト列
+        const fileArray = new Uint8Array(buffer);
+
+        let detectedEncoding = Encoding.detect(fileArray);
+
+        // 判定失敗時
+        if (
+            detectedEncoding === 'BINARY' ||
+            detectedEncoding === false
+        ) {
+            detectedEncoding = 'SJIS';
+        }
+
+        logToTerminal(
+            `[文字コード検出: ${detectedEncoding}]\n`
+        );
 
         // Shift_JIS → Unicode
-        const unicodeArray = Encoding.convert(sjisArray, {
+        const unicodeArray = Encoding.convert(fileArray, {
             to: 'UNICODE',
-            from: 'SJIS'
+            from: detectedEncoding
         });
 
         const text = Encoding.codeToString(unicodeArray);
@@ -301,7 +314,7 @@ async function downloadAndSend(url) {
             await sleep(100);
         }
 
-        logToTerminal('--- 送信完了 ---\n');
+        logToTerminal('\n--- 送信完了 ---\n');
 
     } catch (error) {
 
