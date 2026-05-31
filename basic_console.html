@@ -62,7 +62,7 @@
 
     <button id="btn-hello" disabled>HelloWorld</button>
     <button id="btn-invader" disabled>INVADER</button>
-    <button id="btn-pacman" disabled>PAKMAN</button>
+    <button id="btn-pakman" disabled>PAKMAN</button>
     <button id="btn-shoot" disabled>SHOOT</button>
 
     <div
@@ -120,12 +120,15 @@ let port;
 let writer;
 let reader;
 let keepReading = true;
+let lastReceiveTime = 0;
+let crCancel = false;
+let now = Date.now();
 
 const btnConnect = document.getElementById('btn-connect');
 
 const btnHello = document.getElementById('btn-hello');
 const btnInvader = document.getElementById('btn-invader');
-const btnPacman = document.getElementById('btn-pacman');
+const btnPakman = document.getElementById('btn-pakman');
 const btnShoot = document.getElementById('btn-shoot');
 
 const dropArea = document.getElementById('drop-area');
@@ -142,10 +145,10 @@ const statusEl = document.getElementById('status');
 const terminal = document.getElementById('terminal');
 
 const programs = {
-    hello: 'basic_console/HelloWorld.bas',
-    invader: 'basic_console/Invaders10.bas',
-    pacman: 'basic_console/Pakman16.bas',
-    shoot: 'basic_console/shoot16.bas'
+    hello: 'basic_console/HelloWorld_EUC_CRLF.bas',
+    invader: 'basic_console/Invaders_EUC_CRLF.bas',
+    pacman: 'basic_console/Pakman_EUC_CRLF.bas',
+    shoot: 'basic_console/Shoot_EUC_CRLF.bas'
 };
 
 function logToTerminal(text) {
@@ -199,7 +202,7 @@ btnConnect.addEventListener('click', async () => {
 
         btnHello.disabled = false;
         btnInvader.disabled = false;
-        btnPacman.disabled = false;
+        btnPakman.disabled = false;
         btnRun.disabled = false;
         btnList.disabled = false;
         btnNew.disabled = false;
@@ -238,7 +241,7 @@ async function readLoop() {
                 }
 
                 if (value && value.length > 0) {
-
+                    lastReceiveTime = Date.now();   // 最後に受信した時間
                     const bytes = Array.from(value);
 
                     const unicodeArray = Encoding.convert(bytes, {
@@ -251,7 +254,8 @@ async function readLoop() {
                     // CR → CRLF に変換
                     //logToTerminal(text.replace(/\r/g, '\r\n'));
                     // CRLFを受信するよう仕様変更
-                    logToTerminal(text);
+                    if(crCancel==false) { logToTerminal(text); }
+                    //else { logToTerminal(".");}
                 }
             }
 
@@ -309,19 +313,30 @@ async function downloadAndSend(url) {
         for (let i = 0; i < lines.length; i++) {
 
             const line = lines[i];
-
+            if((i % 20)==10) { logToTerminal(`.`);}
             if (i === lines.length - 1 && line.trim() === '') {
                 continue;
             }
+            if(line=="*** Program Start ***"){ crCancel=true;}
+            else if (line=="*** Program End ***"){crCancel=false;}
+            else{
+                const sendText = line + '\r';
 
-            const sendText = line + '\r';
+                // ★2. マイコンが期待する EUC-JP のバイナリに変換して送信
+                const encoded = await convertToEUCJP(sendText);
 
-            // ★2. マイコンが期待する EUC-JP のバイナリに変換して送信
-            const encoded = await convertToEUCJP(sendText);
+                await writer.write(encoded);
+                now = Date.now();
+                while (true) {
 
-            await writer.write(encoded);
-
-            await sleep(1);
+                    // 最後の受信から100ms以上経過
+                    if ((lastReceiveTime == 0) ||
+                        (now - lastReceiveTime < 0) ||  (now - lastReceiveTime > 100) ) {
+                        break;
+                    }
+                    await sleep(5);
+                }
+            }
         }
 
         logToTerminal('--- 送信完了 ---\n');
@@ -392,20 +407,31 @@ async function sendFile(file) {
         for (let i = 0; i < lines.length; i++) {
 
             const line = lines[i];
-
+            if((i % 20)==10) { logToTerminal(`.`);}
             // 最終空行スキップ
             if (i === lines.length - 1 && line.trim() === '') {
                 continue;
             }
+            if(line=="*** Program Start ***"){ crCancel=true;}
+            else if (line=="*** Program End ***"){crCancel=false;}
+            else{
+                const sendText = line + '\r';
 
-            const sendText = line + '\r';
+                // Unicode → EUC-JP
+                const encoded = convertToEUCJP(sendText);
 
-            // Unicode → EUC-JP
-            const encoded = convertToEUCJP(sendText);
+                await writer.write(encoded);
 
-            await writer.write(encoded);
-
-            await sleep(1);
+                now = Date.now();
+                while (true) {
+                    // 最後の受信から100ms以上経過
+                    if ((lastReceiveTime == 0) ||
+                        (now - lastReceiveTime < 0) || (now - lastReceiveTime > 100)) {
+                        break;
+                    }
+                    await sleep(5);
+                }
+            }
         }
 
         logToTerminal('--- ファイル送信完了 ---\n');
@@ -530,7 +556,7 @@ function setButtonsDisabled(disabled) {
 
     btnHello.disabled = disabled;
     btnInvader.disabled = disabled;
-    btnPacman.disabled = disabled;
+    btnPakman.disabled = disabled;
     btnRun.disabled = disabled;
     btnList.disabled = disabled;
     btnNew.disabled = disabled;
@@ -594,9 +620,9 @@ btnInvader.addEventListener(
     () => downloadAndSend(programs.invader)
 );
 
-btnPacman.addEventListener(
+btnPakman.addEventListener(
     'click',
-    () => downloadAndSend(programs.pacman)
+    () => downloadAndSend(programs.pakman)
 );
 
 btnRun.addEventListener(

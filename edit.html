@@ -93,14 +93,14 @@ textarea{
 <body>
 <include id='menu.html'></include>
 
-<p class="chapter8">BASIC コンソール</p>
+<p class="chapter8">エディタ（EUC-JP・CRLF）</p>
 
 <div class="toolbar">
 
     <input type="file" id="fileInput">
 
     <button onclick="saveFile()">
-        保存（EUC-JP / CR）
+        保存（EUC-JP / CRLF）
     </button>
 
     <span>
@@ -211,10 +211,10 @@ async function saveFile(){
 
     let text = editor.value;
 
-    // 改行コードをCRへ統一
-    text = text.replace(/\r\n/g, "\n");
+    // 改行コードをCRLFへ統一
+    text = text.replace(/\r\n/g, "\r");
     text = text.replace(/\r/g, "\n");
-    text = text.replace(/\n/g, "\r");
+    text = text.replace(/\n/g, "\r\n");
 
     // UTF-16(JavaScript文字列) → EUC-JP
     const encoded = Encoding.convert(

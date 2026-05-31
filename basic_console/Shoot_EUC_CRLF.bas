@@ -1,0 +1,742 @@
+*** Program Start ***
+10 '=========== SHOOTING =============
+20 GameTitle="SHOOTING"
+30 ScWidth=128:ScHight=64
+40 FontWidth=6:FontHight=8:BarWidth=3
+50 ScoreStr="SCORE":HiScoreStr="HISCO":StageStr="STAGE"
+60 BgWidth=ScWidth-strlen(ScoreStr)*FontWidth-BarWidth*2
+70 BgHight=ScHight*2
+80 Fm1=createFM(BgWidth,BgHight)
+90 Fm2=createFM(BgWidth,BgHight):gosub 1000: 'draw background
+100 Stage=1:Score=0:MyNum=2
+110 HighScoreNum=ScHight/FontHight-3
+120 dim HighScore[HighScoreNum]:gosub 9060
+130 if (keyA()<>1)||(keyB()<>1) then gosub 8100 : 'read HighScore
+135 None=0:Exist=1:St1=1:St2=2:St3=3:Explosion=4:Pow=5
+136 Powerup=1:PrevA=0:A=0
+140 BuMax=70:dim BuX[BuMax],BuY[BuMax],BuSt[BuMax] :'bullet
+145 dim BuW[BuMax],BuH[BuMax]
+170 EnMapNum=100:dim EnIn[EnMapNum],EnPr[EnMapNum]:' Enemy
+190 EnMax=20:dim EnSt[EnMax],EnX[EnMax],EnY[EnMax],EnType[EnMax]
+200 dim EnP1[EnMax],EnP2[EnMax],EnP3[EnMax],EnCo[EnMax],EnPow[EnMax]
+205 dim EnH[EnMax],EnW[EnMax]
+210 EnBuMax=50:dim EnBuX[EnBuMax],EnBuY[EnBuMax] :'Enemy bullet
+215 dim EnBuSt[EnBuMax],EnBuDx[EnBuMax],EnBuDy[EnBuMax]
+217 dim EnBuW[EnBuMax],EnBuH[EnBuMax]
+220 gosub 63000:'new stage
+300 gosub 20000:'define Char
+310 gosub 1200 :'define Sound
+320 B_END=0
+400 '=========== Main Routine =============
+410 while B_END=0
+420   gosub 10000 :' Demo
+425   if B_END=1 then exit while
+430   while -1
+440     gosub 5000  :' Stage
+450     if GameOver=1 then gosub 61000:exit while
+460     if StageClear=1 then gosub 62000
+470   end while
+480 end while
+490 sound 0,"L64.":play 0
+495 sound 1,"L64.":play 1
+500 end
+900 '--------- init EnTable --------------------
+905 for I=0 to EnMapNum-1:EnIn[I]=100000:next
+910 for I=0 to EnMax-1:EnSt[I]=None:next
+930 return
+1000 '---------  draw background ------------------
+1030 cls F,Fm1:cls F,Fm2
+1040 for I=0 to 300
+1045   X=rand()
+1055   Y=rand()
+1070   pset X*BgWidth/255,Y*BgHight/255,1,set,F,Fm1
+1105   X=rand()
+1115   Y=rand()
+1120   pset X*BgWidth/255,Y*BgHight/255,1,set,F,Fm2
+1130 next
+1150 return
+1200 '---------  define Sound ------------------
+1230 ' music:maoudamasii(maou_bgm_piano29)
+1240 Tempo="T100"
+1250 S111="L16HD#6L32.L16HD#6L32.L16HD#6L32."
+1260 S112="L16HE6L32.L16HE6L32.L16HE6L32."
+1270 S113="L16HF#6L32.L16HF#6L32.L16HF#6L32.L16HF#6L32."
+1280 S114="L16HE6L32.L16HE6L32.L16HE6L32."
+1290 S115="L16HD#6L32.L16HD#6L32.L16HE6L32.L16HE6L32."
+1300 S116="L16HD#6L32.L16HD#6L32.L16HD#6L32."
+1310 S117="L16HE6L32.L16HE6L32.L16HE6L32."
+1320 S118="L16HF#6L32.L16HF#6L32.L16HF#6L32.L16HF#6L32."
+1330 S11=S111+S112+S113+S114+S115+S116+S117+S118
+1340 '
+1350 S121="L16HE6L32.L16HE6L32.L16HE6L32."
+1360 S122="L16HD#6L32.L16HD#6L32.L16HE6L32.L16HE6L32."
+1370 S123="L16HD#6L32.L16HD#6L32.L16HD#6L32."
+1380 S124="L16HE6L32.L16HE6L32.L16HE6L32."
+1390 S125="L16HF#6L32.L16HF#6L32.L16HF#6L32.L16HF#6L32."
+1400 S126="L16HE6L32.L16HE6L32.L16HE6L32."
+1410 S127="L16HD#6L32.L16HD#6L32.L16HD#6L32."
+1420 S12=S121+S122+S123+S124+S125+S126
+1430 '
+1440 S131="L16HE6L32.L16HE6L32.L16HD#6L32."
+1450 S132="L16HE6L32.L16HD#6L32.L4G#5_L1._"
+1460 S13=S127+S131+S132
+1470 '
+1480 '
+1500 S154="L16HD#6L32.L16HD#6L32.L16HE6L32."
+1510 S155="L16HD#6L32.L16HE6L32.L16HD#6L32."
+1520 S156="L16HC#6L32.L16HC#6L32.L4._L1._"
+1530 S15=S154+S155+S156
+1540 '
+1550 '
+1560 ShootSound="T150L64V200G5A6."
+1570 ExplosionSound="T150L64V100G4B4V200G5V10B4B3G4."
+1580 PowupSound="T150L64V200C7C6E5G5C7."
+1590 PowupSound1="T150L64V100C#6V200C#6A5V10A5V200A6A6V10A6."
+1600 ItemGetSound="T150L32V200C#7F7F7V100F7L64."
+1610 StopSound="."
+1620 ExplosionSound1="T150L128V200C7."
+1990 return
+2000 '--------- show background ------------------
+2010 if BgY1+ScHight-1<BgHight then
+2020   get BarWidth,0,Fm1,0,BgY1,BgWidth,ScHight,set,F
+2030 else
+2040   H2=BgY1+ScHight-BgHight:H1=ScHight-H2
+2050   get BarWidth,0,Fm1,0,BgY1,BgWidth,H1,set,F
+2060   get BarWidth,H1,Fm1,0,0,BgWidth,H2,set,F
+2070 end if
+2110 if BgY2+ScHight-1<BgHight then
+2120   get BarWidth,0,Fm2,0,BgY2,BgWidth,ScHight,or,F
+2130 else
+2140   H2=BgY2+ScHight-BgHight:H1=ScHight-H2
+2150   get BarWidth,0,Fm2,0,BgY2,BgWidth,H1,or,F
+2160   get BarWidth,H1,Fm2,0,0,BgWidth,H2,or,F
+2170 end if
+2180 return
+2300 '------------ Key input response ------------------
+2305 if (MySt=St1)||(MySt=St2) then
+2306   if MySt=St2 then 
+2307      MyCount=Count-MyCo:if MyCount>25 then MySt=St1
+2308   end if
+2310   L=keyL():R=keyR():U=keyU():D=keyD()
+2320   if L=1 then LCount=LCount+1 else LCount=0
+2325   if LCount>10 then LCount=10
+2330   if R=1 then RCount=RCount+1 else RCount=0
+2335   if RCount>10 then RCount=10
+2340   if U=1 then UCount=UCount+1 else UCount=0
+2345   if UCount>10 then UCount=10
+2350   if D=1 then DCount=DCount+1 else DCount=0
+2355   if DCount>20 then DCount=20
+2360   if L=1 then MyX=MyX-(1+LCount/4)
+2370   if R=1 then MyX=MyX+(1+RCount/4)
+2380   if U=1 then MyY=MyY-(1+UCount/4)
+2390   if D=1 then MyY=MyY+(1+DCount/4)
+2400   if MyX<BarWidth then MyX=BarWidth
+2410   if BarWidth+BgWidth<MyX+MyWidth then MyX=BarWidth+BgWidth-MyWidth
+2420   if MyY<0 then MyY=0
+2430   if MyY+MyHight>ScHight-MyHGap then MyY=ScHight-MyHight-MyHGap
+2440   put MyX-1,MyY-1,MyCharMask,and,F
+2445   if MySt=St1 then 
+2450     put MyX,MyY,MyChar,or,F
+2451     if MyOp=Exist then
+2452       X=MyX-MyOpW-3:X1=MyX+MyWidth+3
+2453       if X>=BarWidth then  put X,MyY,MyOpt,or,F
+2454       if X1+MyOpW<BgWidth+BarWidth then put X1,MyY,MyOpt,or,F
+2459     end if
+2460   else
+2461     if mod(MyCount,2)=0 then put MyX,MyY,MyChar,or,F
+2462   end if
+2470   gosub 3000
+2500 else
+2510   MyCount=Count-MyCo
+2520   if MyCount=1 then sound 1,ExplosionSound:play 1 
+2530   if mod(MyCount/3,2)=0 then
+2540     put MyX,MyY,Enemy01Ex0,or,F
+2550   else
+2560     put MyX,MyY,Enemy01Ex1,or,F
+2570   end if
+2580   if MyCount>12 then
+2590      if MyNum=0 then
+2600        GameOver=1  
+2610      else
+2620        MyNum=MyNum-1:MySt=St2:MyCo=Count
+2630        gosub 6110:'Disp MyNum
+2640      end if
+2650   end if
+2690 end if
+2990 return
+3000 '-------  Shoot Sub ---------------
+3005 gosub 3400:'Aキー読み込み
+3010 if (MyBulletDone=0)&&((MySt=St1)||(MySt=St2)) then
+3020 if (PrevA=0)&&(A=1) then
+3026     PrevA=1:A=0
+3030     sound 1,ShootSound:play 1:MyBulletDone=1
+3035     gosubS BuSt,I,None,3100 :'shoot Sub
+3040     if MyOp=Exist then 
+3045       gosubS BuSt,I,None,3130:gosubS BuSt,I,None,3160 :'shoot Sub1,2
+3050     end if
+3060   end if 
+3070 end if
+3075 gosub 3400:'Aキー読み込み
+3080 return
+3100 '----------- shoot Sub -----------
+3105 BuSt[I]=Exist:BuX[I]=MyX+MyWidth/2-MyBu1W/2
+3110 BuY[I]=MyY-MyBu1H:BuW[I]=MyBu1W:BuH[I]=MyBu1H
+3120 return
+3130 '----------- shoot Sub1 -----------
+3131 X=MyX-MyOpW/2-3-MyBu1W/2
+3132 if X>=BarWidth then
+3135   BuSt[I]=Exist:BuX[I]=X
+3140   BuY[I]=MyY-MyBu1H:BuW[I]=MyBu1W:BuH[I]=MyBu1H
+3145 end if
+3150 return
+3160 '----------- shoot Sub2 -----------
+3161 X=MyX+MyWidth+3+MyOpW/2
+3162 if (X+MyBu1W-1)<BgWidth+BarWidth then
+3165   BuSt[I]=Exist:BuX[I]=X
+3170   BuY[I]=MyY-MyBu1H:BuW[I]=MyBu1W:BuH[I]=MyBu1H
+3175 end if
+3180 return
+3200 '----------- move bullet -------------
+3210 gosubM BuSt,I,Exist,3250
+3220 return
+3250 if BuY[I]>3 then
+3260   BuY[I]=BuY[I]-3
+3270   put BuX[I],BuY[I],MyBu1,or,F
+3280 else
+3290   BuSt[I]=None
+3300 end if
+3310 return
+3400 '----------- key 入力 -------------
+3410 if keyA()=0 then PrevA=0
+3420 if keyA()=1 then A=1
+3430 return
+5000 '=============== STAGE ===============
+5010 Count=1:cls: gosub 900 :' init Entable
+5020 MyX=BarWidth+BgWidth/2-MyWidth/2
+5030 MyY=ScHight-MyHight-MyHGap:MySt=St1:MyOp=None
+5040 ScAreaX=BarWidth*2+BgWidth-1
+5050 gosub 50000:' load map
+5060 LCount=0:RCount=0:UCount=0:DCount=0
+5070 MapIdx=0:EnNum=0
+5130 Y=0:GameClear=0:GameOver=0
+5140 putStr ScAreaX,Y,StageStr,1 : Y=Y+FontHight : StageY=Y
+5150 gosub 6020 : Y=Y+FontHight : 'Disp Stage
+5160 putStr ScAreaX,Y,HiScoreStr,1 : Y=Y+FontHight : HiScoreY=Y
+5170 gosub 6040 : Y=Y+FontHight : 'Disp HiScore
+5180 putStr ScAreaX,Y,ScoreStr,1 : Y=Y+FontHight : ScoreY=Y
+5190 gosub 6080 : Y=Y+FontHight : 'Disp Score
+5195 MyNumY=ScHight-MyHight-MyHGap:gosub 6110:'Disp MyNum
+5200 BgY1=0:BgY2=0:BgSpeed1=1:BgSpeed2=2
+5205 Tempo="T150V100":sound 0,Tempo+S11+S12+S13+S11+S12+S15
+5206 play 0
+5207 '-------------- Main Loop ---------------
+5210 while (StageClear=0)&&(GameOver=0)
+5230   gosub 2000 : ' show background
+5235   '---------- move background ---------------
+5240   BgY1=BgY1-BgSpeed1:BgY2=BgY2-BgSpeed2
+5250   if BgY1<0 then BgY1=BgY1+BgHight
+5260   if BgY2<0 then BgY2=BgY2+BgHight
+5265   MyBulletDone=0
+5270   gosub 2300 : ' move My Char
+5275   gosub 3000 : ' shoot My Bullet 
+5280   gosub 3200 : ' move bullet
+5285   gosub 3000 : ' shoot My Bullet 
+5290   gosub 30000 : ' move enemy
+5295   gosub 3000 : ' shoot My Bullet 
+5300   gosubM EnSt,I,St1,25000,St2,25000,St3,25000 : ' check enemy collision
+5305   gosub 3000 : ' shoot My Bullet 
+5310   gosub 25700 : ' check My collision
+5315   gosub 3000 : ' shoot My Bullet 
+5350   sleep 30 : ' 30ms スリープ
+5450   update BarWidth,0,BarWidth+BgWidth-1,ScHight-1
+5460   if sound0status()=0 then play 0
+5490   Count=Count+1
+5500 end while
+5505 sound 1,StopSound:play 1
+5520 return
+6000 '----- STAGE Sub -----
+6010 'Disp Stage 
+6020 putStr ScAreaX,StageY,format("%-5D",Stage),1
+6030 return
+6040 'Disp HighScore
+6050 gosub 9000
+6060 putStr ScAreaX,HiScoreY,format("%-5D",HiScore),1
+6070 return
+6080 'Disp Score
+6090 putStr ScAreaX,ScoreY,format("%-5D",Score),1
+6100 return
+6110 'Disp MyNum
+6115 fill ScAreaX,MyNumY,ScWidth-1,ScHight-1,0
+6116 if MyNum<>0 then
+6120   for I=0 to MyNum-1
+6130     put ScAreaX+I*(MyWidth+1),MyNumY,MyChar
+6140   next
+6145 end if
+6150 return
+8000 '-------- saveHiscore ------------
+8010 Addr=0
+8020 write Addr,GameTitle:Addr=Addr+16
+8030 for I=0 to HighScoreNum-1
+8040   write Addr,format("%D",HighScore[I]):Addr=Addr+16
+8050 next
+8060 return
+8100 '-------- readHiscore ------------
+8110 Addr=0
+8120 if GameTitle=read(Addr,strlen(GameTitle)) then
+8125   Addr=Addr+16
+8130   for I=0 to HighScoreNum-1
+8140     HighScore[I]=val(read(Addr,5)):Addr=Addr+16
+8150   next
+8160 end if
+8170 return
+9000 '---------get HiScore-------------
+9010 HiScore=0:MinHiScore=100000
+9020 for I=0 to HighScoreNum-1
+9030   if HighScore[I]>HiScore then HiScore=HighScore[I]
+9035   if MinHiScore>HighScore[I] then MinHiScore=HighScore[I]
+9040 next
+9050 return
+9060 '--------HiScore Initial----------
+9070 for I=0 to HighScoreNum-1
+9080   HighScore[I]=0
+9090 next
+9095 return
+10000 '-------------- openning ---------------------
+10400 '----- MAKE SCREEN -------
+10410 cls
+10430 Comment="PUSH B KEY"
+10440 TitleX=(ScWidth-strlen(GameTitle)*FontWidth)/2
+10450 TitleY=(ScHight-2*FontWidth)/3
+10460 putStr TitleX,TitleY,GameTitle,1
+10470 CommentX=(ScWidth-strlen(Comment)*FontWidth)/2
+10480 putStr CommentX,TitleY*2,Comment,1
+10490 '--------------- Wait ---------------
+10495 keyBpushd=0
+10500 while -1
+10505   for I=0 to 20
+10506     if keyA()=1 && keyB()=1 then keyBpushd=1:B_END=1:exit for:'AとBを両方押したらプログラム終了
+10507     if keyB()=1 then keyBpushd=1:exit for
+10520     sleep 50
+10525   next
+10530   putStr CommentX,TitleY*2,Comment,1,xor,T
+10535   if keyBpushd=1 then exit while
+10550 end while
+10600 return
+20000 '===========  define Char =============
+20001 MyWidth=10:MyHight=5:MyHGap=3
+20002 MyChar=createFM(MyWidth,MyHight)
+20003 setBM MyChar,0,"0001111000"
+20004 setBM MyChar,1,"0011001100"
+20005 setBM MyChar,2,"0110000110"
+20006 setBM MyChar,3,"1111111111"
+20007 setBM MyChar,4,"1111001111"
+20008 MyCharMask=createFM(MyWidth+2,MyHight+2)
+20009 setBM MyCharMask,0,"111100001111"
+20010 setBM MyCharMask,1,"111000000111"
+20011 setBM MyCharMask,2,"110000000011"
+20012 setBM MyCharMask,3,"100000000001"
+20013 setBM MyCharMask,4,"000000000000"
+20014 setBM MyCharMask,5,"000000000000"
+20015 setBM MyCharMask,6,"000000000000"
+20016 MyBu1W=2:MyBu1H=3
+20050 MyBu1=createFM(MyBu1W,MyBu1H)
+20051 setBM MyBu1,0,"11"
+20052 setBM MyBu1,1,"11"
+20053 setBM MyBu1,2,"11"
+20054 En1W=8:En1H=5
+20055 Enemy01=createFM(En1W,En1H)
+20056 setBM Enemy01,0,"00011000"
+20057 setBM Enemy01,1,"01111110"
+20058 setBM Enemy01,2,"11111111"
+20059 setBM Enemy01,3,"01111110"
+20060 setBM Enemy01,4,"00011000"
+20061 EnBuWi=4:EnBuHi=3
+20062 EnBuBM=createFM(EnBuWi,EnBuHi)
+20063 setBM EnBuBM,0,"0110"
+20064 setBM EnBuBM,1,"1111"
+20065 setBM EnBuBM,2,"0110"
+20066 Enemy01Ex0=createFM(En1W,En1H)
+20067 setBM Enemy01Ex0,0,"10000001"
+20068 setBM Enemy01Ex0,1,"01100110"
+20069 setBM Enemy01Ex0,2,"11111111"
+20070 setBM Enemy01Ex0,3,"01100110"
+20071 setBM Enemy01Ex0,4,"10000001"
+20072 Enemy01Ex1=createFM(En1W,En1H)
+20073 setBM Enemy01Ex1,0,"00000000"
+20074 setBM Enemy01Ex1,1,"00100100"
+20075 setBM Enemy01Ex1,2,"01111110"
+20076 setBM Enemy01Ex1,3,"00100100"
+20077 setBM Enemy01Ex1,4,"00000000"
+20078 'Powerup
+20079 PowW=7:PowH=6
+20080 PowerupI0=createFM(PowW,PowH)
+20081 setBM PowerupI0,0,"1111111"
+20082 setBM PowerupI0,1,"1000001"
+20083 setBM PowerupI0,2,"1001101"
+20084 setBM PowerupI0,3,"1000001"
+20085 setBM PowerupI0,4,"1001111"
+20086 setBM PowerupI0,5,"1111111"
+20088 'Option
+20089 MyOpW=5:MyOpH=3
+20090 MyOpt=createFM(MyOpW,MyOpH)
+20091 setBM MyOpt,0,"00100"
+20092 setBM MyOpt,1,"01110"
+20093 setBM MyOpt,2,"11111"
+20100 'Boss1
+20101 Boss01W=32:Boss01H=32
+20102 Boss01=createFM(Boss01W,Boss01H)
+20103 setBM Boss01,0,"00000000000011111111000000000000"
+20104 setBM Boss01,1,"00000000011111111111111000000000"
+20105 setBM Boss01,2,"00000001111111111111111110000000"
+20106 setBM Boss01,3,"00000011111111111111111111000000"
+20107 setBM Boss01,4,"00000111111111111111111111100000"
+20108 setBM Boss01,5,"00001111111111111111111111110000"
+20109 setBM Boss01,6,"00011111111111111111111111111000"
+20110 setBM Boss01,7,"00111111111111111111111111111100"
+20111 setBM Boss01,8,"00111111111111111111111111111100"
+20112 setBM Boss01,9,"01111111111111111111111111111110"
+20113 setBM Boss01,10,"01111111111111111111111111111110"
+20114 setBM Boss01,11,"01111111111111111111111111111110"
+20115 setBM Boss01,12,"11111111111111111111111111111111"
+20116 setBM Boss01,13,"11111111111111111111111111111111"
+20117 setBM Boss01,14,"11111111111111111111111111111111"
+20118 setBM Boss01,15,"11111111111111111111111111111111"
+20119 setBM Boss01,16,"11111111111111111111111111111111"
+20120 setBM Boss01,17,"11111111111111111111111111111111"
+20121 setBM Boss01,18,"11111111111111111111111111111111"
+20122 setBM Boss01,19,"11111111111111111111111111111111"
+20123 setBM Boss01,20,"01111111111111111111111111111110"
+20124 setBM Boss01,21,"01111111111111111111111111111110"
+20125 setBM Boss01,22,"01111111111111111111111111111110"
+20126 setBM Boss01,23,"00111111111111111111111111111100"
+20127 setBM Boss01,24,"00111111111111111111111111111100"
+20128 setBM Boss01,25,"00011111111111111111111111111000"
+20129 setBM Boss01,26,"00001111111111111111111111110000"
+20130 setBM Boss01,27,"00000111111111111111111111100000"
+20131 setBM Boss01,28,"00000011111111111111111111000000"
+20132 setBM Boss01,29,"00000001111111111111111110000000"
+20133 setBM Boss01,30,"00000000011111111111111000000000"
+20134 setBM Boss01,31,"00000000000011111111000000000000"
+20150 Boss01FM=createFM(Boss01W,Boss01H)
+20151 put 0,0,Boss01,set,F,Boss01FM
+24990 return
+25000 '===========  check enemy collision ===========
+25070 '----- bullet ------
+25080 J=isColM(EnX[I],EnY[I],EnW[I],EnH[I],BuX,BuY,BuW,BuH,BuSt,Exist)
+25090 if J<>BuMax then
+25091   gosubC EnType[I],25110,25110,25300,25300
+25092 end if
+25093 return
+25100 '----- EnType 0,1 ---------------
+25110 EnSt[I]=Explosion:EnNum=EnNum-1
+25120 EnCo[I]=Count
+25125 BuSt[J]=None
+25130 Score=Score+10
+25140 if EnNum=0 then
+25150   '--- bonus -------
+25155   if EnPow[I]=1 then
+25180     Score=Score+100
+25185     sound 1,PowupSound:play 1
+25186     gosubS EnSt,Found,None,26000:'set powerUp
+25230   end if
+25240 end if
+25250 gosub 6080 : ' disp score
+25270 return
+25300 '----- EnType 2,3 ---------------
+25305 EnP2[I]=EnP2[I]-1:BuSt[J]=None
+25310 if EnP2[I]>0 then
+25330   sound 1,ExplosionSound1:play 1
+25350 else
+25560   if EnType[I]=3 then 
+25561     Score=Score+1000*Stage
+25562     EnSt[I]=Explosion:EnNum=EnNum-1:BuSt[J]=None:gosub 6080
+25563   else
+25564     Score=Score+50
+25565     gosub 25100
+25570   end if
+25580 end if
+25590 return
+25700 '===========  check My collision ===========
+25705 if MySt=St1 then 
+25706   W=MyWidth:H=MyHight
+25710   I=isColM(MyX,MyY,W,H,EnBuX,EnBuY,EnBuW,EnBuH,EnBuSt,Exist)
+25720   if I<>EnBuMax then
+25735     MySt=Explosion:MyOp=None
+25740     MyCo=Count
+25750     EnBuSt[I]=None
+25760   else 
+25780     I=isColM(MyX,MyY,W,H,EnX,EnY,EnW,EnH,EnSt,St1,St2,St3,Pow)
+25790     if I<>EnMax then
+25810       if EnType[I]=Powerup then
+25820         MyOp=St1:Score=Score+100
+25830         EnSt[I]=None
+25840         sound 1,ItemGetSound:play 1
+25900       else
+25905         if MySt<>Explosion then
+25910           MySt=Explosion:MyOp=None
+25920           MyCo=Count
+25930           if EnType[I]<>3 then EnSt[I]=Explosion:EnNum=EnNum-1
+25935         end if
+25940       end if
+25950     end if
+25970   end if
+25985 end if
+25990 return
+26000 '----------- set powerup -------------
+26010 if Found<>EnMax then
+26020   EnSt[Found]=Pow
+26030   EnType[Found]=Powerup:EnX[Found]=EnX[I]:EnY[Found]=EnY[I]
+26040   EnCo[Found]=Count:EnH[Found]=PowW:EnW[Found]=PowH
+26050   EnPow[Found]=None
+26060 end if
+26070 return
+30000 '===========  move enemy ===========
+30100 '-------- load Map to EnTable ------------
+30110 for I=MapIdx to EnMapNum-1
+30120   if EnIn[I]=Count then
+30130     gosubS EnSt,J,None,50800:' load Map to EnTable
+30135     MapIdx=I+1
+30140   else
+30150     if EnIn[I]>Count then exit for
+30160   end if
+30170 next
+30200 '------------------ move -------------------
+30210 gosubM EnSt,I,St1,40000,St2,42000,St3,44000,Explosion,49000,Pow,49500
+30220 gosubM EnBuSt,I,Exist,39000
+31900 return
+39000 '---------- move enemy bu -----------
+39010 EnBuX[I]=EnBuX[I]+EnBuDx[I]
+39020 EnBuY[I]=EnBuY[I]+EnBuDy[I]:W=BarWidth
+39030 if isOut(W,0,BgWidth,ScHight,EnBuX[I],EnBuY[I],EnBuW[I],EnBuH[I])=1 then
+39040   EnBuSt[I]=None
+39050 else
+39060   put EnBuX[I],EnBuY[I],EnBuBM,or,F
+39070 end if
+39080 return
+40000 '------------- ST1 ---------------
+40010 EnCount=Count-EnCo[I]
+40020 gosubC EnType[I],40050,40100,40110,40200
+40030 return
+40050 return :'--- EnemyType0 dummy ----
+40100 '--- EnemyType1 ST1 ----
+40101 EnY[I]=EnY[I]+1
+40102 put EnX[I],EnY[I],Enemy01,or,F
+40103 if EnCount>=EnP1[I] then EnSt[I]=St2
+40104 return
+40110 '--- EnemyType2 ST1 ----
+40111 EnY[I]=EnY[I]+1
+40112 put EnX[I],EnY[I],Enemy01,or,F
+40113 if BossIdx<>-1 then
+40114   if EnSt[BossIdx]=St2 then
+40120     EnCo[I]=EnX[I]-EnX[BossIdx]
+40130     EnP3[I]=EnY[I]-EnY[BossIdx]
+40150     EnSt[I]=St2
+40190   end if
+40195 end if
+40199 return
+40200 '--- EnemyType3 ST1 ----
+40201 EnY[I]=EnY[I]+1
+40205 H=EnH[I]+EnY[I]:Y=EnH[I]-H
+40210 get EnX[I],0,Boss01FM,0,Y,EnW[I],H,or,F
+40290 if EnY[I]>=0 then EnSt[I]=St2
+40299 return
+42000 '------------- ST2 ---------------
+42010 EnCount=Count-EnCo[I]
+42020 gosubC EnType[I],42050,42100,42200,42300
+42030 return
+42050 return :'--- EnemyType0 dummy ----
+42100 '--- EnemyType1 ST2 ----
+42112 put EnX[I],EnY[I],Enemy01,or,F
+42113 if mod(EnCount,10-Stage*2)=0 then
+42114   for J=1 to 3
+42115      gosubS EnBuSt,EnBuIdx,None,48100
+42116    next
+42117 end if
+42118 if EnCount>=EnP2[I] then EnSt[I]=St3
+42119 return
+42200 '--- EnemyType2 ST2 ----
+42201 OffX=(EnP1[I]-1)*EnY[BossIdx]
+42211 EnX[I]=EnX[BossIdx]+EnCo[I]+OffX
+42212 EnY[I]=EnY[BossIdx]+EnP3[I]
+42213 if isOut(BarWidth,0,BgWidth,ScHight,EnX[I],EnY[I],EnW[I],EnH[I])=0 then
+42215   put EnX[I],EnY[I],Enemy01,or,F
+42220 end if
+42299 return
+42300 '--- EnemyType3 ST2 ----
+42301 X=EnX[I]+BoDx:Y=EnY[I]+BoDy
+42302 if isOut(BarWidth,0,BgWidth,ScHight-10,X,Y,EnW[I],EnH[I])=1 then
+42303   if X<BarWidth then BoDx=-BoDx
+42304   if X+EnW[I]>=BgWidth then BoDx=-BoDx
+42305   if Y<0 then BoDy=-BoDy
+42306   if Y>=ScHight-10-EnH[I] then BoDy=-BoDy
+42310 else
+42311   EnX[I]=X:EnY[I]=Y
+42320 end if
+42325 put EnX[I],EnY[I],Boss01,or,F
+42399 return
+44000 '------------- ST3 ---------------
+44010 EnCount=Count-EnCo[I]
+44020 gosubC EnType[I],44050,44100
+44030 return
+44050 return :'--- EnemyType0 dummy ----
+44100 '--- EnemyType1 ST3 ----
+44110 EnY[I]=EnY[I]-1
+44120 put EnX[I],EnY[I],Enemy01,or,F
+44130 if EnCount>=EnP3[I] then EnSt[I]=None:EnNum=EnNum-1
+44140 return
+48100 '------ set En bu ---------
+48110 EnBuSt[EnBuIdx]=Exist
+48120 EnBuX[EnBuIdx]=EnX[I]+En1W/2+EnBuWi*(2-J)
+48130 EnBuY[EnBuIdx]=EnY[I]+En1H
+48140 EnBuDx[EnBuIdx]=2-J
+48150 EnBuDy[EnBuIdx]=1
+48155 EnBuH[EnBuIdx]=EnBuHi:EnBuW[EnBuIdx]=EnBuWi
+48160 return
+49000 '---------- Explosion ------------
+49010 EnCount=Count-EnCo[I]
+49015 if EnCount=1 then
+49017   if sound1status()=0 then sound 1,ExplosionSound:play 1
+49019 end if
+49020 X=EnX[I]:Y=EnY[I]
+49021 if EnType[I]=3 then X=X+12:Y=Y+12
+49029 if mod(EnCount/3,2)=0 then
+49030   put X,Y,Enemy01Ex0,or,F
+49040 else
+49050   put X,Y,Enemy01Ex1,or,F
+49060 end if
+49070 if EnCount>18 then
+49071   EnSt[I]=None
+49072   if EnType[I]=3 then StageClear=1
+49079 end if
+49080 return
+49500 '------------- POW --------------
+49510 EnCount=Count-EnCo[I]
+49520 if mod(EnCount,3)=0 then EnY[I]=EnY[I]+1
+49530 put EnX[I],EnY[I],PowerupI0,or,F
+49540 if isOut(BarWidth,0,BgWidth,ScHight,EnX[I],EnY[I],EnW[I],EnH[I])=1 then
+49550   EnSt[I]=None
+49560 end if
+49570 return
+50000 '===========  load map ===========
+50010 if Stage<8 then
+50020   gosubC Stage,51000,51000,51000,51000,51000,51000,51000,51000
+50730 else 
+50740   gosub 51000
+50750 end if
+50760 return
+50800 '---------- load Map to EnTable-------
+50860 if J<>EnMax then
+50900   strToA EnPr[I],0,J,3,EnX,3,EnY,3,EnType,3,EnP1,3,EnP2,3,EnP3,1,EnPow
+50910   if EnType[J]=0 then
+50920     StageClear=1
+50930   else
+50935     EnSt[J]=St1:EnCo[J]=EnIn[I]:EnNum=EnNum+1
+50940     if EnType[J]=3 then
+50941         EnH[J]=Boss01H:EnW[J]=Boss01W:BossIdx=J:BoDx=-2:BoDy=1
+50942         EnP2[J]=EnP2[J]+Stage*20
+50944     else
+50945         EnH[J]=En1H:EnW[J]=En1W
+50946         if EnType[J]=2 then EnP2[J]=EnP2[J]+Stage*5
+50948     end if
+50950   end if
+50960 end if
+50970 return
+51000 '-----------Stage 1 -------------------
+51020 W1=format("%03D",BgWidth/5):W2=format("%03D",BgWidth*2/5)
+51030 W3=format("%03D",BgWidth*3/5):W4=format("%03D",BgWidth*4/5)
+51040 W5=format("%03D",BgWidth/2)
+51100 '--InTime--------- x -- y - type --pat1 -pat2 -pat3 -Pow
+51111 EnIn[0]=30:EnPr[0]=W5+"000"+"001"+"020"+"040"+"060"+"0"
+51112 EnIn[1]=80:EnPr[1]=W1+"000"+"001"+"020"+"040"+"060"+"1"
+51113 EnIn[2]=80:EnPr[2]=W4+"000"+"001"+"020"+"040"+"060"+"1"
+51114 EnIn[3]=130:EnPr[3]=W2+"000"+"001"+"020"+"040"+"060"+"1"
+51115 EnIn[4]=130:EnPr[4]=W3+"000"+"001"+"020"+"040"+"060"+"1"
+51116 EnIn[5]=180:EnPr[5]=W1+"000"+"001"+"020"+"040"+"060"+"1"
+51117 EnIn[6]=180:EnPr[6]=W4+"000"+"001"+"020"+"040"+"060"+"1"
+51118 EnIn[7]=200:EnPr[7]=W2+"000"+"001"+"020"+"040"+"060"+"1"
+51119 EnIn[8]=200:EnPr[8]=W3+"000"+"001"+"020"+"040"+"060"+"1"
+51120 EnIn[9]=260:EnPr[9]=W5+"000"+"001"+"020"+"040"+"060"+"0"
+51121 EnIn[10]=300:EnPr[10]=W1+"000"+"001"+"020"+"040"+"060"+"1"
+51122 EnIn[11]=300:EnPr[11]=W4+"000"+"001"+"020"+"040"+"060"+"1"
+51123 EnIn[12]=340:EnPr[12]=W2+"000"+"001"+"020"+"040"+"060"+"1"
+51124 EnIn[13]=340:EnPr[13]=W3+"000"+"001"+"020"+"040"+"060"+"1"
+51125 EnIn[14]=380:EnPr[14]=W1+"000"+"001"+"020"+"040"+"060"+"1"
+51126 EnIn[15]=380:EnPr[15]=W4+"000"+"001"+"020"+"040"+"060"+"1"
+51127 EnIn[16]=380:EnPr[16]=W2+"000"+"001"+"020"+"040"+"060"+"1"
+51128 EnIn[17]=380:EnPr[17]=W3+"000"+"001"+"020"+"040"+"060"+"1"
+51150 EnIn[18]=450:EnPr[18]="038"+"000"+"002"+"000"+"015"+"000"+"0"
+51151 EnIn[19]=450:EnPr[19]="046"+"000"+"002"+"002"+"015"+"000"+"0"
+51152 EnIn[20]=452:EnPr[20]="030"+"000"+"002"+"000"+"015"+"000"+"0"
+51153 EnIn[21]=452:EnPr[21]="054"+"000"+"002"+"002"+"015"+"000"+"0"
+51154 EnIn[22]=454:EnPr[22]="022"+"000"+"002"+"000"+"015"+"000"+"0"
+51155 EnIn[23]=454:EnPr[23]="062"+"000"+"002"+"002"+"015"+"000"+"0"
+51156 EnIn[24]=456:EnPr[24]="014"+"000"+"002"+"000"+"015"+"000"+"0"
+51157 EnIn[25]=456:EnPr[25]="070"+"000"+"002"+"002"+"015"+"000"+"0"
+51158 EnIn[26]=458:EnPr[26]="022"+"000"+"002"+"000"+"015"+"000"+"0"
+51159 EnIn[27]=458:EnPr[27]="062"+"000"+"002"+"002"+"015"+"000"+"0"
+51160 EnIn[28]=460:EnPr[28]="030"+"000"+"002"+"000"+"015"+"000"+"0"
+51161 EnIn[29]=460:EnPr[29]="054"+"000"+"002"+"002"+"015"+"000"+"0"
+51162 EnIn[30]=462:EnPr[30]="038"+"000"+"002"+"000"+"015"+"000"+"0"
+51163 EnIn[31]=462:EnPr[31]="046"+"000"+"002"+"002"+"015"+"000"+"0"
+51164 EnIn[32]=462:EnPr[32]="030"+"-32"+"003"+"001"+"030"+"000"+"0":'boss
+51199 EnIn[33]=3000:EnPr[33]="000"+"000"+"000"+"000"+"000"+"000"+"0"'clear
+60000 return
+61000 '=========== GAME OVER =============
+61005 if MinHiScore<Score then goto 61500
+61100 '----- MAKE SCREEN -------
+61110 cls
+61120 Title="GAME OVER"
+61130 Comment="Score: "+format("%-5D",Score)
+61140 TitleX=(ScWidth-strlen(Title)*FontWidth)/2
+61150 TitleY=(ScHight-2*FontWidth)/3
+61160 putStr TitleX,TitleY,Title,1
+61170 CommentX=(ScWidth-strlen(Comment)*FontWidth)/2
+61180 putStr CommentX,TitleY*2,Comment,1
+61295 sleep 2000
+61300 '----- NEW GAME -------
+61310 gosub 63000:Stage=1:Score=0:MyNum=2
+61320 return
+61500 '=========== HIGH SCORE =============
+61510 for i=0 to HighScoreNum-1
+61520   if HighScore[i]<Score then exit for
+61530 next
+61540 for j=HighScoreNum-1 to i+1 step -1
+61550   HighScore[j]=HighScore[j-1]
+61555 next
+61560 HighScore[i]=Score
+61570 cls
+61580 Title="-- HIGH SCORE --"
+61600 TitleX=(ScWidth-strlen(Title)*FontWidth)/2
+61610 TitleY=0
+61620 putStr TitleX,TitleY,Title,1
+61630 for j=0 to HighScoreNum-1
+61650   Comment=format("No%D ",j+1)+format("%-5D",HighScore[j])
+61660   if i=j then Comment=Comment+"<=YourScore"
+61670   putStr FontWidth,(j+1)*FontHight,Comment,1
+61680 next
+61690 gosub 8000 :' save High Score
+61700 '----- SOUND -------
+61820 sleep 3000
+61830 '----- NEW GAME -------
+61840 gosub 63000:Stage=1:Score=0:MyNum=2
+61850 return
+62000 '=========== STAGE CLEAR =============
+62100 '----- MAKE SCREEN -------
+62110 cls
+62120 Title="STAGE CLEAR"
+62130 Comment="Score: "+format("%-5D",Score)
+62140 TitleX=(ScWidth-strlen(Title)*FontWidth)/2
+62150 TitleY=(ScHight-2*FontWidth)/3
+62160 putStr TitleX,TitleY,Title,1
+62170 CommentX=(ScWidth-strlen(Comment)*FontWidth)/2
+62180 putStr CommentX,TitleY*2,Comment,1
+62295 sleep 2000
+62300 '----- NEW STAGE -------
+62310 gosub 63000:Stage=Stage+1
+62320 return
+63000 '------- new Stage -----------
+63010 StageClear=0:GameOver=0:BossIdx=-1
+63020 for I=0 to BuMax-1:BuX[I]=0:BuY[I]=0:BuSt[I]=None:next:PrevA=0
+63030 for I=0 to EnBuMax-1:EnBuSt[I]=None:next
+63040 return
+*** Program End ***
