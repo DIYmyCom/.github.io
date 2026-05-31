@@ -290,11 +290,11 @@ async function downloadAndSend(url) {
 
         const lines = text.split(/\r?\n/);
 
+        writer = port.writable.getWriter();
+
         const EraseText = 'EEPErase\r'; // EEPROMの消去
         await writer.write(EraseText);
         await sleep(3000);
-
-        writer = port.writable.getWriter();
 
         for (let i = 0; i < lines.length; i++) {
 
@@ -378,6 +378,10 @@ async function sendFile(file) {
         const lines = text.split(/\r?\n/);
 
         writer = port.writable.getWriter();
+
+        const EraseText = 'EEPErase\r'; // EEPROMの消去
+        await writer.write(EraseText);
+        await sleep(3000);
 
         for (let i = 0; i < lines.length; i++) {
 
