@@ -266,6 +266,9 @@ async function downloadAndSend(url) {
         // ★1. 取得したファイルのバイト列
         const fileArray = new Uint8Array(buffer);
 
+        // ========================================
+        // 文字コード自動判定
+        // ========================================
         let detectedEncoding = Encoding.detect(fileArray);
 
         // 判定失敗時
@@ -292,7 +295,7 @@ async function downloadAndSend(url) {
 
         writer = port.writable.getWriter();
 
-        const EraseText = 'EEPErase\r'; // EEPROMの消去
+        const EraseText = await convertToEUCJP('EEPErase\r'); // EEPROMの消去
         await writer.write(EraseText);
         await sleep(3000);
 
@@ -379,7 +382,7 @@ async function sendFile(file) {
 
         writer = port.writable.getWriter();
 
-        const EraseText = 'EEPErase\r'; // EEPROMの消去
+        const EraseText = await convertToEUCJP('EEPErase\r'); // EEPROMの消去
         await writer.write(EraseText);
         await sleep(3000);
 
