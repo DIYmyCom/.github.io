@@ -147,7 +147,7 @@ const terminal = document.getElementById('terminal');
 const programs = {
     hello: 'basic_console/HelloWorld_EUC_CRLF.bas',
     invader: 'basic_console/Invaders_EUC_CRLF.bas',
-    pacman: 'basic_console/Pakman_EUC_CRLF.bas',
+    pakman: 'basic_console/Pakman_EUC_CRLF.bas',
     shoot: 'basic_console/Shoot_EUC_CRLF.bas'
 };
 
@@ -294,14 +294,30 @@ async function downloadAndSend(url) {
 
         const buffer = await response.arrayBuffer();
 
-        // ★1. ファイルはSJISなので、まずは shift_jis で正しくデコード
-        // Shift_JIS のバイト列
-        const sjisArray = new Uint8Array(buffer);
+
+        let detectedEncoding = Encoding.detect(buffer);
+
+        // 判定失敗時
+        if (
+            detectedEncoding === 'BINARY' ||
+            detectedEncoding === false
+        ) {
+            detectedEncoding = 'SJIS';
+        }
+
+        logToTerminal(
+            `[文字コード検出: ${detectedEncoding}]\n`
+        );
+
+
+
+        // ★1. 取得したファイルのバイト列
+        const fileArray = new Uint8Array(buffer);
 
         // Shift_JIS → Unicode
-        const unicodeArray = Encoding.convert(sjisArray, {
+        const unicodeArray = Encoding.convert(fileArray, {
             to: 'UNICODE',
-            from: 'SJIS'
+            from: detectedEncoding
         });
 
         const text = Encoding.codeToString(unicodeArray);
