@@ -20,9 +20,9 @@
   <style>
     #Snow_01 {
       position: absolute;
-      top: -180px;
-      right: -380px;
-      width: 1200px;
+      top: -400px;
+      right: 0px;
+      width: 1000px;
       transition: all 1s linear;
     }
   </style>
@@ -33,8 +33,8 @@
 	<include id='menu.html'></include>
 		<div id="mainImgBox">
 			<div class="mainImgBoxContainer">
-				<p id="mainImg"><img src="index/img/mainimg.png" class="background" style="position: relative;"></p> 
-  				<img id="Snow_01" src="index/img/Snow_80ms.gif" alt="重ねるGIF" class="overlay">
+				<p id="mainImg"><img src="index/img/mainimg.jpg" class="background" style="position: relative;"></p> 
+  				<img id="Snow_01" src="index/img/Snow_80ms_1000px.gif" alt="重ねるGIF" class="overlay">
 			</div>
 		</div>
 
@@ -154,13 +154,13 @@
 			let cycleCount = 0;
 
 			function animateSnow() {
-			const topStart = -30;
-			const rightStart = -100;
-			const widthStart = 500;
+			const topStart = -50;
+			const rightStart = 570;
+			const widthStart = 400;
 
-			const topEnd = -180;
-			const rightEnd = -380;
-			const widthEnd = 1200;
+			const topEnd = -400;
+			const rightEnd = 0;
+			const widthEnd = 1000;
 
 			const progress = (cycleCount % 2) === 0 ? 0 : 1; // 0 -> Start, 1 -> End
 			
