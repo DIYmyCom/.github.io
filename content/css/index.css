@@ -313,3 +313,13 @@ div.txtTemp7 div.fR{ width: 420px;}
 div.txtTemp7 strong{ margin-bottom: 6px;}
 div.txtTemp7 span{ color: #666;}
 div.txtTemp7 p{ float: left; width: 390px;}
+
+/* txtTemp8 */
+div.txtTemp8{}
+div.txtTemp8 strong{ margin-bottom: 6px; font-size: 16px;}
+div.txtTemp8 span{ color: #666; font-size: 16px;}
+
+/* txtTemp9 */
+div.txtTemp9{}
+div.txtTemp9 strong{ margin-bottom: 6px; font-size:12px;}
+div.txtTemp9 span{ color: #666; font-size:12px;}
