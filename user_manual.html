@@ -326,7 +326,7 @@
 					<div class="fL">
 						<span><p>
 						２）BASICコンソールをマイコンに接続する。<br />
-						① このサイトの「BASICコンソール」を開き、「マイコンに接続」ボタンを押します。<br />
+						① このサイトの「コンソール」を開き、「マイコンに接続」ボタンを押します。<br />
 						② シリアルポート選択画面が表示されたら、一覧に表示された COM ポートの中から、マイコンの COM ポートを選択します。<br />
 						③ 「マイコンに接続」ボタンの右側に、緑色で「接続済み」と表示されれば接続成功です。<br />
 						④ エラーが表示された場合は、①からやり直してください。<br />
@@ -358,6 +358,92 @@
 						bottom: 00;
 						">
 					</div>
+
+
+					<a id="SERIAL_USB_TERMINAL" name="SERIAL_USB_TERMINAL"></a><br />
+					<p class="chapter6">SERIAL USB TERMINALを使う（スマホ）</p>
+					<p class="chapter5">スマホ側の設定</p>
+					<div style="position: relative;">
+						<span><p><a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal&hl=ja&pli=1" target="_blank">Serial USB Terminal</a>をインストールして、マイコンのケーブルをスマホのUSBポートに接続してください。
+						Serial USB Terminalを起動して、Settingメニューの各タブで以下のように設定してください。</p></span>
+						<img 
+							src="user_manual/Serial USB Terminal05.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 760px;
+							top: 30;
+							">
+						<img 
+							src="user_manual/Serial USB Terminal04.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 570px;
+							top: 30;
+							">
+						<img 
+							src="user_manual/Serial USB Terminal03.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 380px;
+							top: 30;
+							">
+						<img 
+							src="user_manual/Serial USB Terminal02.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 190px;
+							top: 30;
+							">
+
+						<img 
+							src="user_manual/Serial USB Terminal01.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 0px;
+							top: 30;
+							">
+					</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter5">電源を入れる</p>
+					<div class="txtTempSet txtTemp1">
+						<div style="position: relative;">
+						<p></p>
+						<video 
+							src="user_manual/HelloWorld1.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted
+							loop 
+							playsinline
+							style="max-width: 300pt; cursor: pointer; position: absolute; right: 20px; top: 20px;"
+						></video>
+						</div>
+						<span><p>右の動画のように、Serial USB Terminal の左上にある「USB Devices」メニューから<br />「CH34x」を選択してください。<br />
+						マイコンの電源を入れて、「Pocket BASIC Vxxxx」のような起動メッセージが<br />表示されれば成功です。</p></span>
+						</br></br></br></br></br></br>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter5">BASICプログラムを動かす</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>①BASICプログラムを<a href="https://diymycom.pythonanywhere.com/games" target="_blank">投稿サイト</a>からダウンロードします。</br>
+						②Serial USB Terminal の右上のメニューから「UploadFile」を選んで、「Protocol」に「Raw」を指定して、ダウンロードしたBASICプログラムを選択すると</br>
+						　ダウンロードが開始される。</br>
+						③終わったらSerial USB Terminal でrunと入力して改行してください。</br>
+						　プログラムが実行されます。</br></br>
+						※ このサイトの「BASICコンソール」を使う場合は、ファイルの文字コードはSJIS / EUC-JP / UTF-8 のどれでも使用できます。<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ただし、Serial USB Terminalを使って書き込む場合は、ファイルを EUC-JP 形式で保存してください。<br /></br>
+						</p></span>
+					</div>
+
 
 
 					<a id="TERATERM" name="TERATERM"></a>
