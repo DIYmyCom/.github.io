@@ -93,6 +93,7 @@
     <button id="btn-run" disabled>RUN</button>
     <button id="btn-list" disabled>LIST</button>
     <button id="btn-new" disabled>NEW</button>
+    <button id="btn-free" disabled>FREE</button>
 </div>
 
     <p class="chapter6">マイコンへテキスト送信</p>
@@ -137,6 +138,7 @@ const fileInput = document.getElementById('file-input');
 const btnRun = document.getElementById('btn-run');
 const btnList = document.getElementById('btn-list');
 const btnNew = document.getElementById('btn-new');
+const btnFree = document.getElementById('btn-free');
 
 const btnSendText = document.getElementById('btn-send-text');
 const textInput = document.getElementById('text-input');
@@ -206,6 +208,7 @@ btnConnect.addEventListener('click', async () => {
         btnRun.disabled = false;
         btnList.disabled = false;
         btnNew.disabled = false;
+        btnFree.disabled = false;
         btnShoot.disabled = false;
 
         readLoop();
@@ -561,6 +564,11 @@ async function sendNewCommand() {
 
     await sendCommand('new');
 }
+
+async function sendFreeCommand() {
+
+    await sendCommand('free');
+}
 // ========================================
 // ボタン有効/無効
 // ========================================
@@ -574,6 +582,7 @@ function setButtonsDisabled(disabled) {
     btnList.disabled = disabled;
     btnNew.disabled = disabled;
     btnShoot.disabled = disabled;
+    btnFree.disabled = disabled;
     btnSendText.disabled = disabled;
 }
 
@@ -650,6 +659,11 @@ btnList.addEventListener(
 btnNew.addEventListener(
     'click',
     sendNewCommand
+);
+
+btnFree.addEventListener(
+    'click',
+    sendFreeCommand
 );
 
 btnShoot.addEventListener(
