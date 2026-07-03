@@ -149,7 +149,7 @@
 																							※ 指定できる座標は描画対象のフレームメモリー内に限る</td></tr>
 								<tr><td>putStr</td><td>putStr x,y,文字列,c{,dm,bUpdate,FMID} </td> <td>x,yを文字の左上の座標として、文字を描く c：1or0　1が黒0が白 dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
 																							※ フォントの幅は６ドット、高さは８ドットを前提に描画するエリアを想定し、描画するエリアが描画対象のフレームメモリー内に収まるようにパラメータを指定すること</td></tr>
-								<tr><td>get</td><td>get x,y,参照FMID,x1,y1,幅,高さ{,dm,bUpdate,操作FMID}</td> <td>参照FMIDで指定したフレームメモリーのx1,y1を左上とする幅、高さで指定した広さのイメージを操作FMIDのx,yで指定した場所にフレームメモリーに取得する。<br />dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
+								<tr><td>get</td><td>get x,y,参照FMID,x1,y1,幅,高さ{,dm,bUpdate,操作FMID}</td> <td>参照FMIDで指定したフレームメモリーのx1,y1を左上とする幅、高さで指定した広さのイメージを操作FMIDのx,yで指定した場所に転送する。<br />dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
 																							※ 描画するエリアが描画対象のフレームメモリー内に収まるようにパラメータを指定すること</td></tr>
 								<tr><td>put</td><td>put x,y,参照FMID {,dm,bUpdate,操作FMID}</td> <td>指定した座標に参照FMID で指定したイメージを描く。<br />dm：set,or,xor,not,and bUpdate: T,F FMID　描画対象のフレームメモリー　省略時は画面（０）<br />
 																							※ 描画対象のフレームメモリーからはみ出した描画エリアは描画しない</td></tr>
