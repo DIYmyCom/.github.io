@@ -181,7 +181,7 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;音量200で4分音符のド#レミファソラシドを表現する文字列 最後のドだけ付点８分音符<br />
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T160V200L4_C#4D4E4F4G4A5B5L8HC5.</td></tr>
 								<tr><td>play</td><td>play チャネルNo</td> <td>サウンドチャネルに設定した音を出力する。<br />この命令は、他の命令と違って、非同期なので音の出力の終了を待たずにBASICに制御が戻る。</td></tr>
-								<tr><td rowspan="3">その他</td><td>sleep</td><td>sleep 時間</td><td>指定した時間待機する。時間　待機する時間をmsで指定する。（0から60000ms)　ただし、待機時間は余り正確ではない。</td></tr>
+								<tr><td rowspan="4">その他</td><td>sleep</td><td>sleep 時間</td><td>指定した時間待機する。時間　待機する時間をmsで指定する。（0から60000ms)　ただし、待機時間は余り正確ではない。</td></tr>
 								<tr><td>write</td><td>write アドレス,文字列</td> <td>不揮発性メモリーに指定した文字列を書き込む。文字列の１文字を格納するのにアドレス１つを消費する。<br />
 													アドレス：書き込む先頭アドレス（0から16384(V1.008以前は8191))<br />
 													文字列：書き込む文字列</td></tr>
@@ -192,6 +192,7 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;例）<br />
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strToA str,4,idx,3,x,3,y,1,sts<br />
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strの値が “01230100205”,idxが5の時、x[5]=10,y[5]=20,sts[5]=5が実行される。</td></tr>
+								<tr><td>run(電源内蔵型のみ）</td><td>run 式</td> <td>式で指定したファイル名のプログラムを実行する。現在実行中のプログラムや変数はすべてクリアされる。</td></tr>
 								</table>
 							</span>
 						</p>
@@ -286,6 +287,10 @@
 									<tr><td>free</td><td>フリーメモリーを表示する。</td> </tr>
 									<tr><td>clear</td><td>プログラムをrunする前の状態に戻す。変数などが未初期化の状態に戻る。</td> </tr>
 									<tr><td>new</td><td>プログラムを消去する。</td> </tr>
+									<tr><td>save ファイル名（電源内蔵型のみ）</td><td>メモリー上のプログラムをファイル名で指定した名前でストレージに保存する。</td> </tr>
+									<tr><td>load ファイル名（電源内蔵型のみ）</td><td>ストレージからファイル名で指定したプログラムをメモリー上に読み込む。</td> </tr>
+									<tr><td>kill ファイル名（電源内蔵型のみ）</td><td>ファイル名で指定したプログラムをストレージから削除する。</td> </tr>
+									<tr><td>files（電源内蔵型のみ）</td><td>ストレージに保存されているプログラムを表示する。</td> </tr>
 								</table>
 							</span>
 						</p>

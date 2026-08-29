@@ -866,6 +866,118 @@ TeraTermの設定は下図の通りです。（PocketCom使用時と同じ設定
 					</div>
 
 
+					<a id="integrated_type" name="integrated_type"></a>
+					<p class="chapter8">電源内蔵型</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<video 
+							src="user_manual/IntegratedType.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted 
+							playsinline
+							style="max-width: 400pt; cursor: pointer;"
+						></video>
+
+					</div>
+<span><p>
+電源・ストレージを内蔵したPocketComです。<br />
+<br />
+通常版に以下のような機能を追加しました。<br />
+・USB-Cと電池の２種の給電方法をサポート。USB-C接続時にはUSB-Cから給電、切断すると電池給電に切り替わります。<br />
+・492KBのストレージを内蔵。<br />
+・save,load,kill,filesコマンドを追加。<br />
+・BASICにrun ファイル名を追加。<br />
+・AUTOEXECというファイル名が保存されている場合、電源ONで自動起動。（AとBボタンを押したまま、電源ONで自動起動をエスケープ）<br />
+<br />
+右の動画は、メニューを自動起動するようにして、メニューからsaveコマンドで保存したプログラムを呼び出すようにしたものです。<br />
+</p></span>
+					</div>
+
+					<p class="chapter6">ご購入</p>
+					<div class="txtTempSet txtTemp1">
+					<span>
+						<div style="position: relative;">
+						<p style="margin: 0;">電源内蔵型のPocketComは、<a href="https://diymycom.base.shop/" target="_blank"><img src="index/img/BASE.png" width="50"></a> で販売しています。よかったら、ご購入ください。<br /></p>
+						<img 
+							src=""
+							width="450"
+							style="
+							position: absolute;
+							right: 200px;
+							top: 0;
+							">
+						</div>
+					</span>
+					</div>
+
+					<a id="assembly2" name="assembly2"></a>
+					<p class="chapter6">組立方</p>
+					<div class="txtTempSet txtTemp1">
+						<span>
+						左の写真がキット内容。組立方は２枚の基板の四隅を４本のスペーサで固定して完成です。
+						</span><br />
+						<span><img src="user_manual/IntegratedTypeKit.JPG" style="max-height:320px; width:auto;">&nbsp;&nbsp;&nbsp;<img src="user_manual/assembly2.jpg"  style="max-height:320px; width:auto;"></span>
+					</div>
+
+					<a id="addedCommands" name="addedCommands"></a>
+					<p class="chapter6">追加コマンドの使い方</p>
+					<div class="txtTempSet txtTemp1">
+						<span>
+電源内蔵型では、ファイル操作に関するコマンドを追加しました。<br />
+この動画では、電源内蔵型の最初の動画で紹介した「メニューからゲームを起動する状態」を作成する手順を説明しています。<br />
+<a href="https://diymycom.github.io/.github.io/basic_console.html" target="_blank">BASICコンソール</a> を使って、実際にファイル操作関連のコマンドを使いながら、以下の手順で進めています。<br />
+
+・ストレージを初期化する<br />
+・「INVADER」「PAKMAN」「SHOOT」をストレージに保存する<br />
+・メニュープログラムを、PocketComの電源投入時に自動起動するようストレージに保存する<br />
+・ストレージに保存されている内容を確認する<br />
+
+この手順を通して、ファイル操作関連のコマンドの使い方を理解できると思います。<br />
+						</span><br />
+						<span>
+						<video 
+							src="user_manual/AddedCommands.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted 
+							playsinline
+							style="max-width: 720pt; cursor: pointer;"
+						></video></span>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="circuit2" name="circuit2"></a>
+					<p class="chapter6">回路図</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+						<a href="user_manual/PocketComV2.pdf" target="_blank"><img src="user_manual/PocketComV2.png" width="700"></a>
+                        </div>
+					</div>
+
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="Parts2" name="Parts2"></a>
+					<p class="chapter6">部品配置</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+						<span><p><a href="user_manual/parts2.pdf" target="_blank">部品配置</a></p></span>
+                        </div>
+					</div>
+					<br /><br /><br />
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual/Snow_CheerDance_70ms_1000pt.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 400px;
+						bottom: 00;
+						">
+					</div>
 
 				</div><!-- div#mainContents END -->
 				<div id="leftContents">
@@ -887,7 +999,13 @@ TeraTermの設定は下図の通りです。（PocketCom使用時と同じ設定
 								<li><a href="#Parts" title="">部品配置</a></li>
 							</ul>
 
-
+						<li><a href="#integrated_type" title="">電源内蔵型</a></li>
+							<ul class="bgList5">
+								<li><a href="#assembly2" title=""></a>組立方</li>
+								<li><a href="#addedCommands" title="">追加コマンドの使い方</a></li>
+								<li><a href="#circuit2" title="">回路図</a></li>
+								<li><a href="#Parts2" title="">部品配置</a></li>
+							</ul>
 
 <!--
 						<ul id="subNavigation1" class="bgList3">
