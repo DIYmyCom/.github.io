@@ -1,0 +1,597 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BASICでゲームを作ろう ～ PocketCom ～</title>
+<meta name="keywords" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta name="description" content="電子工作,BASIC,マイコン,レトロゲーム,プログラミング" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="share/css/set/import.css" rel="stylesheet" type="text/css" media="all" />
+<link href="share/css/share.css" rel="stylesheet" type="text/css" media="all" />
+<link href="content/css/index.css" rel="stylesheet" type="text/css" media="all" />
+<script type='text/javascript' src='share/js/jquery.js'></script>
+<script type='text/javascript' src='share/js/scroll.js'></script>
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+	<include id='menu.html'></include>
+
+		<div id="wrapBg">
+			<div class="wrapBox clearfix">
+				<div id="mainContents">
+					<a id="PocketComⅡ" name="PocketComⅡ"></a>
+					<p class="chapter8">PocketComⅡについて</p>
+					<p class="chapter6">コンセプト</p>
+					<div class="txtTempSet txtTemp8">
+
+						<div style="position: relative;">
+						<p></p>
+						<img 
+							src="user_manual/PocketCom01.jpg"
+							width="330"
+							style="
+							position: absolute;
+							right: 50px;
+							top: 120px;
+							">
+						</div>
+						</span>
+					</div>
+					<div class="txtTempSet txtTemp8">
+						<span>
+						PocketComⅡは、コンパクトなBASICマイコンです。<br />
+						スマホやPCにつなぐだけで、電源投入後すぐにBASICプログラミングを始められます。<br />
+						<br />
+						こんな方におすすめです。<br />
+						<ul class="bgList5">
+						<li>昔ながらのBASICマイコンをもう一度楽しみたい</li>
+						<li>子供と一緒にプログラミングを楽しみたい</li>
+						<li>昔の名作ゲームのリメイクに挑戦したい</li>
+						<li>自作ゲームを手軽に持ち運んで、身近な人にプレイしてもらいたい</li>
+						<li>ゲームのアイデアを可読性高く残したい</li>
+						<li>作ったゲームを10年後も無修正で動かし、懐かしさに浸りたい</li>
+						</ul>
+						</span>
+					</div>
+					<br />
+
+
+					<p class="chapter6">できること</p>
+					<div class="txtTempSet txtTemp8">
+						<div style="position: relative;">
+						<p></p>
+						<video 
+							src="user_manual/Pacman15.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted
+							loop 
+							playsinline
+							style="max-width: 300pt; cursor: pointer; position: absolute; right: 20px; top: 20px;"
+						></video>
+
+						<span>
+						<strong>〇 BASICなのにリアルタイムゲームが作れる</strong>
+						BASICというと「処理が遅い」というイメージを持つ方も多いかも<br />しれません。<br />
+
+						しかし、PocketComⅡでは右の動画のようなリアルタイムゲームを<br />作ることができます。<br />
+
+						動画で動作しているゲームは、すべてBASICだけで作成しています。<br />
+
+						キャラクターの移動や画面描画、サウンド再生などを組み合わせ、<br />ゲームのプログラミングを楽しめます。<br />
+
+						・<a href="basic_console/Pakman_EUC_CRLF.bas" target="_blank">ソースファイル</a><br /><br />
+						</span>
+						</div>
+					</div>
+
+					<div class="txtTempSet txtTemp8">
+						<div style="position: relative;">
+						<p></p>
+						<video 
+							src="user_manual/HelloWorld.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted
+							loop 
+							playsinline
+							style="max-width: 300pt; cursor: pointer; position: absolute; right: 20px; top: 20px;"
+						></video>
+
+						<span>
+						<strong>〇 スマホにつなぐだけですぐプログラミング</strong>
+
+						PocketComⅡはスマートフォンと接続して利用できます。<br />
+
+						右の動画では、スマートフォンを使って簡単なBASICプログラムを入力・<br />実行している様子を紹介しています。<br />
+
+						電源を入れるとすぐにPocket BASICが起動し、すぐにプログラムを<br />入力できます。
+
+						インタプリタ方式のため、電源投入からわずか数秒で<br />「Hello World」を表示できます。<br />
+
+						パソコンを用意しなくても、スマートフォンとPocketComⅡだけで<br />気軽にプログラミングを楽しめます。<br /><br />
+
+						</span>
+						</div>
+					</div>
+
+					<div class="txtTempSet txtTemp8">
+						<div style="position: relative;">
+						<p></p>
+						<video 
+							src="user_manual/IntegratedType.mp4"  
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted
+							loop 
+							playsinline
+							style="max-width: 300pt; cursor: pointer; position: absolute; right: 20px; top: 20px;"
+						></video>
+
+						<span>
+						<strong>〇 作ったゲームをみんなに遊んでもらえる</strong>
+
+						せっかく作ったゲームなら、家族や友人にも遊んでもらいたいものです。<br />
+
+						PocketComⅡは、単体でゲームを起動できます。<br />
+
+						パソコンやスマートフォンを用意する必要はありません。<br />
+
+						PocketComⅡを持って行き、電源を入れるだけで、<br />
+						その場ですぐに自作ゲームを遊んでもらえます。<br />
+
+						まるで昔の携帯ゲーム機のように、自分だけのオリジナルゲームを<br />
+						持ち歩けます。<br />
+						</span>
+						</div>
+					</div>
+					<div class="txtTempSet txtTemp10" >
+						<span>
+						※右の動画は、説明の都合上、ロード時間を短縮して編集しています。<br /><br /><br />
+						</span>
+					</div>
+
+					<p class="chapter6">特徴</p>
+					<div class="txtTempSet txtTemp8">
+
+						<div style="position: relative;">
+						<p></p>
+						<img 
+							src="user_manual/IntegratedType.jpg"
+							width="200"
+							style="
+							position: absolute;
+							right: 150px;
+							top: 00;
+							">
+						</div>
+
+						<span>
+						<ul class="bgList5">
+						<li>BASICインタプリタ内蔵</li>
+						<li>スマホ・PCから利用可能</li>
+						<li>128×64ドットLCD搭載</li>
+						<li>MMLによるBGM再生対応</li>
+						<li>約45KBのプログラム領域</li>
+						<li>約490KBのストレージ</li>
+
+						<li>コンパクト (本体:100x100x25mm)</li>
+						<li>USBまたは単4電池3本で給電（USB-C接続時にはUSB-Cから給電、切断すると電池給電に切り替わります）</li>
+						<li>AUTOEXECというファイル名が保存されている場合、電源ONで自動起動。（AとBボタンを押したまま、電源ONで自動起動をエスケープ）</li>
+						</ul>
+						</span><br />
+					</div>
+
+					<a id="sale" name="sale"></a>
+					<p class="chapter6">ご購入</p>
+					<div class="txtTempSet txtTemp1">
+					<span>
+						<div style="position: relative;">
+						<p style="margin: 0;">PocketComⅡは、<a href="https://diymycom.base.shop/" target="_blank"><img src="index/img/BASE.png" width="50"></a> で販売しています。よかったら、ご検討ください。</p>
+						<img 
+							src="user_manual/Snow_Begging_100ms_800pt_wait5s.gif"
+							width="400"
+							style="
+							position: absolute;
+							right: 70px;
+							top: 0;
+							">
+						</div>
+						<br /><br /><br /><br /><br /><br /><br /><br /><br />
+					</span>
+					</div>
+
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+					<br />
+
+					<a id="assembly" name="assembly"></a>
+					<p class="chapter8">PocketComⅡ(完成品)</p>
+					<p class="chapter6">組立</p>
+
+					<div class="txtTempSet txtTemp1">
+						<span>
+						左の写真がキット内容。組立方は２枚の基板の四隅を４本のスペーサで固定して完成です。
+						</span><br />
+						<span><img src="user_manual/IntegratedTypeKit.JPG" style="max-height:320px; width:auto;">&nbsp;&nbsp;&nbsp;<img src="user_manual/assembly2.jpg"  style="max-height:320px; width:auto;"></span>
+					</div>
+					<br /><br />
+
+					<a id="assembly1" name="assembly1"></a>
+					<p class="chapter8">PocketComⅡ(主要部品キット)/PocketComⅡ(基板・CPUキット)</p>
+
+					<a id="parts" name="parts"></a>
+					<p class="chapter6">部品配置</p>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+							部品表の部品を集めて、基板に半田付けしてください。部品の場所は下記の通りです。<br />
+							<a href="user_manual/parts2.pdf" target="_blank"><img src="user_manual/parts2.png" width="450"></a>
+							</span>
+						</p>
+					</div>
+					<div style="position: relative;">
+					<p></p>
+					<img 
+						src="user_manual1/Snow_Jump_100ms_1500pt_wait3s.gif"
+						width="1200"
+						style="
+						position: absolute;
+						left: 180px;
+						bottom: 00;
+						">
+					</div>
+					<br /><br />
+
+					<a id="partsList" name="partsList"></a>
+					<p class="chapter6">部品表</p>
+					<div class="txtTempSet txtTemp1">
+						<p>
+							<span>
+								<table>
+									<tr><td>部品番号</td><td>名称</td></tr>
+									<tr><td>C1,C5～9,C11,C12,C15,C16</td><td>0.1uF50V サイズ1608</td></tr>
+									<tr><td>C2,C3</td><td>20pF50V サイズ1608</td></tr>
+									<tr><td>C4,C17</td><td>10uF10V サイズ3216</td></tr>
+									<tr><td>C10</td><td>0.01uF50V サイズ1608</td></tr>
+									<tr><td>C13,C14,C18～20</td><td>10uF10V サイズ3216（タンタル）</td></tr>
+									<tr><td>R1～15,R19,R21,R22</td><td>4.7kΩ サイズ1608</td></tr>
+									<tr><td>R16,R20,R23</td><td>2.2kΩ サイズ1608</td></tr>
+									<tr><td>R17,R18</td><td>10Ω サイズ1608</td></tr>
+									<tr><td>RV1</td><td>【<a href="https://akizukidenshi.com/catalog/g/g106063/" target="_blank">106063</a>】半固定ボリューム 10kΩ [103]</td></tr>
+									<tr><td>U1</td><td><a href="https://toshiba.semicon-storage.com/jp/semiconductor/product/general-purpose-logic-ics/detail.TC7WT241FU.html" target="_blank">TC7WT241FU</a></td></tr>
+									<tr><td>U2,U5</td><td><a href="https://jp.digchip.com/datasheets/parts/datasheet/487/TC55257.php" target="_blank">TC55257</a></td></tr>
+									<tr><td>U3</td><td><a href="https://toshiba.semicon-storage.com/jp/semiconductor/product/general-purpose-logic-ics/detail.TC74HC4040AP.html" target="_blank">74HC4040</a></td></tr>
+									<tr><td>U4</td><td>H8S/2128 （基板に付属）</a></td></tr>
+									<tr><td>U6</td><td><a href="https://www.monotaro.com/g/08659206/?t.q=74AC04" target="_blank">74AC04</a></td></tr>
+									<tr><td>U7</td><td><a href="https://www.amazon.co.jp/50%E5%80%8B-74HC374-74HC374N-SN74HC374N-DIP-20/dp/B09H83SYH7" target="_blank">74HC374N</a></td></tr>
+									<tr><td>U8</td><td><a href="https://www.digikey.jp/ja/products/detail/nisshinbo-micro-devices-inc/R3112N251A-TR-FE/10213698" target="_blank">R3112N251A</a></td></tr>
+									<tr><td>U9</td><td><a href="https://www.alldatasheet.jp/datasheet-pdf/pdf/478924/SANYO/LE25S40MB.html?utm_source=chatgpt.com" target="_blank">LE25S40MB</a></td></tr>
+									<tr><td>U10</td><td><a href="https://www.digikey.jp/ja/products/detail/onsemi/NCP563SQ18T1G/920111?s=N4IgTCBcDaIHIGEAKBWAbAZgMoEUCMAHACp4DiIAugL5A" target="_blank">NCP563SQ18T1G</a></td></tr>	
+									<tr><td>U11</td><td><a href="https://www.digikey.jp/ja/products/detail/toshiba-semiconductor-and-storage/TC7SH00FU-LJ-CT/1986396" target="_blank">TC7SZ05FU</a></td></tr>	
+									<tr><td>U12</td><td><a href="https://www.win-source.net/products/detail/sii-semiconductor-corporation/s-8328b50mc-exe-t2.html?utm_source=chatgpt.com" target="_blank">S-8328B50MC-EXE-T2</a></td></tr>	
+									<tr><td>L1</td><td><a href="https://www.koaspeer.com/pdfs/LKS.pdf?utm_source=chatgpt.com" target="_blank">LKS1045TTEG470M</a></td></tr>	
+									<tr><td>Q1</td><td><a href="https://www.renesas.com/ja/document/dst/upa2450-data-sheet-g15612ej1v0ds00?utm_source=chatgpt.com" target="_blank">UPA2450CTL-E1</a></td></tr>
+									<tr><td>D1,D2</td><td><a href="https://www.mouser.com/datasheet/2/348/rb496eatr_e-1870082.pdf?utm_source=chatgpt.com" target="_blank">RB496EA</a></td></tr>		
+									<tr><td>BD1</td><td><a href="https://ja.aliexpress.com/item/1005004937402336.html?spm=a2g0o.order_list.order_list_main.5.698f585aNrEtqs&gatewayAdapt=glo2jpn" target="_blank">YCG12864BB 128×64ドットLCD</a></td></tr>
+									<tr><td>BD2</td><td><a href="https://ja.aliexpress.com/item/1005008104567290.html?spm=a2g0o.order_list.order_list_main.15.698f585aNrEtqs&gatewayAdapt=glo2jpn" target="_blank">CH9340C(TYPE-C) USB-TTL変換器</a></td></tr>
+									<tr><td>SP1</td><td>EFBRQ38C01 圧電スピーカー　⇒代替品　【<a href="https://akizukidenshi.com/catalog/g/g101251/" target="_blank">101251</a>】圧電スピーカー(圧電サウンダー) PT08</td></tr>	
+									<tr><td>X1</td><td>20MHz水晶発振子</td></tr>
+									<tr><td>SW1,SW8</td><td><a href="https://www.furutaka-netsel.co.jp/maker/alps/ssss213000" target="_blank">SSSS213000 アルプススライドスイッチ</a></td></tr>
+									<tr><td>SW2～7</td><td>【<a href="https://akizukidenshi.com/catalog/goods/search.aspx?search=x&keyword=P-03649&search=search" target="_blank">P-03649</a>】タクトスイッチ（水色）</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g103195/" target="_blank">103195</a>】電池ボックス 単4×3本</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g114372/" target="_blank">114372</a>】六角ナット M3×0.5</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g107321/" target="_blank">107320</a>】六角オネジ・メネジ MB3-20 ×4個</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g115889/" target="_blank">115889</a>】六角ナット M2×0.4</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g115887/" target="_blank">115887</a>】なべ小ねじ(+) M2×5</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g100167/" target="_blank">100167</a>】ピンヘッダー 1×40 (40P)</td></tr>
+									<tr><td>～</td><td>【<a href="https://akizukidenshi.com/catalog/g/g117017/" target="_blank">117017</a>】USBケーブル USB2.0 Type-Aオス⇔Type-Cオス 0.5m </td></tr>
+								</table>
+							</span>
+						</p>
+					</div>
+
+					<a id="circuit" name="circuit"></a>
+					<p class="chapter6">回路図</p>
+					<div class="txtTempSet txtTemp1">
+                        <div style="position: relative;">
+						<a href="user_manual/PocketComV2.pdf" target="_blank"><img src="user_manual/PocketComV2.png" width="700"></a>
+                        </div>
+					</div>
+					<br />
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+					<br />
+
+					<a id="inspection" name="inspection"></a>
+					<p class="chapter8">動かしてみる</p>
+					<p class="chapter6">BASICコンソールを使う　（PC/スマホ共通）</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>※スマホと接続して使用する場合、「BASICコンソール」が利用できないことがあります。その場合は、後述の「スマホでマイコンを利用する場合」を参照してください。</p></span>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>
+						１）マイコンの電源を入れる。<br />
+						Power-SW を ON にしてから電源を入れてください。<br />
+						（Mode-SW は常に「APPLI」側にしてください。）
+						</p></span>
+					</div>
+						<p><img src="user_manual/202.png" width="150"></p>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>
+						２）BASICコンソールをマイコンに接続する。<br />
+						① このサイトの「コンソール」を開き、「マイコンに接続」ボタンを押します。<br />
+						② シリアルポート選択画面が表示されたら、一覧に表示された COM ポートの中から、マイコンの COM ポートを選択します。<br />
+						③ 「マイコンに接続」ボタンの右側に、緑色で「接続済み」と表示されれば接続成功です。<br />
+						④ エラーが表示された場合は、①からやり直してください。<br />
+						</p></span>
+					</div>
+						<p><img src="user_manual/101.png" width="390"></p>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p>
+						３）サンプルプログラムを実行する。<br />
+						① 「HelloWorld」ボタンを押して、プログラムをマイコンへ送信します。<br />
+						② 「RUN」ボタンを押します。<br />
+						③ マイコンからのエコーバックに左のような表示が出て、LCD に「Hello World」と表示されれば成功です。<br />
+						</p></span>
+					</div>
+						<div><p><img src="user_manual/102.png" width="390"></p></div>
+					</div>
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src=""
+						width="800"
+						style="
+						position: absolute;
+						left: 450px;
+						bottom: 00;
+						">
+					</div>
+
+
+					<a id="SERIAL_USB_TERMINAL" name="SERIAL_USB_TERMINAL"></a><br />
+					<p class="chapter6">SERIAL USB TERMINALを使う（スマホ）</p>
+					<p class="chapter5">スマホ側の設定</p>
+					<div style="position: relative;">
+						<span><p><a href="https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal&hl=ja&pli=1" target="_blank">Serial USB Terminal</a>をインストールして、マイコンのケーブルをスマホのUSBポートに接続してください。
+						Serial USB Terminalを起動して、Settingメニューの各タブで以下のように設定してください。</p></span>
+						<img 
+							src="user_manual/Serial USB Terminal05.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 760px;
+							top: 30;
+							">
+						<img 
+							src="user_manual/Serial USB Terminal04.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 570px;
+							top: 30;
+							">
+						<img 
+							src="user_manual/Serial USB Terminal03.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 380px;
+							top: 30;
+							">
+						<img 
+							src="user_manual/Serial USB Terminal02.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 190px;
+							top: 30;
+							">
+
+						<img 
+							src="user_manual/Serial USB Terminal01.jpg"
+							width="180"
+							style="
+							position: absolute;
+							left: 0px;
+							top: 30;
+							">
+					</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter5">電源を入れる</p>
+					<div class="txtTempSet txtTemp1">
+						<div style="position: relative;">
+						<p></p>
+						<video 
+							src="user_manual/HelloWorld1.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted
+							loop 
+							playsinline
+							style="max-width: 300pt; cursor: pointer; position: absolute; right: 20px; top: 20px;"
+						></video>
+						</div>
+						<span><p>右の動画のように、Serial USB Terminal の左上にある「USB Devices」メニューから<br />「CH34x」を選択してください。<br />
+						マイコンの電源を入れて、「Pocket BASIC Vxxxx」のような起動メッセージが<br />表示されれば成功です。</p></span>
+						</br></br></br></br></br></br>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<p class="chapter5">BASICプログラムを動かす</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>①BASICプログラムを<a href="https://diymycom.pythonanywhere.com/games" target="_blank">投稿サイト</a>からダウンロードします。</br>
+						②Serial USB Terminal の右上のメニューから「UploadFile」を選んで、「Protocol」に「Raw」を指定して、ダウンロードしたBASICプログラムを選択すると</br>
+						　ダウンロードが開始される。</br>
+						③終わったらSerial USB Terminal でrunと入力して改行してください。</br>
+						　プログラムが実行されます。</br></br>
+						※ このサイトの「BASICコンソール」を使う場合は、ファイルの文字コードはSJIS / EUC-JP / UTF-8 のどれでも使用できます。<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ただし、Serial USB Terminalを使って書き込む場合は、ファイルを EUC-JP 形式で保存してください。<br /></br>
+						</p></span>
+					</div>
+
+					<a id="addedCommands" name="addedCommands"></a>
+					<p class="chapter5">ファイル操作</p>
+					<div class="txtTempSet txtTemp1">
+						<span>
+この動画では、最初の動画で紹介した「メニューからゲームを起動する状態」を作成する手順を説明しています。<br />
+<a href="https://diymycom.github.io/.github.io/basic_console.html" target="_blank">BASICコンソール</a> を使って、実際にファイル操作関連のコマンドを使いながら、以下の手順で進めています。<br />
+
+・ストレージを初期化する<br />
+・「INVADER」「PAKMAN」「SHOOT」をストレージに保存する<br />
+・メニュープログラムを、PocketComⅡの電源投入時に自動起動するようストレージに保存する<br />
+・ストレージに保存されている内容を確認する<br />
+
+この手順を通して、ファイル操作関連のコマンドの使い方を理解できると思います。<br />
+
+動画中で使ったメニュープログラム：<a href="user_manual/menu.bas" target="_blank">ソースファイル</a> <br />
+						</span><br />
+						<span>
+						<video 
+							src="user_manual/AddedCommands.mp4" 
+							controls 
+							preload="metadata" 
+							autoplay 
+							muted 
+							playsinline
+							style="max-width: 720pt; cursor: pointer;"
+						></video></span>
+					</div>
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+
+					<a id="TERATERM" name="TERATERM"></a>
+					<p class="chapter6">TeraTermを使う（PC）</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>「BASICコンソール」を使用すると、端末設定や文字コードの違いによるトラブルが起こりにくく、簡単に利用できますが、インターネットに接続せずに使用したい場合などは、TeraTermを使用してください。</p></span>
+					</div>
+					<p class="chapter5">PC側の設定</p>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<span><p><a href="https://teratermproject.github.io/" target="_blank">TeraTerm</a>をインストールして、マイコンのケーブルをPCのUSBポートに接続して増えたCOMポートを指定して接続してください。</br>
+						その後、端末の設定とシリアルポート設定を下のように設定してください。</p></span>
+					</div>
+						<p><img src="user_manual/005.png" width="390"></p>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><img src="user_manual/006.png" width="390"></p>
+					</div>
+						<p><img src="user_manual/007.png" width="390"></p>
+					</div>
+					<br /><br />
+					<a href="#Menu" title="Menu">メニューに移動</a>	<br />
+
+					<a id="PowerOn" name="PowerOn"></a>
+					<p class="chapter5">電源を入れる</p>
+
+					<div class="txtTempSet txtTemp1">
+						<span><p>
+						Power-SW を ON にしてから電源を入れてください。（Mode-SW は常に「APPLI」側にしてください。）<br />
+						左に示す起動メッセージが出れば、OKです。
+						</p></span>
+					</div>
+
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><img src="user_manual/201.png" width="390"></p>
+					</div>
+						<p><img src="user_manual/008.png" width="390"></p>
+					</div>
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual/Snow_FistPump_100ms_1000pt_3s.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 450px;
+						bottom: 00;
+						">
+					</div>
+
+					<a id="run" name="run"></a>
+					<p class="chapter5">BASICプログラムを動かす</p>
+					<div class="txtTempSet txtTemp1">
+						<span><p>①BASICプログラムを<a href="https://diymycom.pythonanywhere.com/games" target="_blank">投稿サイト</a>からダウンロードします。</br>
+						②TeraTermの「ファイル＞ファイル送信」をメニューから選んで表示されるダイアログで、ダウンロードしたBASICプログラムを選択します。（左下の写真）</br>
+						③右下の写真のようにBASICプログラムがマイコンに転送されます。</br>
+						④終わったらTeraTermでrunと入力して改行してください。</br>
+						プログラムが実行されます。</br></br>
+						※ このサイトの「BASICコンソール」を使う場合は、ファイルの文字コードはSJIS / EUC-JP / UTF-8 のどれでも使用できます。<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ただし、Teraterm を使って書き込む場合は、ファイルを SJIS 形式で保存してください。<br /></br>
+						</p></span>
+					</div>
+					<div class="txtTempSet txtTemp6 clearfix">
+					<div class="fL">
+						<p><a href="user_manual/020.png" target="_blank"><img src="user_manual/020.png" width="390"></a></p>
+					</div>
+						<p><a href="user_manual/021.png" target="_blank"><img src="user_manual/021.png" width="390"></a></p>
+					</div>
+
+					<div style="position: relative;">
+					<p style="margin: 0;"><a href="#Menu" title="Menu">メニューに移動</a></p>
+					<img 
+						src="user_manual/Snow_SpinAround_70ms_800pt_wait4s.gif"
+						width="800"
+						style="
+						position: absolute;
+						left: 25px;
+						bottom: 00;
+						">
+					</div>
+
+
+
+				</div><!-- div#mainContents END -->
+				<div id="leftContents">
+					<a id="Menu" name="Menu"></a>
+					<ul id="subNavigation" class="bgList1">
+						<li><a href="#PocketComⅡ" title="">PocketComⅡについて</a></li>
+							<ul class="bgList5">
+								<li><a href="#sale" title="">ご購入</a></li>
+								<li><a href="#assembly" title="">完成品キット</a></li>
+								<li><a href="#assembly1" title="">主要部品キット/基板・CPUキット</a></li>
+								<li><a href="#inspection" title="">動かして見る</a></li>
+							</ul>
+<!--
+						<li><a href="#integrated_type" title="">電源内蔵型</a></li>
+							<ul class="bgList5">
+								<li><a href="#assembly2" title="">組立方</a></li>
+								<li><a href="#addedCommands" title="">追加コマンドの使い方</a></li>
+								<li><a href="#circuit2" title="">回路図</a></li>
+								<li><a href="#Parts2" title="">部品配置</a></li>
+							</ul>
+-->
+
+					</ul>
+					<br />
+				</div><!-- div#leftContents END -->
+			</div><!-- div#wrapBox END -->
+		</div><!-- div#wrapBg END -->
+<include id='copy.html'></include>
+	</div>
+<script type='text/javascript' src='incl.js'></script>
+</body>
+</html>
