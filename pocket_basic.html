@@ -190,7 +190,7 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;音量200で4分音符のド#レミファソラシドを表現する文字列 最後のドだけ付点８分音符<br />
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T160V200L4_C#4D4E4F4G4A5B5L8HC5.</td></tr>
 								<tr><td>play</td><td>play チャネルNo</td> <td>×</td><td>〇</td><td>〇</td> <td>サウンドチャネルに設定した音を出力する。<br />この命令は、他の命令と違って、非同期なので音の出力の終了を待たずにBASICに制御が戻る。</td></tr>
-								<tr><td rowspan="5">その他</td><td>sleep</td><td>sleep 時間</td><td>〇</td><td>〇</td><td>〇</td> <td>指定した時間待機する。時間　待機する時間をmsで指定する。（0から60000ms)　ただし、待機時間は余り正確ではない。</td></tr>
+								<tr><td rowspan="6">その他</td><td>sleep</td><td>sleep 時間</td><td>〇</td><td>〇</td><td>〇</td> <td>指定した時間待機する。時間　待機する時間をmsで指定する。（0から60000ms)　ただし、待機時間は余り正確ではない。</td></tr>
 								<tr><td>write</td><td>write アドレス,文字列</td> <td>〇</td><td>〇</td><td>〇</td><td>不揮発性メモリーに指定した文字列を書き込む。文字列の１文字を格納するのにアドレス１つを消費する。<br />
 													アドレス：書き込む先頭アドレス（0から16384(V1.008以前は8191) PocekCom Zeroは0から100)<br />
 													文字列：書き込む文字列</td></tr>
@@ -214,6 +214,8 @@
 													&nbsp;&nbsp; 10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DI0<br />
 													&nbsp;&nbsp; 11から14 &nbsp;&nbsp;&nbsp;&nbsp; AI4からAI7<br /><br />
 													ただし、この命令で指定できるピン番号は 0から9 である。<br />
+								<tr><td>led</td><td>led 式</td><td>〇</td><td>×</td><td>×</td> <td>
+													式の値に従ってLEDを点灯/消灯させる。（式が０の時消灯、式が０以外の時点灯）<br />
 								</table>
 							</span>
 						</p>
